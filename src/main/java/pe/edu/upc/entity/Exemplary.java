@@ -62,6 +62,6 @@ public class Exemplary  implements Serializable{
 	public void setExemplaryBook(Book exemplaryBook) {
 		this.exemplaryBook = exemplaryBook;
 	}
-	
+
 	
 }

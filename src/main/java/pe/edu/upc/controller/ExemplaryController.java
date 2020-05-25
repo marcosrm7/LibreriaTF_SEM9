@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pe.edu.upc.entity.Exemplary;
 import pe.edu.upc.entity.Book;
-import pe.edu.upc.serviceinterface.IExemplaryService;
+import pe.edu.upc.entity.Exemplary;
 import pe.edu.upc.serviceinterface.IBookService;
+import pe.edu.upc.serviceinterface.IExemplaryService;
+
 
 @Controller
-@RequestMapping("/exemplaries")
+@RequestMapping("/books/exemplaries")
 public class ExemplaryController {
 	@Autowired
 	private IExemplaryService cS;
@@ -46,7 +47,8 @@ public class ExemplaryController {
 		
 		else {
 			cS.insert(exemplary);
-			model.addAttribute("listExemplaries", cS.list());
+			model.addAttribute("listExmplaries", aU.list());
+			model.addAttribute("listBooks", aU.list());
 			return "book/listBooks";
 		}
 	}
