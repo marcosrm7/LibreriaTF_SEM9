@@ -53,10 +53,10 @@
 						<a class="collapse-item" th:href="@{/authors/list}">Autores</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item active" th:href="@{/books/list}">Libros</a>
+						<a class="collapse-item" th:href="@{/books/list}">Libros</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
+						<a class="collapse-item active" th:href="@{/users/list}">Usuarios</a>
 					</div>
 				</div>
 		</li>
@@ -131,10 +131,10 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Cantidad de ejemplares</h1>
+					<h1 class="h3 mb-4 text-gray-800">Roles</h1>
 
 					<hr class="sidebar-divider">
-					<div th:object="${exemplary}" th:remove="tag">
+					<div th:object="${role}" th:remove="tag">
 						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
 							role="alert">
 							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
@@ -144,34 +144,21 @@
 
 
 
-			<form th:action="@{/books/exemplaries/save}" th:object="${exemplary}"
+			<form th:action="@{/users/roles/save}" th:object="${role}"
 						method="post">
 						
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Libro</label>
-							
-							<div class="col-sm-6">																				
-								<select id="book"
-								class="form-control" th:field="*{exemplaryBook}">
-								<option th:each="book : ${books}"
-									th:text="${book.idBook + '-'+ book.nameBook}" th:value="${book.idBook}"></option>
-								</select>
-								
-							</div>
-							
-							
-						</div>
-					
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Cantidad</label>
+							<label for="name" class="col-sm-2 col-form-label">Nombre del rol</label>						
 							<div class="col-sm-6">
-								<input type="number" th:field="*{countExemplary}"
+								<input type="text" th:field="*{nameRole}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('countExemplary')}"
-									th:errors="*{countExemplary}"></small>
+									th:if="${#fields.hasErrors('nameRole')}"
+									th:errors="*{nameRole}"></small>
 							</div>
+							
+							
 						</div>
 						
 															
@@ -182,7 +169,7 @@
 						<div class="form-group row">
 							<div class="col-sm-6">
 								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
-								<a href="/books/exemplaries/list/" class="btn btn-danger">Cancelar</a>
+								<a href="/users/roles/list/" class="btn btn-danger">Cancelar</a>
 							</div>
 						</div>
 
