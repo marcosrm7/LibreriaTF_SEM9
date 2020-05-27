@@ -19,8 +19,8 @@
 <!-- Custom styles for this template-->
 <link href="/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
-<body id="page-top">
 
+<body id="page-top">
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -32,7 +32,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/books/list}">
+				th:href="@{/authors/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-book"></i>
 				</div>
@@ -135,39 +135,32 @@
 
 					<!-- Page Heading -->
 					<ul class="nav nav-tabs">
-					<li class="nav-item"><a th:href="@{/books/list/}" class="nav-link active">Libros</a></li>
-					<li class="nav-item"><a th:href="@{/books/exemplaries/list/}" class="nav-link">Ejemplares</a></li>
+					<li class="nav-item"><a th:href="@{/books/list/}" class="nav-link">Libros</a></li>
+					<li class="nav-item"><a th:href="@{/books/exemplaries/list/}" class="nav-link active">Ejemplares</a></li>
 					</ul>
-					<!-- <h1 class="h3 col-2 mb-4 text-gray-800"><u>Libros</u></h1>
-					<h1 class="h3 col-2 mb-4 text-gray-800"><a class="text-gray-800" th:href="@{/books/exemplaries/list/}"><u>Ejemplares</u></a></h1>
+					<!--  
+					<h1 class="h3 col-2 mb-4 text-gray-800"><a class="text-gray-800" th:href="@{/books/list/}"><u>Libros</u></a></h1>
+					<h1 class="h3 col-2 mb-4 text-gray-800"><u>Ejemplares</u></h1>
 					-->
-					
 					<br>
-					<a th:href="@{/books/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
-					<!-- <a th:href="@{/books/exemplaries/new/}" class="btn btn-secondary btn-xs">Ejemplares</a>-->
+
+					<a th:href="@{/books/exemplaries/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
+
 					<hr class="sidebar-divider">
 
 					<table class="table table-striped">
 						<thead class="thead-dark">
 							<tr>
 								<th scope="col">Id</th>
-								<th scope="col">Nombre del libro</th>
-								<th scope="col">Fecha de admision</th>
-								<th scope="col">N° Edicion</th>
-								<th scope="col">N° Serie</th>
-								<th scope="col">Lenguaje</th>
-								<th scope="col">Autor</th>
+								<th scope="col">Id | Nombre del libro</th>
+								<th scope="col">Cantidad de ejemplares</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="cate: ${listBooks}">
-								<td th:text="${cate.idBook}"></td>
-								<td th:text="${cate.nameBook}"></td>
-								<td th:text="${cate.dateOfAdmissionBook}"></td>								
-								<td th:text="${cate.editionBook}"></td>								
-								<td th:text="${cate.serieBook}"></td>								
-								<td th:text="${cate.languageBook}"></td>
-								<td th:text="${cate.author.nameAuthor + ' '+cate.author.lastnameAuthor}"></td>
+							<tr th:each="cate: ${listExemplaries}">
+								<td th:text="${cate.idExemplary}"></td>
+								<td th:text="${cate.exemplaryBook.idBook +' | '+ cate.exemplaryBook.nameBook}"></td>
+								<td th:text="${cate.countExemplary}"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -235,5 +228,12 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="/js/sb-admin-2.min.js"></script>
+
+</body>
+
+
+
+
+
 
 </html>

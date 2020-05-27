@@ -47,9 +47,9 @@ public class ExemplaryController {
 		
 		else {
 			cS.insert(exemplary);
-			model.addAttribute("listExmplaries", aU.list());
-			model.addAttribute("listBooks", aU.list());
-			return "book/listBooks";
+			model.addAttribute("listExemplaries", cS.list());
+			//model.addAttribute("listBooks", aU.list());
+			return "book/listExemplaries";
 		}
 	}
 	
@@ -57,11 +57,11 @@ public class ExemplaryController {
 	@GetMapping("/list")
 	public String listExemplaries(Model model) {
 		try {
-			model.addAttribute("listExemparies", cS.list());
+			model.addAttribute("listExemplaries", cS.list());
 		}catch(Exception e) {
 			model.addAttribute("error",e.getMessage());
 		}
-		return "book/listBooks";
+		return "book/listExemplaries";
 	}
 	
 	

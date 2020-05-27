@@ -8,6 +8,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Libreria Panchito</title>
+<link  rel="shortcut icon"  href="/libreria/images/icon.ico" />
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -150,7 +151,7 @@
 								<select id="book"
 								class="form-control" th:field="*{exemplaryBook}">
 								<option th:each="book : ${books}"
-									th:text="${book.nameBook}" th:value="${book.idBook}"></option>
+									th:text="${book.idBook + '-'+ book.nameBook}" th:value="${book.idBook}"></option>
 								</select>
 								
 							</div>
@@ -178,7 +179,7 @@
 						<div class="form-group row">
 							<div class="col-sm-6">
 								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
-								<a href="/books/list" class="btn btn-danger">Cancelar</a>
+								<a href="/books/exemplaries/list/" class="btn btn-danger">Cancelar</a>
 							</div>
 						</div>
 
