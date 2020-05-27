@@ -20,7 +20,7 @@ public class Role implements Serializable  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idRole;
-	@Column (name="nameRole")//unique=true
+	@Column (name="nameRole",unique=true)
 	private String nameRole;
 
 	public Role() {
