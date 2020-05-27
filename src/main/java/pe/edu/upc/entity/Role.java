@@ -2,6 +2,7 @@ package pe.edu.upc.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 //import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "roles", uniqueConstraints = { @UniqueConstraint(columnNames = { "id_role", "name_role" }) })
+@Table(name = "roles", uniqueConstraints = { @UniqueConstraint(columnNames = { "nameRole" }) })
 public class Role implements Serializable  {
 	
 	private static final long serialVersionUID = 1L;
@@ -19,7 +20,7 @@ public class Role implements Serializable  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idRole;
-	//@Column (unique=true)
+	@Column (name="nameRole")//unique=true
 	private String nameRole;
 
 	public Role() {
