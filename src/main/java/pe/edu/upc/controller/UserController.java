@@ -21,4 +21,6 @@ public class UserController {
 	public String listUsers (Model model) {
 		return "user/listUsers";
 	}
+	
+	
 }

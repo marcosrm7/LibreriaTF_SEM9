@@ -25,13 +25,14 @@ public class User implements Serializable {
 	private String lastNameUser;
 	@Column (name="passwordUser", nullable=false, length=20)
 	private String passwordUser;
-	@Column (name="dniUser", nullable=true, length=8)
+	@Column (name="dniUser", nullable=false, length=8)
 	private int dniUser;
 	@Column (name="correoUser", nullable=false, length=45)
 	private String correoUser;
 	@ManyToOne
-	@JoinColumn(name = "roleUser", nullable = false)
+	@JoinColumn(name = "idRole", nullable = false)
 	private Role roleUser;
+	
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
