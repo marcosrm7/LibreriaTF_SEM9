@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/users")
-public class UserController {
+public class AccountController {
 
 	
 	
@@ -18,7 +18,7 @@ public class UserController {
 	
 	
 	@GetMapping("/list")
-	public String listUsers (Model model) {
+	public String listAccounts (Model model) {
 		return "user/listUsers";
 	}
 	

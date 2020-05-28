@@ -100,52 +100,52 @@
                               
                               
                                           
-                     <form th:action="@{/registry/save}" th:object="${user}" method="post" class="wow fadeInUp" id="contact-form" 
+                     <form th:action="@{/registry/save}" th:object="${account}" method="post" class="wow fadeInUp" id="contact-form" 
                          role="form" data-wow-delay="0.8s">
                            
                               <div class="col-md-6 col-sm-6">
-                                   <input type="text" th:field="*{nameUser}" 
+                                   <input type="text" th:field="*{nameAccount}" 
                                    class="form-control"  th:errorclass="'form-control alert-danger'"
                                    id="cf-name" name="name" 
                                    placeholder="Nombres" ><small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('nameUser')}"
-									th:errors="*{nameUser}"></small><!--required="Campo obligatorio"-->
+									th:if="${#fields.hasErrors('nameAccount')}"
+									th:errors="*{nameAccount}"></small><!--required="Campo obligatorio"-->
                               </div>                
                               
                               <div class="col-md-6 col-sm-6">
                                    <input type="email" 
-                                   class="form-control" th:field="*{correoUser}" th:errorclass="'form-control alert-danger'"
+                                   class="form-control" th:field="*{correoAccount}" th:errorclass="'form-control alert-danger'"
                                    id="cf-email" name="email" placeholder="Email"><small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('correoUser')}"
-									th:errors="*{correoUser}"></small>
+									th:if="${#fields.hasErrors('correoAccount')}"
+									th:errors="*{correoAccount}"></small>
                               </div>
                               <div class="col-md-6 col-sm-6">
-                                   <input type="text" class="form-control" th:field="*{lastNameUser}" th:errorclass="'form-control alert-danger'"
+                                   <input type="text" class="form-control" th:field="*{lastNameAccount}" th:errorclass="'form-control alert-danger'"
                                    id="cf-name" name="apellidos" placeholder="Apellidos" >
                                    <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('lastNameUser')}"
-									th:errors="*{lastNameUser}"></small>
+									th:if="${#fields.hasErrors('lastNameAccount')}"
+									th:errors="*{lastNameAccount}"></small>
                               </div>                           
                               <div class="col-md-6 col-sm-6">
-                                   <input type="password" class="form-control" th:field="*{passwordUser}" th:errorclass="'form-control alert-danger'"
+                                   <input type="password" class="form-control" th:field="*{passwordAccount}" th:errorclass="'form-control alert-danger'"
                                    id="cf-password" name="password" placeholder="Contraseña" minlength="6" >
                                    <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('passwordUser')}"
-									th:errors="*{passwordUser}"></small>
+									th:if="${#fields.hasErrors('passwordAccount')}"
+									th:errors="*{passwordAccount}"></small>
                               </div>
                                <div class="col-md-6 col-sm-6">
-                                   <input type="number"  th:field="*{dniUser}" th:errorclass="'form-control alert-danger'"
+                                   <input type="number"  th:field="*{dniAccount}" th:errorclass="'form-control alert-danger'"
                                    class="form-control" 
                                    id="cf-dni" name="name" 
                                    placeholder="DNI"  min="0" > 
                                    <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('dniUser')}"
-									th:errors="*{dniUser}"></small>
+									th:if="${#fields.hasErrors('dniAccount')}"
+									th:errors="*{dniAccount}"></small>
                                    <!--minlength="8"  min="10000000" required pattern="[0-9]{8,9}"
                                     title="Documento de identidad debe contar con 8 digitos."
                                    <i>(Minimo 8 dígitos)</i>-->
@@ -156,7 +156,7 @@
                                    id="cf-subject" name="subject" placeholder="Rol">   -->                                
 																				
 								 <select id="user"
-								class="form-control" th:field="*{roleUser}">
+								class="form-control" th:field="*{roleAccount}">
 								<option th:each="role : ${roles}"
 									th:text="${role.nameRole}" th:value="${role.idRole}"></option>
 								</select>

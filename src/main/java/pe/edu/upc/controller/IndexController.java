@@ -10,15 +10,14 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import pe.edu.upc.entity.User;
-import pe.edu.upc.serviceinterface.IUserService;
+import pe.edu.upc.entity.Account;
+import pe.edu.upc.serviceinterface.IAccountService;
 import pe.edu.upc.serviceinterface.IRoleService;
-import pe.edu.upc.entity.Book;
 import pe.edu.upc.entity.Role;
 @Controller
 public class IndexController {
 	@Autowired
-	private IUserService cS;
+	private IAccountService cS;
 	@Autowired
 	private IRoleService aU;
 	
@@ -33,8 +32,8 @@ public class IndexController {
 	
 	
 	@GetMapping("/registry")	
-	public String newUser (Model model) {
-		model.addAttribute("user", new User());
+	public String newAccount (Model model) {
+		model.addAttribute("account", new Account());
 		role=new Role();
 		model.addAttribute("role", role); //CAMBIO HECHO
 		List<Role> roles = aU.list();
@@ -43,13 +42,13 @@ public class IndexController {
 	}
 	
 	@PostMapping("/registry/save")
-	public String saveUser (@Validated User user, BindingResult result, Model model) throws Exception {
+	public String saveAccount (@Validated Account account, BindingResult result, Model model) throws Exception {
 		if(result.hasErrors()) {
 			return "registro";
 		}
 		
 		else {
-			cS.insert(user);
+			cS.insert(account);
 			//model.addAttribute("listUsers", cS.list());
 			return "index";
 		}

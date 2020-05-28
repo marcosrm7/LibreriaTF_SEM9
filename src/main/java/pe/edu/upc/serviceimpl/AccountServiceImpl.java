@@ -6,26 +6,26 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pe.edu.upc.entity.User;
-import pe.edu.upc.repository.IUserRepository;
-import pe.edu.upc.serviceinterface.IUserService;
+import pe.edu.upc.entity.Account;
+import pe.edu.upc.repository.IAccountRepository;
+import pe.edu.upc.serviceinterface.IAccountService;
 
 @Service
-public class UserServiceImpl implements Serializable, IUserService {
+public class AccountServiceImpl implements Serializable, IAccountService {
 
 	private static final long serialVersionUID=1L;
 	
 	@Autowired
-	private IUserRepository cR;
+	private IAccountRepository cR;
 	
 	@Override
-	public void insert(User _user) {
+	public void insert(Account _user) {
 		// TODO Auto-generated method stub
 		cR.save(_user);
 	}
 
 	@Override
-	public List<User> list() {
+	public List<Account> list() {
 		// TODO Auto-generated method stub
 		return cR.findAll();
 	}
