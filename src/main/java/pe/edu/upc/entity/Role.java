@@ -16,7 +16,7 @@ import javax.persistence.UniqueConstraint;
 public class Role implements Serializable  {
 	
 	private static final long serialVersionUID = 1L;
-
+//hola mundo
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idRole;
