@@ -107,7 +107,7 @@
                                    <input type="text" th:field="*{nameAccount}" 
                                    class="form-control"  th:errorclass="'form-control alert-danger'"
                                    id="cf-name" name="name" 
-                                   placeholder="Nombres" ><small
+                                   placeholder="Nombres" required pattern ="[A-Za-z]{1,45}" ><small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('nameAccount')}"
 									th:errors="*{nameAccount}"></small><!--required="Campo obligatorio"-->
@@ -116,14 +116,14 @@
                               <div class="col-md-6 col-sm-6">
                                    <input type="email" 
                                    class="form-control" th:field="*{correoAccount}" th:errorclass="'form-control alert-danger'"
-                                   id="cf-email" name="email" placeholder="Email"><small
+                                   id="cf-email" name="email" placeholder="Email" required pattern ="{1,45}"><small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('correoAccount')}"
 									th:errors="*{correoAccount}"></small>
                               </div>
                               <div class="col-md-6 col-sm-6">
                                    <input type="text" class="form-control" th:field="*{lastNameAccount}" th:errorclass="'form-control alert-danger'"
-                                   id="cf-name" name="apellidos" placeholder="Apellidos" >
+                                   id="cf-name" name="apellidos" placeholder="Apellidos" required pattern ="[A-Za-z]{1,45}">
                                    <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('lastNameAccount')}"
@@ -131,7 +131,7 @@
                               </div>                           
                               <div class="col-md-6 col-sm-6">
                                    <input type="password" class="form-control" th:field="*{passwordAccount}" th:errorclass="'form-control alert-danger'"
-                                   id="cf-password" name="password" placeholder="Contraseña" minlength="6" >
+                                   id="cf-password" name="password" placeholder="Contraseña" minlength="6" required pattern ="{1,20}">
                                    <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('passwordAccount')}"
@@ -141,7 +141,7 @@
                                    <input type="number"  th:field="*{dniAccount}" th:errorclass="'form-control alert-danger'"
                                    class="form-control" 
                                    id="cf-dni" name="name" 
-                                   placeholder="DNI"  min="0" > 
+                                   placeholder="DNI"  min="0" required ="required"> 
                                    <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('dniAccount')}"
@@ -173,19 +173,14 @@
                </div>
           </div>
      </section>    
-     <script type="text/javascript">
+     <!-- ABOUT -->
+	<script type="text/javascript">
                 var input=  document.getElementById('cf-dni');
                 input.addEventListener('input',function(){
                  if (this.value.length > 8) 
                  this.value = this.value.slice(0,8); 
                })
      </script>
-
-
-     <!-- ABOUT -->
-
-
-
      <!-- authors -->
 
    
