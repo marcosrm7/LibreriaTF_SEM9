@@ -140,20 +140,18 @@
 							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
 						</ul>
 					</div>
-
 					<form th:action="@{/authors/save}" th:object="${author}"
 						method="post">
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Nombre</label>
-							<div class="col-sm-6">
+							<div class="col-sm-6"> <!-- Moficacion Caski -->
 								<input type="text" th:field="*{nameAuthor}"
-									class="form-control"
+									class="form-control" onkeyup="capitalizarPrimeraLetra()" id="entrada"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('nameAuthor')}"
 									th:errors="*{nameAuthor}"></small>
 							</div>
-							
 						</div>
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Apellidos</label>
@@ -166,19 +164,34 @@
 									th:errors="*{lastnameAuthor}"></small>
 							</div>
 						</div>
-
 						<div class="form-group row">
 							<div class="col-sm-6">
 								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
 								<a href="/authors/list" class="btn btn-danger">Cancelar</a>
 							</div>
 						</div>
-
 					</form>
-
-
-
-
+					<p th:text="${mensaje}"></p>
+					<!-- Moficacion -->
+					<script>
+					var input = document.getElementById('entrada');
+					//función que capitaliza la primera letra
+					function capitalizarPrimeraLetra() {
+					  //almacenamos el valor del input
+					  var palabra = input.value;
+					  //Si el valor es nulo o undefined salimos
+					  if(!input.value) return;
+					  // almacenamos la mayuscula
+					  var mayuscula = palabra.substring(0,1).toUpperCase();
+					  //si la palabra tiene más de una letra almacenamos las minúsculas
+					  if (palabra.length > 0) {
+					    var minuscula = palabra.substring(1).toLowerCase();
+					  }
+					  //escribimos la palabra con la primera letra mayuscula
+					  input.value = mayuscula.concat(minuscula);
+					}
+					</script>
+					<!-- Moficacion -->
 				</div>
 				<!-- /.container-fluid -->
 

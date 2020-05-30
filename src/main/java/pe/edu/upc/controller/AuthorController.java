@@ -17,43 +17,37 @@ import pe.edu.upc.serviceinterface.IAuthorService;
 public class AuthorController {
 	@Autowired
 	private IAuthorService cS;
-	
-	
+
 	@GetMapping("/new")
-	public String newAuthor (Model model) {
+	public String newAuthor(Model model) {
 		model.addAttribute("author", new Author());
 		return "author/author";
 	}
-	
+
 	@PostMapping("/save")
-	public String saveAuthor (@Validated Author author, BindingResult result, Model model) throws Exception {
-		if(result.hasErrors()) {
+	public String saveAuthor(@Validated Author author, BindingResult result, Model model) throws Exception {
+		if (result.hasErrors()) {
 			return "author/author";
-		}
-		
-		else {
-			cS.insert(author);
-			model.addAttribute("listAuthors", cS.list());
-			return "author/listAuthors";
+		} else {
+			int rpta = cS.insert(author);
+			if (rpta > 0) {
+				model.addAttribute("mensaje", "Ya existe!");
+				return "author/author";
+			} else {
+				model.addAttribute("listAuthors", cS.list());
+				return "author/listAuthors";
+			}
 		}
 	}
-	
+
 	@GetMapping("/list")
 	public String listAuthors(Model model) {
 		try {
 			model.addAttribute("listAuthors", cS.list());
-		}catch(Exception e) {
-			model.addAttribute("error",e.getMessage());
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
 		}
 		return "author/listAuthors";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
