@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import pe.edu.upc.entity.Author;
 import pe.edu.upc.serviceinterface.IAuthorService;
-/* Hola esto es una prueba de github*/
+
 @Controller
 @RequestMapping("/authors")
 public class AuthorController {
