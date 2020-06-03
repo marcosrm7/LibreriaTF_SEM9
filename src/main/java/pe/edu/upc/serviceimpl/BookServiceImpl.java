@@ -13,20 +13,23 @@ import pe.edu.upc.serviceinterface.IBookService;
 @Service
 public class BookServiceImpl implements Serializable, IBookService{
 	private static final long serialVersionUID=1L;
-	/*Para que traiga el mentodo que se va a utilizar*/
+	/*Para que traiga el metodo que se va a utilizar*/
 	
 	@Autowired
 	private IBookRepository cR;
 	
 	@Override
-	public void insert(Book _book) {
-		// TODO Auto-generated method stub
-		cR.save(_book);
-	}
-
-	@Override
 	public List<Book> list() {
 		// TODO Auto-generated method stub
 		return cR.findAll();
+	}
+
+	@Override
+	public int insert(Book book) {
+		int rpta = cR.searchBook(book.getNameBook(), book.getAuthor().getIdAuthor());
+		if(rpta == 0) {
+			cR.save(book);
+		}
+		return rpta;
 	}
 }

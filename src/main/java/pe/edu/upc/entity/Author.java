@@ -21,11 +21,11 @@ public class Author implements Serializable {
 	private int idAuthor;
 
 	@NotEmpty(message = "El nombre es obligatorio")
-	@Pattern(regexp = "[a-zA-Z]+", message = "El nombre solo puede tener letras")
+	@Pattern(regexp = "[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s[a-zA-ZÀ-ÿ\\u00f1\\u00d1])*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+$", message = "El nombre solo puede tener letras")
 	@Column(name = "nameAuthor", nullable = false, length = 45)
 	private String nameAuthor;
 	@NotEmpty(message = "El apellido es obligatorio")
-	@Pattern(regexp = "[a-zA-Z]+", message = "El apellido solo puede tener letras")
+	@Pattern(regexp = "[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s[a-zA-ZÀ-ÿ\\u00f1\\u00d1])*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+$", message = "El apellido solo puede tener letras")
 	@Column(name = "lastnameAuthor", nullable = false, length = 45)
 	private String lastnameAuthor;
 
