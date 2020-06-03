@@ -25,7 +25,6 @@ public class Role implements Serializable  {
 
 	public Role() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Role(int idRole, String nameRole) {
