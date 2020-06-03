@@ -5,6 +5,8 @@ import java.util.List;
 import pe.edu.upc.entity.Author;
 
 public interface IAuthorService {
-	public void insert (Author _author);
-	List <Author> list();
+
+	public int insert(Author author);
+
+	List<Author> list();
 }
