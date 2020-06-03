@@ -148,7 +148,7 @@
 							<div class="col-sm-6">
 								<input type="text" th:field="*{nameAuthor}"
 									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" required pattern ="[A-Za-z\s]{1,45}"/> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('nameAuthor')}"
 									th:errors="*{nameAuthor}"></small>

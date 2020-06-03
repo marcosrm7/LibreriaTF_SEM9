@@ -137,19 +137,28 @@
 									th:if="${#fields.hasErrors('passwordAccount')}"
 									th:errors="*{passwordAccount}"></small>
                               </div>
-                               <div class="col-md-6 col-sm-6">
-                                   <input type="number"  th:field="*{dniAccount}" th:errorclass="'form-control alert-danger'"
+                              <div class="col-md-6 col-sm-6">
+                                   <input type="text" th:field="*{dniAccount}" 
+                                   class="form-control"  th:errorclass="'form-control alert-danger'"
+                                   id="cf-dni" name="dni" 
+                                   placeholder="DNI" required ="required" ><small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('dniAccount')}"
+									th:errors="*{dniAccount}"></small><!--required="Campo obligatorio"-->
+                              </div>
+                               <!--  <div class="col-md-6 col-sm-6">
+                                   <input type="text"  th:field="*{dniAccount}" th:errorclass="'form-control alert-danger'"
                                    class="form-control" 
-                                   id="cf-dni" name="name" 
-                                   placeholder="DNI"  min="0" required ="required"> 
+                                   id="cf-dni" name="dni" 
+                                   placeholder="DNI"  required ="required" value=""> 
                                    <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('dniAccount')}"
 									th:errors="*{dniAccount}"></small>
                                    <!--minlength="8"  min="10000000" required pattern="[0-9]{8,9}"
                                     title="Documento de identidad debe contar con 8 digitos."
-                                   <i>(Minimo 8 dígitos)</i>-->
-                              </div>
+                                   <i>(Minimo 8 dígitos)</i>
+                              </div>-->
 
                               <div class="col-md-12 col-sm-12">
                                   <!--   <input type="text" class="form-control" th:field="*{role}"
@@ -174,7 +183,7 @@
           </div>
      </section>    
      <!-- ABOUT -->
-	<script type="text/javascript">
+<script type="text/javascript">
                 var input=  document.getElementById('cf-dni');
                 input.addEventListener('input',function(){
                  if (this.value.length > 8) 
