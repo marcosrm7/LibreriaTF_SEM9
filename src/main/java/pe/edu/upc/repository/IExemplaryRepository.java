@@ -10,7 +10,6 @@ import pe.edu.upc.entity.Exemplary;
 
 @Repository
 public interface IExemplaryRepository extends JpaRepository <Exemplary, Integer>{
-	@Query("select count(e.exemplaryBook) from Exemplary a where upper(e.exemplaryBook)=upper(:exemplaryBook) and upper(e.countExemplary)=upper(:countExemplary)")
-	public int searchExemplary(@Param("exemplaryBook") Book ejemplar, @Param("countExemplary") int conteo);
+	
 }
 
