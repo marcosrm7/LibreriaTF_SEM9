@@ -1,20 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
+
 <title>Libreria Panchito</title>
-<link  rel="shortcut icon"  href="/libreria/images/icon.ico" />
+
 <!-- Custom fonts for this template-->
-<link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
 
 <!-- Custom styles for this template-->
 <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -24,7 +31,7 @@
 
 		<!-- Sidebar -->
 		<ul
-			class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion"
+			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
@@ -51,16 +58,16 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item " th:href="@{/authors/list}">Autores</a>
+						<a class="collapse-item" th:href="@{/authors/list}">Autores</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/books/list}">Libros</a>
+						<a class="collapse-item " th:href="@{/books/list}">Libros</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/loans/list}">Prestamo</a>
+						<a class="collapse-item active" th:href="@{/loans/list}">Prestamo</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item active" th:href="@{/users/list}">Usuarios</a>
+						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
 					</div>
 				</div>
 				
@@ -140,20 +147,35 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<ul class="nav nav-tabs">
-					<li class="nav-item"><a th:href="@{/users/list/}" class="nav-link active">Usuarios</a></li>
-					<li class="nav-item"><a th:href="@{/users/roles/list/}" class="nav-link">Roles</a></li>
-					</ul>
-					<!-- <h1 class="h3 col-2 mb-4 text-gray-800"><u>Libros</u></h1>
-					<h1 class="h3 col-2 mb-4 text-gray-800"><a class="text-gray-800" th:href="@{/books/exemplaries/list/}"><u>Ejemplares</u></a></h1>
-					-->
-					
-					<br>
-					<a class="btn btn-secondary btn-xs">Nuevo</a>
-					<!-- <a th:href="@{/books/exemplaries/new/}" class="btn btn-secondary btn-xs">Ejemplares</a>-->
+					<h1 class="h3 mb-4 text-gray-800">Prestamos</h1>
+
+					<a th:href="@{/loans/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
+
 					<hr class="sidebar-divider">
 
-					<!-- Pendiente TABLA -->
+					<table class="table table-striped">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">Id</th>
+								<th scope="col">Fecha de Prestamo</th>
+								<th scope="col">Cantidad</th>
+								<th scope="col">Fecha de devolucion</th>
+								<th scope="col">Obeservaciones</th>
+								<th scope="col">Ejemplar</th>
+								<th scope="col">Usuario</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="l: ${listLoans}">
+								<td th:text="${l.loanDate}"></td>
+								<td th:text="${l.quantityBooks}"></td>
+								<td th:text="${l.devLoan}"></td>
+								<td th:text="${l.exemplary.idExemplary}"></td>
+								<td th:text="${l.account.nameAccount + ' ' + l.account.lastNameAccount}"></td>
+							</tr>
+						</tbody>
+					</table>
 
 					<p th:text="${mensaje}" class="form-text text-success"></p>
 
@@ -202,7 +224,7 @@
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancelar</button>
-					<a class="btn btn-primary" th:href="@{/index}">Cerrar
+					<a class="btn btn-primary" th:href="@{/categories/index}">Cerrar
 						sesión</a>
 				</div>
 			</div>
@@ -218,5 +240,7 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="/js/sb-admin-2.min.js"></script>
+
 </body>
+
 </html>
