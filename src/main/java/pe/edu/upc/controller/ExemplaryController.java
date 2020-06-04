@@ -41,12 +41,15 @@ public class ExemplaryController {
 	
 	@PostMapping("/save")
 	public String saveExemplary (@Validated Exemplary exemplary, BindingResult result, Model model) throws Exception {
+		//int contador=exemplary.getCountExemplary();
 		if(result.hasErrors()) {
 			return "book/exemplary";
 		}
 		
-		else {
+		else {	
+		
 			cS.insert(exemplary);
+			
 			model.addAttribute("listExemplaries", cS.list());
 			//model.addAttribute("listBooks", aU.list());
 			return "book/listExemplaries";
