@@ -104,7 +104,7 @@
                          role="form" data-wow-delay="0.8s">
                            
                               <div class="col-md-6 col-sm-6">
-                                   <input type="text" th:field="*{nameAccount}" 
+                                   <input type="text" th:field="*{nameAccount}" autocomplete="off"
                                    class="form-control"  th:errorclass="'form-control alert-danger'"
                                    id="cf-name" name="name" 
                                    placeholder="Nombres" required pattern ="[A-Za-z]{1,45}" ><small
@@ -115,7 +115,7 @@
                               
                               <div class="col-md-6 col-sm-6">
                                    <input type="email" 
-                                   class="form-control" th:field="*{correoAccount}" th:errorclass="'form-control alert-danger'"
+                                   class="form-control" th:field="*{correoAccount}" th:errorclass="'form-control alert-danger'" autocomplete="off"
                                    id="cf-email" name="email" placeholder="Email" required pattern ="{1,45}"><small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('correoAccount')}"
@@ -123,7 +123,7 @@
                               </div>
                               <div class="col-md-6 col-sm-6">
                                    <input type="text" class="form-control" th:field="*{lastNameAccount}" th:errorclass="'form-control alert-danger'"
-                                   id="cf-name" name="apellidos" placeholder="Apellidos" required pattern ="[A-Za-z]{1,45}">
+                                   id="cf-name" name="apellidos" placeholder="Apellidos" autocomplete="off" required pattern ="[A-Za-z]{1,45}">
                                    <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('lastNameAccount')}"
@@ -139,9 +139,9 @@
                               </div>
                               <div class="col-md-6 col-sm-6">
                                    <input type="text" th:field="*{dniAccount}" 
-                                   class="form-control"  th:errorclass="'form-control alert-danger'"
+                                   class="form-control"  th:errorclass="'form-control alert-danger'" pattern="[0-9]{8,8}"
                                    id="cf-dni" name="dni" 
-                                   placeholder="DNI" required ="required" ><small
+                                   placeholder="DNI" required ="required" autocomplete="off" ><small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('dniAccount')}"
 									th:errors="*{dniAccount}"></small><!--required="Campo obligatorio"-->

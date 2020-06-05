@@ -20,6 +20,11 @@ public class ExemplaryServiceImpl implements Serializable, IExemplaryService{
 	@Override
 	public void insert(Exemplary _exemplary) {
 		// TODO Auto-generated method stub
+		/*int contador =_exemplary.getCountExemplary();
+		do{
+		
+		contador--;
+		}while (contador>0);*/
 		cR.save(_exemplary);
 	}
 

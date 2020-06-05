@@ -149,7 +149,7 @@
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Nombre</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{nameAuthor}"
+								<input type="text" th:field="*{nameAuthor}" autocomplete="off"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" required pattern ="[A-Za-z\s]{1,45}"/> <small
 									class="form-text text-danger"
@@ -161,7 +161,7 @@
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Apellidos</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{lastnameAuthor}"
+								<input type="text" th:field="*{lastnameAuthor}" autocomplete="off"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
