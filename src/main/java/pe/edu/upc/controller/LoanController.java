@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
+import pe.edu.upc.entity.Account;
+import pe.edu.upc.entity.Exemplary;
 import pe.edu.upc.entity.Loan;
 import pe.edu.upc.serviceinterface.ILoanService;
 import pe.edu.upc.serviceinterface.IExemplaryService;
@@ -27,12 +28,13 @@ public class LoanController {
 	
 	@Autowired
 	private IAccountService aS;
+
 	
 	@GetMapping("/new")
 	public String newLoan(Model model) {
 		model.addAttribute("loan",new Loan());
-		model.addAttribute("listExemplaries",eS.list());
-		model.addAttribute("listAccounts",aS.list());
+		model.addAttribute("exemplaries",eS.list());
+		model.addAttribute("accounts",aS.list());
 		return "loan/loan";
 	}
 	
@@ -41,14 +43,14 @@ public class LoanController {
 		if (result.hasErrors()) {
 			model.addAttribute("listExemplaries",eS.list());
 			model.addAttribute("listAccounts",eS.list());
-			return "loan/loan";
+		
 		}else {
 			lS.insert(loan);
 			model.addAttribute("mensaje","Prestamo se registró correctamente");
-			return "loan/loan";
+			
 		}
 		
-		
+		return "loan/loan";
 	}
 	
 	

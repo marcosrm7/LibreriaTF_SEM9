@@ -200,20 +200,20 @@
 						<div class="form-group row">
 							<label for="exemplary" class="col-sm-2 col-form-label">Ejemplar</label>
 							<div class="col-sm-6">
-								<select class="form-control" th:field="*{exemplary.idExemplary}">
-									<option th:each="e: ${listExemplaries}"
-										th:value="${e.idExemplary}" th:text="${e.idExemplary}"
-										th:selected="(${e.idExemplary} == *{exemplary.idExemplary})"></option>
+								<select class="form-control" th:field="*{exemplary}">
+									<option th:each="exemplary: ${exemplaries}"
+										th:value="${exemplary.idExemplary}" th:text="${exemplary.idExemplary}"
+										></option>
 								</select>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="account" class="col-sm-2 col-form-label">Usuario</label>
 							<div class="col-sm-6">
-								<select class="form-control" th:field="*{account.idAccount}">
-									<option th:each="a: ${listAccounts}"
-										th:value="${a.idAccount}" th:text="${a.nameAccount + ' ' + a.lastNameAccount}"
-										th:selected="(${a.idAccount} == *{account.idAccount})"></option>
+								<select class="form-control" th:field="*{account}">
+									<option th:each="account: ${accounts}"
+										th:value="${account.idAccount}" th:text="${account.nameAccount + ' ' + account.lastNameAccount}"
+										></option>
 								</select>
 							</div>
 						</div>

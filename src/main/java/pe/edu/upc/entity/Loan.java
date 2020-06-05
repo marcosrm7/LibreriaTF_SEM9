@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table (name="Loan")
@@ -22,11 +24,13 @@ public class Loan implements Serializable{
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idLoan;
-	
+	@Column (name="loanDate", nullable=false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date loanDate;
 	
 	private int quantityBooks;
-	
+	@Column (name="devLoan", nullable=false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date devLoan;
 	
 	@Column (name="observation", nullable=false, length=45)

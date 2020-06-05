@@ -164,9 +164,11 @@
 						</thead>
 						<tbody>
 							<tr th:each="l: ${listLoans}">
+								<td th:text="${l.idLoan}"></td>
 								<td th:text="${l.loanDate}"></td>
 								<td th:text="${l.quantityBooks}"></td>
 								<td th:text="${l.devLoan}"></td>
+								<td th:text="${l.observation}"></td>
 								<td th:text="${l.exemplary.idExemplary}"></td>
 								<td th:text="${l.account.nameAccount + ' ' + l.account.lastNameAccount}"></td>
 							</tr>
