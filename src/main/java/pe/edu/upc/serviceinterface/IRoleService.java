@@ -5,6 +5,6 @@ import java.util.List;
 import pe.edu.upc.entity.Role;
 
 public interface IRoleService {
-	public void insert (Role _role);
+	public int insert (Role _role);
 	List <Role> list();
 }

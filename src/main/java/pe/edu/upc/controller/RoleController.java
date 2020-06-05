@@ -31,9 +31,14 @@ public class RoleController {
 		}
 		
 		else {
-			cS.insert(role);
-			model.addAttribute("listRoles", cS.list());
-			return "user/listRoles";
+			int rpta = cS.insert(role);
+			if (rpta > 0) {
+				model.addAttribute("mensaje", "Ya existe");
+				return "user/role";
+			} else {
+				model.addAttribute("listRoles", cS.list());
+				return "user/listRoles";
+			}
 		}
 	}
 	
