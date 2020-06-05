@@ -6,7 +6,7 @@ import pe.edu.upc.entity.Book;
 
 public interface IBookService {
 	
-	public int insert(Book book);
+	public void insert(Book book);
 
 	List<Book> list();
 }

@@ -41,14 +41,9 @@ public class BookController {
 		if (result.hasErrors()) {
 			return "book/book";
 		} else {
-			int rpta = cS.insert(book);
-			if (rpta > 0) {
-				model.addAttribute("mensaje", "Ya existe");
-				return "book/book";
-			} else {
-				model.addAttribute("listBooks", cS.list());
-				return "book/listBooks";
-			}
+			cS.insert(book);
+			model.addAttribute("listBooks", cS.list());
+			return "book/listBooks";
 		}
 	}
 
