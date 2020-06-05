@@ -198,7 +198,7 @@
 							</div>							
 						</div>
 						<div class="form-group row">
-							<label for="exemplary">Ejemplar</label>
+							<label for="exemplary" class="col-sm-2 col-form-label">Ejemplar</label>
 							<div class="col-sm-6">
 								<select class="form-control" th:field="*{exemplary.idExemplary}">
 									<option th:each="e: ${listExemplaries}"
@@ -208,7 +208,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="account">Usuario</label>
+							<label for="account" class="col-sm-2 col-form-label">Usuario</label>
 							<div class="col-sm-6">
 								<select class="form-control" th:field="*{account.idAccount}">
 									<option th:each="a: ${listAccounts}"
