@@ -19,9 +19,12 @@ public class RoleServiceImpl implements Serializable, IRoleService{
 	private IRoleRepository cR;
 	
 	@Override
-	public void insert(Role _role) {
-		// TODO Auto-generated method stub
-		cR.save(_role);
+	public int insert(Role _role) {
+		int rpta = cR.searchRole(_role.getNameRole());
+		if (rpta == 0) {
+			cR.save(_role);
+		}
+		return rpta;
 	}
 
 	@Override
