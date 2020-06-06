@@ -8,7 +8,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Libreria Panchito</title>
-<link  rel="shortcut icon"  href="/libreria/images/icon.ico" />
+<link rel="shortcut icon" href="/libreria/images/icon.ico" />
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -64,9 +64,7 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
 					</div>
-				</div>
-				
-				</li>
+				</div></li>
 
 
 
@@ -143,15 +141,17 @@
 
 					<!-- Page Heading -->
 					<ul class="nav nav-tabs">
-					<li class="nav-item"><a th:href="@{/books/list/}" class="nav-link active">Libros</a></li>
-					<li class="nav-item"><a th:href="@{/books/exemplaries/list/}" class="nav-link">Ejemplares</a></li>
+						<li class="nav-item"><a th:href="@{/books/list/}"
+							class="nav-link active">Libros</a></li>
+						<li class="nav-item"><a th:href="@{/books/exemplaries/list/}"
+							class="nav-link">Ejemplares</a></li>
 					</ul>
 					<!-- <h1 class="h3 col-2 mb-4 text-gray-800"><u>Libros</u></h1>
 					<h1 class="h3 col-2 mb-4 text-gray-800"><a class="text-gray-800" th:href="@{/books/exemplaries/list/}"><u>Ejemplares</u></a></h1>
 					-->
-					
-					<br>
-					<a th:href="@{/books/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
+
+					<br> <a th:href="@{/books/new/}"
+						class="btn btn-secondary btn-xs">Nuevo</a>
 					<!-- <a th:href="@{/books/exemplaries/new/}" class="btn btn-secondary btn-xs">Ejemplares</a>-->
 					<hr class="sidebar-divider">
 
@@ -171,11 +171,12 @@
 							<tr th:each="cate: ${listBooks}">
 								<td th:text="${cate.idBook}"></td>
 								<td th:text="${cate.nameBook}"></td>
-								<td th:text="${cate.dateOfAdmissionBook}"></td>								
-								<td th:text="${cate.editionBook}"></td>								
-								<td th:text="${cate.serieBook}"></td>								
+								<td th:text="${cate.dateOfAdmissionBook}"></td>
+								<td th:text="${cate.editionBook}"></td>
+								<td th:text="${cate.serieBook}"></td>
 								<td th:text="${cate.languageBook}"></td>
-								<td th:text="${cate.author.nameAuthor + ' '+cate.author.lastnameAuthor}"></td>
+								<td
+									th:text="${cate.author.nameAuthor + ' '+cate.author.lastnameAuthor}"></td>
 							</tr>
 						</tbody>
 					</table>

@@ -8,7 +8,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Libreria Panchito</title>
-<link  rel="shortcut icon"  href="/libreria/images/icon.ico" />
+<link rel="shortcut icon" href="/libreria/images/icon.ico" />
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -31,7 +31,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-			 href="#" >
+				href="#">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-book"></i>
 				</div>
@@ -61,8 +61,7 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
 					</div>
-				</div>
-		</li>
+				</div></li>
 
 			<!-- Sidebar Toggler (Sidebar) -->
 
@@ -147,24 +146,25 @@
 
 
 
-			<form th:action="@{/books/exemplaries/save}" th:object="${exemplary}"
-						method="post">
-						
+					<form th:action="@{/books/exemplaries/save}"
+						th:object="${exemplary}" method="post">
+
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Libro</label>
-							
-							<div class="col-sm-6">																				
-								<select id="book"
-								class="form-control" th:field="*{exemplaryBook}">
-								<option th:each="book : ${books}"
-									th:text="${book.idBook + '-'+ book.nameBook}" th:value="${book.idBook}"></option>
+
+							<div class="col-sm-6">
+								<select id="book" class="form-control"
+									th:field="*{exemplaryBook}">
+									<option th:each="book : ${books}"
+										th:text="${book.idBook + '-'+ book.nameBook}"
+										th:value="${book.idBook}"></option>
 								</select>
-								
+
 							</div>
-							
-							
+
+
 						</div>
-					
+
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Cantidad</label>
 							<div class="col-sm-6">
@@ -176,11 +176,11 @@
 									th:errors="*{countExemplary}"></small>
 							</div>
 						</div>
-						
-															
-													
-											
-						
+
+
+
+
+
 
 						<div class="form-group row">
 							<div class="col-sm-6">

@@ -8,7 +8,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Libreria Panchito</title>
-<link  rel="shortcut icon"  href="/libreria/images/icon.ico" />
+<link rel="shortcut icon" href="/libreria/images/icon.ico" />
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -64,10 +64,7 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
 					</div>
-				</div>
-				
-				
-				</li>
+				</div></li>
 
 
 
@@ -144,16 +141,17 @@
 
 					<!-- Page Heading -->
 					<ul class="nav nav-tabs">
-					<li class="nav-item"><a th:href="@{/books/list/}" class="nav-link">Libros</a></li>
-					<li class="nav-item"><a th:href="@{/books/exemplaries/list/}" class="nav-link active">Ejemplares</a></li>
+						<li class="nav-item"><a th:href="@{/books/list/}"
+							class="nav-link">Libros</a></li>
+						<li class="nav-item"><a th:href="@{/books/exemplaries/list/}"
+							class="nav-link active">Ejemplares</a></li>
 					</ul>
 					<!--  
 					<h1 class="h3 col-2 mb-4 text-gray-800"><a class="text-gray-800" th:href="@{/books/list/}"><u>Libros</u></a></h1>
 					<h1 class="h3 col-2 mb-4 text-gray-800"><u>Ejemplares</u></h1>
 					-->
-					<br>
-
-					<a th:href="@{/books/exemplaries/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
+					<br> <a th:href="@{/books/exemplaries/new/}"
+						class="btn btn-secondary btn-xs">Nuevo</a>
 
 					<hr class="sidebar-divider">
 
@@ -168,7 +166,8 @@
 						<tbody>
 							<tr th:each="cate: ${listExemplaries}">
 								<td th:text="${cate.idExemplary}"></td>
-								<td th:text="${cate.exemplaryBook.idBook +' | '+ cate.exemplaryBook.nameBook}"></td>
+								<td
+									th:text="${cate.exemplaryBook.idBook +' | '+ cate.exemplaryBook.nameBook}"></td>
 								<td th:text="${cate.countExemplary}"></td>
 							</tr>
 						</tbody>
