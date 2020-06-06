@@ -154,7 +154,7 @@
 								del rol</label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{nameRole}" class="form-control"
-									th:errorclass="'form-control alert-danger'" autocomplete="off" />
+									th:errorclass="'form-control alert-danger'" autocomplete="off" required pattern ="[a-zA-Z]" />
 								<small class="form-text text-danger"
 									th:if="${#fields.hasErrors('nameRole')}"
 									th:errors="*{nameRole}"></small>

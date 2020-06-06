@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @Entity
 @Table (name="Exemplary")
@@ -19,9 +21,14 @@ public class Exemplary  implements Serializable{
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idExemplary;
+	
+	
 	@ManyToOne
 	@JoinColumn(name = "idBook", nullable = false)
 	private Book exemplaryBook;
+	
+	@Positive(message = "Solo numeros positivos.")
+	@NotNull(message="La cantidad es obligatoria")
 	@Column (name="countExemplary", nullable=false, length=45)
 	private int countExemplary;
 	

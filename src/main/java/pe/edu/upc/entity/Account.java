@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @Entity
 @Table (name="Account")
@@ -27,6 +29,9 @@ public class Account implements Serializable {
 	
 	@Column (name="correoAccount", nullable=false, length=45)
 	private String correoAccount;
+	
+	@Positive(message = "Solo numeros positivos.")
+	@NotNull(message="La cantidad es obligatoria")
 	@Column (name="dniAccount", nullable=false, length=8)
 	private int dniAccount;
 	@Column (name="passwordAccount", nullable=false, length=20)

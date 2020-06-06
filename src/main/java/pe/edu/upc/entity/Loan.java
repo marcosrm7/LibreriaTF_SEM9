@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -28,7 +30,12 @@ public class Loan implements Serializable{
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date loanDate;
 	
+	
+	
+	@Positive(message = "Solo numeros positivos.")
+	@NotNull(message="La cantidad es obligatoria")
 	private int quantityBooks;
+	
 	@Column (name="devLoan", nullable=false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date devLoan;
