@@ -9,6 +9,5 @@ import pe.edu.upc.entity.Account;
 
 @Repository
 public interface IAccountRepository extends JpaRepository<Account, Integer> {
-	@Query("select count(a.nameAccount) from Account a where upper(a.nameAccount) = upper(:nameAccount)")
-	public int SearchCategory(@Param("nameAccount") String nombre);
+	
 }

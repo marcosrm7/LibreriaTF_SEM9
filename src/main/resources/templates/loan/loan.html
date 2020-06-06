@@ -169,10 +169,10 @@
 							<div class="col-sm-6">
 								<input type="number" th:field="*{quantityBooks}"
 									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" required pattern ="[0-9]"/> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('quantityBooks')}"
-									th:errors="*{quantityBooks}"></small>
+									th:errors="*{quantityBooks}" ></small>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -189,12 +189,12 @@
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Observaciones</label>						
 							<div class="col-sm-6">
-								<input type="text" th:field="*{observation}"
+								<input type="text" th:field="*{observation}" required pattern ="[a-zA-Z]{1,45}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('observation')}"
-									th:errors="*{observation}"></small>
+									th:errors="*{observation}" ></small>
 							</div>							
 						</div>
 						<div class="form-group row">
@@ -202,7 +202,7 @@
 							<div class="col-sm-6">
 								<select class="form-control" th:field="*{exemplary}">
 									<option th:each="exemplary: ${exemplaries}"
-										th:value="${exemplary.idExemplary}" th:text="${exemplary.idExemplary}"
+										th:value="${exemplary.idExemplary}" th:text="${exemplary.idExemplary +' '+ exemplary.exemplaryBook.nameBook }"
 										></option>
 								</select>
 							</div>
