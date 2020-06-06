@@ -24,7 +24,7 @@ public class Book implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idBook;
-	
+
 	@NotEmpty(message = "El nombre del libro es obligatorio")
 	@Pattern(regexp = "[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s[a-zA-ZÀ-ÿ\\u00f1\\u00d1])*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+$", message = "El nombre solo puede tener letras")
 	@Column(name = "nameBook", nullable = false, length = 45)
@@ -32,16 +32,16 @@ public class Book implements Serializable {
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfAdmissionBook;
-	
+
 	@Column(name = "editionBook", nullable = false, length = 2)
 	private int editionBook;
-	
+
 	@Column(name = "serieBook", nullable = false, length = 2)
 	private int serieBook;
-	
+
 	@Column(name = "languageBook", nullable = false, length = 45)
 	private String languageBook;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "idAuthor", nullable = false)
 	private Author authorBook;

@@ -13,8 +13,8 @@ import pe.edu.upc.serviceinterface.IBookService;
 @Service
 public class BookServiceImpl implements Serializable, IBookService {
 	private static final long serialVersionUID = 1L;
-	/* Para que traiga el metodo que se va a utilizar */
 
+	/* Para que traiga el metodo que se va a utilizar */
 	@Autowired
 	private IBookRepository cR;
 

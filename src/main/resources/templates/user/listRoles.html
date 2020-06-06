@@ -8,7 +8,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Libreria Panchito</title>
-<link  rel="shortcut icon"  href="/libreria/images/icon.ico" />
+<link rel="shortcut icon" href="/libreria/images/icon.ico" />
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -64,9 +64,7 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item active" th:href="@{/users/list}">Usuarios</a>
 					</div>
-				</div>
-				
-			</li>
+				</div></li>
 
 
 
@@ -126,8 +124,8 @@
 									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
 								</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="/index"
-									data-toggle="modal" data-target="#logoutModal"> <i
+								<a class="dropdown-item" href="/index" data-toggle="modal"
+									data-target="#logoutModal"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Cerrar sesión
 								</a>
@@ -143,15 +141,17 @@
 
 					<!-- Page Heading -->
 					<ul class="nav nav-tabs">
-					<li class="nav-item"><a th:href="@{/users/list/}" class="nav-link">Usuarios</a></li>
-					<li class="nav-item"><a th:href="@{/users/roles/list/}" class="nav-link active">Roles</a></li>
+						<li class="nav-item"><a th:href="@{/users/list/}"
+							class="nav-link">Usuarios</a></li>
+						<li class="nav-item"><a th:href="@{/users/roles/list/}"
+							class="nav-link active">Roles</a></li>
 					</ul>
 					<!-- <h1 class="h3 col-2 mb-4 text-gray-800"><u>Libros</u></h1>
 					<h1 class="h3 col-2 mb-4 text-gray-800"><a class="text-gray-800" th:href="@{/books/exemplaries/list/}"><u>Ejemplares</u></a></h1>
 					-->
-					
-					<br>
-					<a th:href="@{/users/roles/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
+
+					<br> <a th:href="@{/users/roles/new/}"
+						class="btn btn-secondary btn-xs">Nuevo</a>
 					<!-- <a th:href="@{/books/exemplaries/new/}" class="btn btn-secondary btn-xs">Ejemplares</a>-->
 					<hr class="sidebar-divider">
 
@@ -159,7 +159,7 @@
 						<thead class="thead-dark">
 							<tr>
 								<th scope="col">Id</th>
-								<th scope="col">Rol</th>								
+								<th scope="col">Rol</th>
 							</tr>
 						</thead>
 						<tbody>
