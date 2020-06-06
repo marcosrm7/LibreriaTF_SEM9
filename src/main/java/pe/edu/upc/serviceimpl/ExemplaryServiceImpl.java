@@ -11,20 +11,20 @@ import pe.edu.upc.repository.IExemplaryRepository;
 import pe.edu.upc.serviceinterface.IExemplaryService;
 
 @Service
-public class ExemplaryServiceImpl implements Serializable, IExemplaryService{
-	private static final long serialVersionUID=1L;
-	
+public class ExemplaryServiceImpl implements Serializable, IExemplaryService {
+	private static final long serialVersionUID = 1L;
+
 	@Autowired
 	private IExemplaryRepository cR;
-	
+
 	@Override
 	public void insert(Exemplary _exemplary) {
 		// TODO Auto-generated method stub
-		/*int contador =_exemplary.getCountExemplary();
-		do{
-		
-		contador--;
-		}while (contador>0);*/
+		/*
+		 * int contador =_exemplary.getCountExemplary(); do{
+		 * 
+		 * contador--; }while (contador>0);
+		 */
 		cR.save(_exemplary);
 	}
 

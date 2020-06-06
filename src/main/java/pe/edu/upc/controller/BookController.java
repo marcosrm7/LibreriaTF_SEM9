@@ -39,6 +39,8 @@ public class BookController {
 	@PostMapping("/save")
 	public String saveBook(@Validated Book book, BindingResult result, Model model) throws Exception {
 		if (result.hasErrors()) {
+			List<Author> authors = aU.list();
+			model.addAttribute("authors", authors);
 			return "book/book";
 		} else {
 			cS.insert(book);

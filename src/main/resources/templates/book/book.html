@@ -165,7 +165,7 @@
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Fecha de admision</label>
 							<div class="col-sm-6">
-								<input type="date" required pattern="yyyy-MM-dd"  th:field="*{dateOfAdmissionBook}"
+								<input type="date" pattern="yyyy-MM-dd"  th:field="*{dateOfAdmissionBook}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -242,7 +242,7 @@
 						</div>
 
 					</form>
-
+					<p th:text="${mensaje}"></p>
 
 
 				</div>
