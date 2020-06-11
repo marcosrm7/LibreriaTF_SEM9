@@ -14,4 +14,6 @@ public interface IAuthorService {
 	public void delete(int idAuthor);// Eliminar
 
 	Optional<Author> searchId(int idAuthor);// Modificar
+
+	List<Author> findNameAuthorFull(String nameAuthor);// Buscar
 }

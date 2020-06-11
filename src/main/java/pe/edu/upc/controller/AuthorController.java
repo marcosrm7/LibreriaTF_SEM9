@@ -1,5 +1,6 @@
 package pe.edu.upc.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,7 @@ public class AuthorController {
 	@GetMapping("/list")
 	public String listAuthors(Model model) {
 		try {
+			model.addAttribute("author", new Author());// Por el buscar
 			model.addAttribute("listAuthors", cS.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
@@ -75,9 +77,20 @@ public class AuthorController {
 			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
 			return "redirect:/authors/list";
 		} else {
-			model.addAttribute("listAuthors", cS.list());//OJO A LO QUE DICE LA PROFESORA
+			model.addAttribute("listAuthors", cS.list());// OJO A LO QUE DICE LA PROFESORA
 			model.addAttribute("author", objAut.get());
 			return "author/author";
 		}
+	}
+
+	@RequestMapping("/search")
+	public String searchAuthors(Model model, @Validated Author author) throws Exception {
+		List<Author> listAuthors;
+		listAuthors = cS.findNameAuthorFull(author.getNameAuthor());
+		if (listAuthors.isEmpty()) {
+			model.addAttribute("mensaje", "No hay registros para su búsqueda");
+		}
+		model.addAttribute("listAuthors", listAuthors);
+		return "author/listAuthors";
 	}
 }

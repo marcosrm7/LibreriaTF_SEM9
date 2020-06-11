@@ -44,4 +44,9 @@ public class AuthorServiceImpl implements Serializable, IAuthorService {
 	public Optional<Author> searchId(int idAuthor) {
 		return cR.findById(idAuthor);
 	}
+
+	@Override
+	public List<Author> findNameAuthorFull(String nameAuthor) {
+		return cR.findBynameAuthor(nameAuthor);
+	}
 }
