@@ -9,4 +9,6 @@ public interface IAuthorService {
 	public int insert(Author author);
 
 	List<Author> list();
+
+	public void delete(int idAuthor);
 }

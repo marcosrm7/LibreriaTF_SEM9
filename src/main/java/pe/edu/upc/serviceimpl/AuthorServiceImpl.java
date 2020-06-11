@@ -33,4 +33,9 @@ public class AuthorServiceImpl implements Serializable, IAuthorService {
 		}
 		return rpta;
 	}
+
+	@Override
+	public void delete(int idAuthor) {
+		cR.deleteById(idAuthor);
+	}
 }

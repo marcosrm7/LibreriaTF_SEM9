@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -47,6 +48,20 @@ public class AuthorController {
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
+		return "author/listAuthors";
+	}
+
+	@RequestMapping("/delete/{id}")
+	public String deleteAuthor(Model model, @PathVariable(value = "id") int id) {
+		try {
+			if (id > 0) {
+				cS.delete(id);
+			}
+			model.addAttribute("mensaje", "Se eliminó correctamente");
+		} catch (Exception e) {
+			model.addAttribute("mensaje", "Ocurrió un error, no se pudo eliminar");
+		}
+		model.addAttribute("listAuthors", cS.list());
 		return "author/listAuthors";
 	}
 }

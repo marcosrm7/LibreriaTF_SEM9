@@ -8,7 +8,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Libreria Panchito</title>
-<link  rel="shortcut icon"  href="/libreria/images/icon.ico" />
+<link rel="shortcut icon" href="/libreria/images/icon.ico" />
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -63,10 +63,7 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
 					</div>
-				</div>
-				
-				
-				</li>
+				</div></li>
 
 
 
@@ -142,15 +139,15 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					
+
 					<ul class="nav nav-tabs">
-					<li class="nav-item"><a th:href="@{/authors/list/}" class="nav-link active">Autores</a></li>
+						<li class="nav-item"><a th:href="@{/authors/list/}"
+							class="nav-link active">Autores</a></li>
 					</ul>
 					<!--  <h1 class="h3 mb-4 text-gray-800">Autores</h1>-->
-					
-					<br>
 
-					<a th:href="@{/authors/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
+					<br> <a th:href="@{/authors/new/}"
+						class="btn btn-secondary btn-xs">Nuevo</a>
 
 					<hr class="sidebar-divider">
 
@@ -160,6 +157,7 @@
 								<th scope="col">Id</th>
 								<th scope="col">Nombre</th>
 								<th scope="col">Apellidos</th>
+								<th scope="col">Operación</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -167,6 +165,9 @@
 								<td th:text="${cate.idAuthor}"></td>
 								<td th:text="${cate.nameAuthor}"></td>
 								<td th:text="${cate.lastnameAuthor}"></td>
+								<td><a th:href="@{'/authors/delete/'+${cate.idAuthor}}">
+										<i class="iconf fa fa-trash" style="color: red"></i>
+								</a></td>
 							</tr>
 						</tbody>
 					</table>
