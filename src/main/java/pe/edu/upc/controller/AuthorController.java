@@ -62,6 +62,6 @@ public class AuthorController {
 			model.addAttribute("mensaje", "Ocurrió un error, no se pudo eliminar");
 		}
 		model.addAttribute("listAuthors", cS.list());
-		return "author/listAuthors";
+		return "redirect:/authors/list";//Mod pq con el buscar no funcaba
 	}
 }
