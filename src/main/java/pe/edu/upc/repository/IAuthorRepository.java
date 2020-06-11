@@ -14,5 +14,6 @@ public interface IAuthorRepository extends JpaRepository<Author, Integer> {
 	@Query("select count(a.nameAuthor) from Author a where upper(a.nameAuthor)=upper(:nameAuthor) and upper(a.lastnameAuthor)=upper(:lastnameAuthor)")
 	public int searchAuthor(@Param("nameAuthor") String nombre, @Param("lastnameAuthor") String apellido);
 	
-	List<Author> findBynameAuthor(String nameAuthor);
+	@Query("from Author a where a.nameAuthor like %:parametro% or a.lastnameAuthor like %:parametro% ")
+	List<Author> findBynameAuthor(@Param("parametro")String nameAuthor);
 }

@@ -151,8 +151,8 @@
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Código</label>
 							<div class="col-sm-6">
-								<input type="hidden" th:field="*{idAuthor}" autocomplete="off"
-									class="form-control"
+								<input type="text" th:field="*{idAuthor}" autocomplete="off"
+									class="form-control" readonly="readonly"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('idAuthor')}"
@@ -177,7 +177,7 @@
 							<div class="col-sm-6">
 								<input type="text" th:field="*{lastnameAuthor}"
 									autocomplete="off" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" required /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('lastnameAuthor')}"
 									th:errors="*{lastnameAuthor}"></small>
