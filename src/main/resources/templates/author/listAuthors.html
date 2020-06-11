@@ -158,6 +158,7 @@
 								<th scope="col">Nombre</th>
 								<th scope="col">Apellidos</th>
 								<th scope="col">Operación</th>
+								<th scope="col">Operación</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -167,6 +168,9 @@
 								<td th:text="${cate.lastnameAuthor}"></td>
 								<td><a th:href="@{'/authors/delete/'+${cate.idAuthor}}">
 										<i class="iconf fa fa-trash" style="color: red"></i>
+								</a></td>
+								<td><a th:href="@{'/authors/irupdate/'+${cate.idAuthor}}">
+										<i class="iconf fa fa-pen" style="color: blue"></i>
 								</a></td>
 							</tr>
 						</tbody>

@@ -1,6 +1,7 @@
 package pe.edu.upc.serviceinterface;
 
 import java.util.List;
+import java.util.Optional;
 
 import pe.edu.upc.entity.Author;
 
@@ -10,5 +11,7 @@ public interface IAuthorService {
 
 	List<Author> list();
 
-	public void delete(int idAuthor);
+	public void delete(int idAuthor);// Eliminar
+
+	Optional<Author> searchId(int idAuthor);// Modificar
 }

@@ -2,6 +2,7 @@ package pe.edu.upc.serviceimpl;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,5 +38,10 @@ public class AuthorServiceImpl implements Serializable, IAuthorService {
 	@Override
 	public void delete(int idAuthor) {
 		cR.deleteById(idAuthor);
+	}
+
+	@Override
+	public Optional<Author> searchId(int idAuthor) {
+		return cR.findById(idAuthor);
 	}
 }
