@@ -52,8 +52,14 @@ public class IndexController {
 			//account.setRoleAccount(role); para despues 
 			cS.insert(account);
 			//model.addAttribute("listUsers", cS.list());
-			return "index";
+			return "redirect:/login";
 		}
+	}
+	
+	@GetMapping("/login")
+	public String login (Model model) {
+	
+		return "login";
 	}
 	
 	
