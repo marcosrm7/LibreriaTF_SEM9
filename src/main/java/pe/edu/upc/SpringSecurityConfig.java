@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+
+
 import pe.edu.upc.serviceimpl.JpaUserDetailsService;
 
 @EnableGlobalMethodSecurity(securedEnabled = true)
@@ -20,17 +22,20 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/", "/css/**", "/js/**", "/img/**").permitAll().anyRequest()
-				.authenticated().and().formLogin().loginPage("/login").permitAll().and().logout().permitAll().and()
+		http.authorizeRequests().antMatchers("/", "/css/**", "/js/**", "/img/**","/registry","/libreria/**","/vendor/**").permitAll().anyRequest()
+				.authenticated().and().formLogin()
+				.loginPage("/login")
+				.permitAll()
+				.and().logout().permitAll().and()
 				.exceptionHandling().accessDeniedPage("/error");
 	}
 
 	@Autowired
 	public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
-
 		build.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
 
 	}

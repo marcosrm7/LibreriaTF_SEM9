@@ -1,6 +1,8 @@
 package pe.edu.upc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +17,7 @@ import pe.edu.upc.serviceinterface.IRoleService;
 
 @Controller
 @RequestMapping("/users")
+@Secured("ROLE_ADMIN")
 public class AccountController {
 
 	@Autowired
@@ -49,8 +52,8 @@ public class AccountController {
 		}
 		
 		else {
-			//this.role.setIdRole(1); para despues 
-			//account.setRoleAccount(role); para despues 
+			String password = new BCryptPasswordEncoder().encode(account.getPasswordAccount());
+			account.setPasswordAccount(password);
 			cS.insert(account);
 			model.addAttribute("listAccounts", cS.list());
 			return "user/listUsers";

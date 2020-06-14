@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+<head th:fragment="head">
 
   <title>Libreria Panchito</title>
 
@@ -32,21 +33,31 @@
                 <img src="libreria/images/icon.png" alt="logo" class="logo">
                 <label class="login-card-description">Libreria Panchito</label>
               </div>
-              <p class="login-card-description"><a th:href="@{/authors/list}" >	Iniciar sesión </a></p>
+              <p class="login-card-description">Iniciar sesión</p>
+             
               
               
-              
-              <form th:action="@{/authors/list}" method="post" >
+              <form th:action="@{/login}" method="post" >
                   <div class="form-group">
                     <label for="email" class="sr-only">Email</label>
-                    <input type="email" name="email" id="email" class="form-control" placeholder="Correo electronico">
+                    <input type="email" name="username" id="username" class="form-control" required placeholder="Correo electronico">
                   </div>
                   <div class="form-group mb-4">
                     <label for="password" class="sr-only">Contraseña</label>
-                    <input type="password" name="password" id="password" class="form-control" placeholder="***********">
+                    <input type="password" name="password" id="password" class="form-control"  required placeholder="***********">
                   </div>
-                  <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="Ingresar">
+                  <input type="submit" name="login" id="login" class="btn btn-block login-btn mb-4" value="Ingresar">
                 </form>
+                
+                
+                <div align="center" class="col-8 mb-2" >
+			 			 <div class="alert alert-success" th:if="${success != null}"
+							th:text="${success}"></div>
+			 	     	  <div class="alert alert-danger" th:if="${error != null}"
+							th:text="${error}"></div>
+			 		     <div class="alert alert-info" th:if="${info != null}"
+							th:text="${info}"></div>
+		       </div>
                 <a href="#!" class="forgot-password-link">Olvidaste tu contraseña?</a>
                 <p class="login-card-footer-text">Aún no tienes cuenta? <a href="#!" class="text-reset">Registrate aquí</a></p>
                 <nav class="login-card-footer-nav">

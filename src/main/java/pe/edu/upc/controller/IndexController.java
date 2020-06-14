@@ -25,7 +25,8 @@ public class IndexController {
 	private Role role;
 	
 	
-	@GetMapping
+	//@GetMapping
+	@GetMapping("/")	
 	public String home() {
 		return "index";
 	}
@@ -44,6 +45,8 @@ public class IndexController {
 	@PostMapping("/registry/save")
 	public String saveAccount (@Validated Account account, BindingResult result, Model model) throws Exception {
 		if(result.hasErrors()) {
+
+			model.addAttribute("roles", aU.list());
 			return "registro";
 		}
 		
@@ -55,12 +58,12 @@ public class IndexController {
 			return "redirect:/login";
 		}
 	}
-	
+	/*
 	@GetMapping("/login")
 	public String login (Model model) {
 	
 		return "login";
-	}
+	}*/
 	
 	
 	

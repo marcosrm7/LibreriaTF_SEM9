@@ -1,4 +1,4 @@
-package pe.edu.upc;
+	package pe.edu.upc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -23,12 +23,12 @@ public class LibreriaTfApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-
+		/*
 		String password = "web";
 
 		for (int i = 0; i < 1; i++) {
 			String bcryptPassword = passwordEncoder.encode(password);
 			System.out.println(bcryptPassword);
-		}
+		}*/
 	}
 }
