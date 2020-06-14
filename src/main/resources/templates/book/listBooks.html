@@ -165,6 +165,7 @@
 								<th scope="col">N° Serie</th>
 								<th scope="col">Lenguaje</th>
 								<th scope="col">Autor</th>
+								<th colspan="2" scope="col">Operación</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -175,8 +176,16 @@
 								<td th:text="${cate.editionBook}"></td>
 								<td th:text="${cate.serieBook}"></td>
 								<td th:text="${cate.languageBook}"></td>
-								<td
-									th:text="${cate.author.nameAuthor + ' '+cate.author.lastnameAuthor}"></td>
+								<td	th:text="${cate.author.nameAuthor + ' '+cate.author.lastnameAuthor}"></td>
+								<td colspan="2">
+								<a th:href="@{'/books/delete/'+${cate.idBook}}">
+										<i class="iconf fa fa-trash" style="color: red"></i>
+								</a>&nbsp;&nbsp;
+								<a th:href="@{'/books/irupdate/'+${cate.idBook}}">
+										<i class="iconf fa fa-pen" style="color: blue"></i>
+								</a>
+								</td>
+									
 							</tr>
 						</tbody>
 					</table>

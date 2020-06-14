@@ -148,8 +148,20 @@
 
 
 
-	<form th:action="@{/books/save}" th:object="${book}"
+					<form th:action="@{/books/save}" th:object="${book}"
 						method="post">
+						<div class="form-group row">
+							<!--  <label for="name" class="col-sm-2 col-form-label">Código</label>-->
+							<div class="col-sm-6">
+								<input type="hidden" th:field="*{idBook}" autocomplete="off"
+									class="form-control" readonly="readonly"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('idBook')}"
+									th:errors="*{idBook}"></small>
+							</div>
+
+						</div>
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Nombre del libro</label>
 							<div class="col-sm-6">
