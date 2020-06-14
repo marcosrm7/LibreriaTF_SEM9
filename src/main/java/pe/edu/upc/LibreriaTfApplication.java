@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
-public class LibreriaTfApplication {
+public class LibreriaTfApplication implements CommandLineRunner{
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
