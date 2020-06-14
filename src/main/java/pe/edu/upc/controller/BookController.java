@@ -55,6 +55,7 @@ public class BookController {
 	@GetMapping("/list")
 	public String listBooks(Model model) {
 		try {
+			model.addAttribute("book", new Book());// Por el buscar
 			model.addAttribute("listBooks", cS.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
@@ -89,7 +90,16 @@ public class BookController {
 			return "book/book";
 		}
 	}
-	
+	@RequestMapping("/search")
+	public String searchBooks(Model model, @Validated Book book) throws Exception {
+		List<Book> listBooks;
+		listBooks = cS.findNameBookFull(book.getNameBook());
+		if (listBooks.isEmpty()) {
+			model.addAttribute("mensaje", "No hay registros para su búsqueda");
+		}
+		model.addAttribute("listBooks", listBooks);
+		return "book/listBooks";
+	}
 	
 	
 	

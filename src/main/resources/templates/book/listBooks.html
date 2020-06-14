@@ -153,7 +153,29 @@
 					<br> <a th:href="@{/books/new/}"
 						class="btn btn-secondary btn-xs">Nuevo</a>
 					<!-- <a th:href="@{/books/exemplaries/new/}" class="btn btn-secondary btn-xs">Ejemplares</a>-->
+					<form th:action="@{/books/search}" method="post"
+						th:object="${book}">
+						<div class="form-group">
+							<table>
+								<tbody>
+									<tr>
+										<td><label for="nameBook"
+											class="col-sm-2 col-form-label">Buscar:</label></td>
+										<td><input type="text" class="form-control"
+											th:field="*{nameBook}" id="nameBook"
+											placeholder="Libro" required pattern="[a-zA-Z]{1,20}"
+											autocomplete="off"   ></input></td>
+										<td><button type="submit" class="btn btn-danger">
+												<i class="iconf fa fa-search" style="color: white;"></i>
+											</button></td>
+										<td><a href="/books/list" class="btn btn-danger">Limpiar</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</form>
 					<hr class="sidebar-divider">
+					
 
 					<table class="table table-striped">
 						<thead class="thead-dark">

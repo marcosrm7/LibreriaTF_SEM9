@@ -35,20 +35,20 @@ public class Book implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfAdmissionBook;
 
-	@Positive(message = "Solo numeros positivos.")
-	@NotNull(message="La cantidad es obligatoria")
+	//@Positive(message = "Solo numeros positivos.")
+	//@NotNull(message="La cantidad es obligatoria")
 	@Column(name = "editionBook", nullable = false, length = 2)
 	private int editionBook;
 
 	
-	@Positive(message = "Solo numeros positivos.")
-	@NotNull(message="La cantidad es obligatoria")
+	//@Positive(message = "Solo numeros positivos.")
+	//@NotNull(message="La cantidad es obligatoria")
 	@Column(name = "serieBook", nullable = false, length = 2)
 	private int serieBook;
 
 	
-	@NotEmpty(message = "El nombre del libro es obligatorio")
-	@Pattern(regexp = "[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s[a-zA-ZÀ-ÿ\\u00f1\\u00d1])*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+$", message = "El nombre solo puede tener letras")
+	//@NotEmpty(message = "El nombre del libro es obligatorio")
+	@Pattern(regexp = "[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s[a-zA-ZÀ-ÿ\\u00f1\\u00d1])*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+$", message = "Solo puede tener letras")
 	@Column(name = "languageBook", nullable = false, length = 45)
 	private String languageBook;
 
