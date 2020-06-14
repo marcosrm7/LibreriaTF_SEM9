@@ -20,6 +20,7 @@
 <link href="/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
+
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -27,11 +28,10 @@
 		<ul
 			class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion"
 			id="accordionSidebar">
-
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/authors/list}">
+				href="#">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-book"></i>
 				</div>
@@ -42,17 +42,15 @@
 			<hr class="sidebar-divider my-0">
 
 
-
-
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded=true
+				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item active" th:href="@{/authors/list}">Autores</a>
+						<a class="collapse-item " th:href="@{/authors/list}">Autores</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/books/list}">Libros</a>
@@ -61,14 +59,9 @@
 						<a class="collapse-item" th:href="@{/loans/list}">Prestamo</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
+						<a class="collapse-item active" th:href="@{/users/list}">Usuarios</a>
 					</div>
 				</div></li>
-
-
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
 
 			<!-- Sidebar Toggler (Sidebar) -->
 
@@ -115,6 +108,7 @@
 								class="mr-2 d-none d-lg-inline text-gray-600 small"><img
 									th:src="@{/img/logout.png}" width="30" height="30" alt="logo"
 									align="middle"></img></span>
+
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -123,8 +117,8 @@
 									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
 								</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="categories/index"
-									data-toggle="modal" data-target="#logoutModal"> <i
+								<a class="dropdown-item" href="#" data-toggle="modal"
+									data-target="#logoutModal"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Cerrar sesión
 								</a>
@@ -139,72 +133,113 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-
-					<ul class="nav nav-tabs">
-						<li class="nav-item"><a th:href="@{/authors/list/}"
-							class="nav-link active">Autores</a></li>
-					</ul>
-					<!--  <h1 class="h3 mb-4 text-gray-800">Autores</h1>-->
-
-					<br> <a th:href="@{/authors/new/}"
-						class="btn btn-secondary btn-xs">Nuevo</a>
-
-					<form th:action="@{/authors/search}" method="post"
-						th:object="${author}">
-						<div class="form-group">
-							<table>
-								<tbody>
-									<tr>
-										<td><label for="nameAuthor"
-											class="col-sm-2 col-form-label">Buscar:</label></td>
-										<td><input type="text" class="form-control"
-											th:field="*{nameAuthor}" id="nameAuthor"
-											placeholder="Nombre Autor" required="required"
-											pattern="[a-zA-Z]{1,20}"></input></td>
-										<td><button type="submit" class="btn btn-danger">
-												<i class="iconf fa fa-search" style="color: white;"></i>
-											</button></td>
-										<td><a href="/authors/list" class="btn btn-danger">Limpiar</a></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</form>
+					<h1 class="h3 mb-4 text-gray-800">Usuarios</h1>
 
 					<hr class="sidebar-divider">
+					<div th:object="${account}" th:remove="tag">
+						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
+							role="alert">
+							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+						</ul>
+					</div>
 
-					<table class="table table-striped">
-						<thead class="thead-dark">
-							<tr>
-								<th scope="col">Id</th>
-								<th scope="col">Nombre</th>
-								<th scope="col">Apellidos</th>
-								<th colspan="2" scope="col">Operación</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="cate: ${listAuthors}">
-								<td th:text="${cate.idAuthor}"></td>
-								<td th:text="${cate.nameAuthor}"></td>
-								<td th:text="${cate.lastnameAuthor}"></td>
-								<td colspan="2">
-								<a th:href="@{'/authors/delete/'+${cate.idAuthor}}">
-										<i class="iconf fa fa-trash" style="color: red"></i>
-								</a>&nbsp;&nbsp;
-								<a th:href="@{'/authors/irupdate/'+${cate.idAuthor}}">
-										<i class="iconf fa fa-pen" style="color: blue"></i>
-								</a>
-								</td>
-							</tr>
-						</tbody>
-					</table>
 
-					<p th:text="${mensaje}" class="form-text text-success"></p>
+
+
+					<form th:action="@{/users/save}" th:object="${account}"
+						method="post">
+
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Nombre</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{nameAccount}" class="form-control" autocomplete="off"
+									th:errorclass="'form-control alert-danger'" required pattern="[A-Za-z]{1,45}" />
+								<small class="form-text text-danger"
+									th:if="${#fields.hasErrors('nameAccount')}"
+									th:errors="*{nameAccount}"></small>
+							</div>
+					   </div>
+					   
+					   <div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Apellidos</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{lastNameAccount}" autocomplete="off"
+								required pattern="[A-Za-z]{1,45}" 
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('lastNameAccount')}"
+									th:errors="*{lastNameAccount}"></small>
+							</div>							
+						</div>
+						 <div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Email</label>
+							<div class="col-sm-6">
+								<input type="email" th:field="*{correoAccount}" required
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('correoAccount')}"
+									th:errors="*{correoAccount}"></small>
+							</div>							
+						</div>
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">DNI</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{dniAccount}" pattern="[0-9]{8,8}"
+							      required="required" id="cf-dni" 	autocomplete="off"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('dniAccount')}"
+									th:errors="*{dniAccount}"></small>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Contraseña</label>
+							<div class="col-sm-6">
+								<input type="password" th:field="*{passwordAccount}" minlength="6" 
+								required pattern="{1,20}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('passwordAccount')}"
+									th:errors="*{passwordAccount}"></small>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Rol</label>
+							
+							<div class="col-sm-6">							
+								<select id="user" class="form-control" th:field="*{roleAccount}">
+								<option th:each="role : ${roles}" th:text="${role.nameRole}"
+									th:value="${role.idRole}"></option>
+							    </select>
+							</div>							
+							
+						</div>
+
+						<div class="form-group row">
+							<div class="col-sm-6">
+								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
+								<a href="/users/roles/list/" class="btn btn-danger">Cancelar</a>
+							</div>
+						</div>
+
+					</form>
+					<p th:text="${mensaje}"></p>
+
+
 
 				</div>
 				<!-- /.container-fluid -->
 
 			</div>
+				<script type="text/javascript">
+				var input = document.getElementById('cf-dni');
+				input.addEventListener('input', function() {
+				if (this.value.length > 8)	this.value = this.value.slice(0, 8);})
+				</script>
 			<!-- End of Main Content -->
 
 			<!-- Footer -->
@@ -242,12 +277,12 @@
 					</button>
 				</div>
 				<div class="modal-body">Seleccione "Cerrar sesión" a
-					continuación si está listo para finalizar su sesión actual.</div>
+					continuación si está listo para finalizar su sesión actual</div>
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancelar</button>
 					<a class="btn btn-primary" th:href="@{/categories/index}">Cerrar
-						sesión</a>
+						Sesión</a>
 				</div>
 			</div>
 		</div>
@@ -256,7 +291,6 @@
 	<!-- Bootstrap core JavaScript-->
 	<script src="/vendor/jquery/jquery.min.js"></script>
 	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 	<!-- Core plugin JavaScript-->
 	<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 

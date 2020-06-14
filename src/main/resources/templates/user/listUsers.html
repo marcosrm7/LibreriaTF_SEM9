@@ -18,6 +18,19 @@
 
 <!-- Custom styles for this template-->
 <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+
+<style type="text/css">
+table{
+    table-layout: fixed;
+    width: 250px;
+}
+th, td {
+    width: 100px;
+    word-wrap: break-word;
+}
+
+</style>
+
 </head>
 
 <body id="page-top">
@@ -151,11 +164,34 @@
 					<h1 class="h3 col-2 mb-4 text-gray-800"><a class="text-gray-800" th:href="@{/books/exemplaries/list/}"><u>Ejemplares</u></a></h1>
 					-->
 
-					<br> <a class="btn btn-secondary btn-xs">Nuevo</a>
+					<br> <a  th:href="@{/users/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
 					<!-- <a th:href="@{/books/exemplaries/new/}" class="btn btn-secondary btn-xs">Ejemplares</a>-->
 					<hr class="sidebar-divider">
 
-					<!-- Pendiente TABLA -->
+					<table class="table table-striped" >
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">ID</th>
+								<th scope="col">EMAIL</th>
+								<th scope="col">NOMBRES</th>
+								<th scope="col">APELLIDOS</th>								
+								<th scope="col">CONTRASEÑA</th>
+								<th scope="col">ROL</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="cate: ${listAccounts}">
+								<td th:text="${cate.idAccount}"></td>
+								<td th:text="${cate.correoAccount}"></td>
+								<td th:text="${cate.nameAccount}"></td>
+								<td th:text="${cate.lastNameAccount}"></td>
+								<td th:text="${cate.passwordAccount}"></td>
+								<td th:text="${cate.roleAccount.nameRole}"></td>
+							</tr>
+						</tbody>
+					</table>
+					
+					
 
 					<p th:text="${mensaje}" class="form-text text-success"></p>
 

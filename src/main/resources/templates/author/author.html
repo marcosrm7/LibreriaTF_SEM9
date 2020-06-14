@@ -149,9 +149,9 @@
 					<form th:action="@{/authors/save}" th:object="${author}"
 						method="post">
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Código</label>
+							<!--  <label for="name" class="col-sm-2 col-form-label">Código</label>-->
 							<div class="col-sm-6">
-								<input type="text" th:field="*{idAuthor}" autocomplete="off"
+								<input type="hidden" th:field="*{idAuthor}" autocomplete="off"
 									class="form-control" readonly="readonly"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
