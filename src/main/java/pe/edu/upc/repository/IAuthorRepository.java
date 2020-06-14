@@ -11,9 +11,10 @@ import pe.edu.upc.entity.Author;
 
 @Repository
 public interface IAuthorRepository extends JpaRepository<Author, Integer> {
-	@Query("select count(a.nameAuthor) from Author a where upper(a.nameAuthor)= upper(:nameAuthor) and upper(a.lastnameAuthor)=upper(:lastnameAuthor)")
+	@Query("select count(a.nameAuthor) from Author a where upper(a.nameAuthor)=upper(:nameAuthor) and upper(a.lastnameAuthor)=upper(:lastnameAuthor)")
 	public int searchAuthor(@Param("nameAuthor") String nombre, @Param("lastnameAuthor") String apellido);
 	
-	@Query("from Author a where upper(a.nameAuthor) = upper(:parametro) or upper(a.lastnameAuthor) = upper(:parametro) or upper(a.nameAuthor) like %:parametro% or lower(a.nameAuthor) like %:parametro% or lower(a.lastnameAuthor) like %:parametro%  or upper(a.lastnameAuthor) like %:parametro%" )
+	
+	@Query("from Author a where lower(a.nameAuthor) like lower(concat('%', :parametro,'%')) or lower(a.lastnameAuthor) like lower(concat('%', :parametro,'%'))")
 	List<Author> findBynameAuthor(@Param("parametro")String nameAuthor);
 }

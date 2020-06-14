@@ -34,7 +34,7 @@ public class Account implements Serializable {
 	@NotNull(message="La cantidad es obligatoria")
 	@Column (name="dniAccount", nullable=false, length=8)
 	private int dniAccount;
-	@Column (name="passwordAccount", nullable=false, length=20)
+	@Column (name="passwordAccount", nullable=false, length = 200)
 	private String passwordAccount;
 	
 	
