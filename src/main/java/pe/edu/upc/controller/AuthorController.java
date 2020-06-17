@@ -34,15 +34,19 @@ public class AuthorController {
 	@PostMapping("/save")
 	public String saveAuthor(@Validated Author author, BindingResult result, Model model) throws Exception {
 		if (result.hasErrors()) {
+			model.addAttribute("listAuthors",cS.list());
 			return "author/author";
 		} else {
 			int rpta = cS.insert(author);
 			if (rpta > 0) {
-				model.addAttribute("mensaje", "Ya existe");
+				model.addAttribute("mensaje2", "Ya existe");
 				return "author/author";
 			} else {
+				cS.insert(author);
+				model.addAttribute("mensaje","Categoria se registro correctamente");
+				model.addAttribute("author",new Author());
 				model.addAttribute("listAuthors", cS.list());
-				return "author/listAuthors";
+				return "author/author";
 			}
 		}
 	}
@@ -61,22 +65,23 @@ public class AuthorController {
 	@RequestMapping("/delete/{id}")
 	public String deleteAuthor(Model model, @PathVariable(value = "id") int id) {
 		try {
+			model.addAttribute("author", new Author());
 			if (id > 0) {
 				cS.delete(id);
 			}
 			model.addAttribute("mensaje", "Se eliminó correctamente");
 		} catch (Exception e) {
-			model.addAttribute("mensaje", "Ocurrió un error, no se pudo eliminar");
+			model.addAttribute("mensaje2", "Ocurrió un error, no se pudo eliminar");
 		}
 		model.addAttribute("listAuthors", cS.list());
-		return "redirect:/authors/list";// Mod pq con el buscar no funcaba
+		return "author/listAuthors";// Mod pq con el buscar no funcaba
 	}
 
 	@RequestMapping("/irupdate/{id}")
 	public String irupdate(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 		Optional<Author> objAut = cS.searchId(id);
 		if (objAut == null) {
-			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
+			objRedir.addFlashAttribute("mensaje2", "Ocurrió un error");
 			return "redirect:/authors/list";
 		} else {
 			model.addAttribute("listAuthors", cS.list());// OJO A LO QUE DICE LA PROFESORA
@@ -90,7 +95,7 @@ public class AuthorController {
 		List<Author> listAuthors;
 		listAuthors = cS.findNameAuthorFull(author.getNameAuthor());
 		if (listAuthors.isEmpty()) {
-			model.addAttribute("mensaje", "No hay registros para su búsqueda");
+			model.addAttribute("mensaje2", "No hay registros para su búsqueda");
 		}
 		model.addAttribute("listAuthors", listAuthors);
 		return "author/listAuthors";

@@ -157,8 +157,8 @@
 									<tr>
 										<td><label for="nameAuthor"
 											class="col-sm-2 col-form-label">Buscar:</label></td>
-										<td><input type="text" class="form-control" autocomplete="off"
-											th:field="*{nameAuthor}" id="nameAuthor"
+										<td><input type="text" class="form-control"
+											autocomplete="off" th:field="*{nameAuthor}" id="nameAuthor"
 											placeholder="Nombre Autor" required="required"
 											pattern="[a-zA-Z]{1,20}"></input></td>
 										<td><button type="submit" class="btn btn-danger">
@@ -187,19 +187,18 @@
 								<td th:text="${cate.idAuthor}"></td>
 								<td th:text="${cate.nameAuthor}"></td>
 								<td th:text="${cate.lastnameAuthor}"></td>
-								<td colspan="2">
-								<a th:href="@{'/authors/delete/'+${cate.idAuthor}}">
-										<i class="iconf fa fa-trash" style="color: red"></i>
-								</a>&nbsp;&nbsp;
-								<a th:href="@{'/authors/irupdate/'+${cate.idAuthor}}">
-										<i class="iconf fa fa-pen" style="color: blue"></i>
-								</a>
-								</td>
+								<td colspan="2"><a
+									th:href="@{'/authors/delete/'+${cate.idAuthor}}"> <i
+										class="iconf fa fa-trash" style="color: red"></i>
+								</a>&nbsp;&nbsp; <a
+									th:href="@{'/authors/irupdate/'+${cate.idAuthor}}"> <i
+										class="iconf fa fa-pen" style="color: blue"></i>
+								</a></td>
 							</tr>
 						</tbody>
 					</table>
-
 					<p th:text="${mensaje}" class="form-text text-success"></p>
+					<p th:text="${mensaje2}" class="form-text text-danger"></p>
 
 				</div>
 				<!-- /.container-fluid -->
