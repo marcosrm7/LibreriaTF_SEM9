@@ -8,7 +8,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Libreria Panchito</title>
-<link  rel="shortcut icon"  href="/libreria/images/icon.ico" />
+<link rel="shortcut icon" href="/libreria/images/icon.ico" />
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -32,7 +32,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-			 href="#" >
+				href="#">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-book"></i>
 				</div>
@@ -62,8 +62,7 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
 					</div>
-				</div>
-		</li>
+				</div></li>
 
 			<!-- Sidebar Toggler (Sidebar) -->
 
@@ -148,8 +147,7 @@
 
 
 
-					<form th:action="@{/books/save}" th:object="${book}"
-						method="post">
+					<form th:action="@{/books/save}" th:object="${book}" method="post">
 						<div class="form-group row">
 							<!--  <label for="name" class="col-sm-2 col-form-label">Código</label>-->
 							<div class="col-sm-6">
@@ -157,28 +155,28 @@
 									class="form-control" readonly="readonly"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('idBook')}"
-									th:errors="*{idBook}"></small>
+									th:if="${#fields.hasErrors('idBook')}" th:errors="*{idBook}"></small>
 							</div>
 
 						</div>
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Nombre del libro</label>
+							<label for="name" class="col-sm-2 col-form-label">Nombre
+								del libro</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{nameBook}"
-									class="form-control"
+								<input type="text" th:field="*{nameBook}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('nameBook')}"
 									th:errors="*{nameBook}"></small>
 							</div>
-							
+
 						</div>
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Fecha de admision</label>
+							<label for="name" class="col-sm-2 col-form-label">Fecha
+								de admision</label>
 							<div class="col-sm-6">
-								<input type="date" required pattern="yyyy-MM-dd"   th:field="*{dateOfAdmissionBook}"
-									class="form-control"
+								<input type="date" required pattern="yyyy-MM-dd"
+									th:field="*{dateOfAdmissionBook}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('dateOfAdmissionBook')}"
@@ -188,8 +186,8 @@
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Edicion</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{editionBook}" required pattern="[0-9]{1,2}"
-									class="form-control"
+								<input type="text" th:field="*{editionBook}" required
+									pattern="[0-9]{1,2}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('editionBook')}"
@@ -199,7 +197,7 @@
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Serie</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{serieBook}"pattern="[0-9]{1,2}"
+								<input type="text" th:field="*{serieBook}" pattern="[0-9]{1,2}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -210,41 +208,40 @@
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Lenguaje</label>
 							<div class="col-sm-6">
-							<input type="text" list="items"th:field="*{languageBook}"
-									class="form-control"  
-									th:errorclass="'form-control alert-danger'"  /> 
-									<datalist id="items">
-									    <option value="Español"></option>
-									    <option value="Ingles"></option>
-									    <option value="Frances"></option>
-									  </datalist>
-									<small
-									class="form-text text-danger"
+								<input type="text" list="items" th:field="*{languageBook}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" />
+								<datalist id="items">
+									<option value="Español"></option>
+									<option value="Ingles"></option>
+									<option value="Frances"></option>
+								</datalist>
+								<small class="form-text text-danger"
 									th:if="${#fields.hasErrors('languageBook')}"
 									th:errors="*{languageBook}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Autor</label>
-							
-							<div class="col-sm-6">																				
-								<select id="author"
-								class="form-control" th:field="*{author}">
-								<option th:each="author : ${authors}"
-									th:text="${author.nameAuthor + ' '+ author.lastnameAuthor}" th:value="${author.idAuthor}"></option>
-								</select>
-								
+
+							<div class="col-sm-6">
+								<select class="form-control" th:field="*{author.idAuthor}">
+                                    <option th:each="a: ${listAuthors}"
+                                        th:value="${a.idAuthor}" th:text="${a.nameAuthor + ' ' + a.lastnameAuthor}"
+                                        th:selected="(${a.idAuthor} == *{author.idAuthor})"></option>
+                                </select>
+
 							</div>
-							
-							
+
+
 						</div>
-						
-						
-						
-						
-						
-						
+
+
+
+
+
+
 
 						<div class="form-group row">
 							<div class="col-sm-6">
@@ -254,7 +251,8 @@
 						</div>
 
 					</form>
-					<p th:text="${mensaje}"></p>
+					<p th:text="${mensaje}" class="form-text text-success"></p>
+					<p th:text="${mensaje2}" class="form-text text-danger"></p>
 
 
 				</div>

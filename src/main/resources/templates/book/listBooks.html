@@ -159,12 +159,10 @@
 							<table>
 								<tbody>
 									<tr>
-										<td><label for="nameBook"
-											class="col-sm-2 col-form-label">Buscar:</label></td>
+										<td><label for="nameBook" class="col-sm-2 col-form-label">Buscar:</label></td>
 										<td><input type="text" class="form-control"
-											th:field="*{nameBook}" id="nameBook"
-											placeholder="Libro" required pattern="[a-zA-Z]{1,20}"
-											autocomplete="off"   ></input></td>
+											th:field="*{nameBook}" id="nameBook" placeholder="Libro"
+											required pattern="[a-zA-Z]{1,20}" autocomplete="off"></input></td>
 										<td><button type="submit" class="btn btn-danger">
 												<i class="iconf fa fa-search" style="color: white;"></i>
 											</button></td>
@@ -175,7 +173,7 @@
 						</div>
 					</form>
 					<hr class="sidebar-divider">
-					
+
 
 					<table class="table table-striped">
 						<thead class="thead-dark">
@@ -198,22 +196,20 @@
 								<td th:text="${cate.editionBook}"></td>
 								<td th:text="${cate.serieBook}"></td>
 								<td th:text="${cate.languageBook}"></td>
-								<td	th:text="${cate.author.nameAuthor + ' '+cate.author.lastnameAuthor}"></td>
-								<td colspan="2">
-								<a th:href="@{'/books/delete/'+${cate.idBook}}">
-										<i class="iconf fa fa-trash" style="color: red"></i>
-								</a>&nbsp;&nbsp;
-								<a th:href="@{'/books/irupdate/'+${cate.idBook}}">
+								<td
+									th:text="${cate.author.nameAuthor + ' '+cate.author.lastnameAuthor}"></td>
+								<td colspan="2"><a
+									th:href="@{'/books/delete/'+${cate.idBook}}"> <i
+										class="iconf fa fa-trash" style="color: red"></i>
+								</a>&nbsp;&nbsp; <a th:href="@{'/books/irupdate/'+${cate.idBook}}">
 										<i class="iconf fa fa-pen" style="color: blue"></i>
-								</a>
-								</td>
-									
+								</a></td>
+
 							</tr>
 						</tbody>
 					</table>
-
 					<p th:text="${mensaje}" class="form-text text-success"></p>
-
+					<p th:text="${mensaje2}" class="form-text text-danger"></p>
 				</div>
 				<!-- /.container-fluid -->
 

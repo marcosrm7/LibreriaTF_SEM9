@@ -27,28 +27,36 @@ public class BookController {
 	@Autowired
 	private IAuthorService aU;
 
-	private Author author;
+
 
 	@GetMapping("/new")
 	public String newBook(Model model) {
-		model.addAttribute("book", new Book());
+		/*model.addAttribute("book", new Book());
 		author = new Author();
 		model.addAttribute("author", author); // CAMBIO HECHO
 		List<Author> authors = aU.list();
-		model.addAttribute("authors", authors);
+		model.addAttribute("authors", authors);*/
+		model.addAttribute("author", new Author());
+		model.addAttribute("listAuthors",aU.list());
+		model.addAttribute("book", new Book());
+		model.addAttribute("listBooks",cS.list());
 		return "book/book";
 	}
 
 	@PostMapping("/save")
 	public String saveBook(@Validated Book book, BindingResult result, Model model) throws Exception {
 		if (result.hasErrors()) {
-			List<Author> authors = aU.list();
-			model.addAttribute("authors", authors);
+		/*	List<Author> authors = aU.list();
+			model.addAttribute("authors", authors);*/
+			model.addAttribute("listAuthors", aU.list());
 			return "book/book";
 		} else {
 			cS.insert(book);
+			model.addAttribute("mensaje","Libro se registro correctamente");
+			model.addAttribute("book",new Book());
+			model.addAttribute("listAuthors", aU.list());
 			model.addAttribute("listBooks", cS.list());
-			return "book/listBooks";
+			return "book/book";
 		}
 	}
 
@@ -66,26 +74,30 @@ public class BookController {
 	@RequestMapping("/delete/{id}")
 	public String deleteBook(Model model, @PathVariable(value = "id") int id) {
 		try {
+			model.addAttribute("author", new Author());
+			model.addAttribute("book",new Book());
 			if (id > 0) {
 				cS.delete(id);
 			}
 			model.addAttribute("mensaje", "Se eliminó correctamente");
 		} catch (Exception e) {
-			model.addAttribute("mensaje", "Ocurrió un error, no se pudo eliminar");
+			model.addAttribute("mensaje2", "Ocurrió un error, no se pudo eliminar");
 		}
 		model.addAttribute("listBooks", cS.list());
-		return "redirect:/books/list";// Mod pq con el buscar no funcaba
+		model.addAttribute("listAuthors",aU.list());
+		return "book/listBooks";// Mod pq con el buscar no funcaba
 	}
 	
 	@RequestMapping("/irupdate/{id}")
 	public String irupdate(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 		Optional<Book> objBook = cS.searchId(id);
 		if (objBook == null) {
-			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
+			objRedir.addFlashAttribute("mensaje2", "Ocurrió un error");
 			return "redirect:/books/list";
 		} else {
-			model.addAttribute("listBooks", cS.list());// OJO A LO QUE DICE LA PROFESORA
-			model.addAttribute("authors",aU.list());
+			model.addAttribute("listAuthors",aU.list());
+			model.addAttribute("listBooks", cS.list());// OJO A LO QUE DICE LA PROFESORA calla kkita
+			/*model.addAttribute("authors",aU.list());*/
 			model.addAttribute("book", objBook.get());
 			return "book/book";
 		}
@@ -95,7 +107,7 @@ public class BookController {
 		List<Book> listBooks;
 		listBooks = cS.findNameBookFull(book.getNameBook());
 		if (listBooks.isEmpty()) {
-			model.addAttribute("mensaje", "No hay registros para su búsqueda");
+			model.addAttribute("mensaje2", "No hay registros para su búsqueda");
 		}
 		model.addAttribute("listBooks", listBooks);
 		return "book/listBooks";
