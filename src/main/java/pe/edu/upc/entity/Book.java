@@ -55,6 +55,16 @@ public class Book implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "idAuthor", nullable = false)
 	private Author authorBook;
+	
+	private String foto;
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
 
 	public Book() {
 		super();
@@ -62,7 +72,7 @@ public class Book implements Serializable {
 	}
 
 	public Book(int idBook, String nameBook, Date dateOfAdmissionBook, int editionBook, int serieBook,
-			String languageBook, Author author) {
+			String languageBook, Author author, String foto) {
 		super();
 		this.idBook = idBook;
 		this.nameBook = nameBook;
@@ -71,6 +81,7 @@ public class Book implements Serializable {
 		this.serieBook = serieBook;
 		this.languageBook = languageBook;
 		this.authorBook = author;
+		this.foto = foto;
 	}
 
 	public int getIdBook() {

@@ -6,9 +6,9 @@ INSERT INTO autor ( lastname_author, name_author) VALUES ( 'Rulfo', 'Juan');
 INSERT INTO autor ( lastname_author, name_author) VALUES ( 'Vallejo', 'Cesar');
 INSERT INTO autor ( lastname_author, name_author) VALUES ( 'Palma', 'Ricardo');
 
-INSERT INTO book ( date_of_admission_book, edition_book, language_book, name_book, serie_book, id_author) VALUES ( '1878-01-01', 2, 'Español', 'La ciudad y los perros', 2, 1);
-INSERT INTO book ( date_of_admission_book, edition_book, language_book, name_book, serie_book, id_author) VALUES ( '1987-01-01', 2, 'Español', 'El Aleph', 2, 2);
-INSERT INTO book ( date_of_admission_book, edition_book, language_book, name_book, serie_book, id_author) VALUES ( '1997-01-01', 2, 'Español', 'Pedro paramo', 1, 3);
+INSERT INTO book ( date_of_admission_book, edition_book, foto, language_book, name_book, serie_book, id_author) VALUES ( '1878-01-01', 2, '1ec97c0a-9bc9-435b-9b0e-91044cb0b45e_ferrari.jpeg', 'Español', 'La ciudad y los perros', 2, 1);
+INSERT INTO book ( date_of_admission_book, edition_book, foto, language_book, name_book, serie_book, id_author) VALUES ( '1987-01-01', 2, '1ec97c0a-9bc9-435b-9b0e-91044cb0b45e_ferrari.jpeg', 'Español', 'El Aleph', 2, 2);
+INSERT INTO book ( date_of_admission_book, edition_book, foto, language_book, name_book, serie_book, id_author) VALUES ( '1997-01-01', 2, '1ec97c0a-9bc9-435b-9b0e-91044cb0b45e_ferrari.jpeg', 'Español', 'Pedro paramo', 1, 3);
 
 INSERT INTO role (name_role)	VALUES ('ROLE_ADMIN');
 INSERT INTO role (name_role)	VALUES ('ROLE_ASISTENTE');

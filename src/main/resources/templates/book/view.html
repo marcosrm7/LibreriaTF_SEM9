@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Libreria Panchito</title>
-<link rel="shortcut icon" href="/libreria/images/icon.ico" />
+
+<title>2020</title>
+
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -18,7 +21,9 @@
 
 <!-- Custom styles for this template-->
 <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+
 </head>
+
 <body id="page-top">
 
 	<!-- Page Wrapper -->
@@ -26,17 +31,17 @@
 
 		<!-- Sidebar -->
 		<ul
-			class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion"
+			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/books/list}">
+				th:href="@{/categories/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-book"></i>
+					<i class="fas fa-leaf"></i>
 				</div>
-				<div class="sidebar-brand-text mx-2">Libreria Panchito</div>
+				<div class="sidebar-brand-text mx-2">Programación en web</div>
 			</a>
 
 			<!-- Divider -->
@@ -53,7 +58,7 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item " th:href="@{/authors/list}">Autores</a>
+						<a class="collapse-item" th:href="@{/authors/list}">Autores</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item active" th:href="@{/books/list}">Libros</a>
@@ -135,101 +140,82 @@
 
 				</nav>
 				<!-- End of Topbar -->
+				<div class="container">
+					<div class="card">
+						<div class="card-header text-white bg-dark mb-3">Detalle de
+							Libro</div>
+						<div class="card-body">
 
-				<!-- Begin Page Content -->
-				<div class="container-fluid">
+							<div class="table-responsive">
+								<table class="table table-white">
 
-					<!-- Page Heading -->
-					<ul class="nav nav-tabs">
-						<li class="nav-item"><a th:href="@{/books/list/}"
-							class="nav-link active">Libros</a></li>
-						<li class="nav-item"><a th:href="@{/books/exemplaries/list/}"
-							class="nav-link">Ejemplares</a></li>
-					</ul>
-					<!-- <h1 class="h3 col-2 mb-4 text-gray-800"><u>Libros</u></h1>
-					<h1 class="h3 col-2 mb-4 text-gray-800"><a class="text-gray-800" th:href="@{/books/exemplaries/list/}"><u>Ejemplares</u></a></h1>
-					-->
+									<tbody>
+										<tr>
+											<td>CODIGO</td>
+											<td th:text="${book.idBook}"></td>
+										</tr>
+										<tr>
+											<td>Nombre</td>
+											<td th:text="${book.nameBook}"></td>
+										</tr>
+										<tr>
+											<td>Fecha admision</td>
+											<td th:text="${book.dateOfAdmissionBook}"></td>
+										</tr>
+										<tr>
+											<td>Edicion</td>
+											<td th:text="${book.editionBook}"></td>
+										</tr>
+										<tr>
+											<td>Serie</td>
+											<td th:text="${book.serieBook}"></td>
+										</tr>
+										<tr>
+											<td>Lenguaje</td>
+											<td th:text="${book.languageBook}"></td>
+										</tr>
+										<tr>
+											<td>Autor</td>
+											<td th:text="${book.author.nameAuthor}"></td>
+										</tr>
+										<tr>
+											<td>FOTO</td>
+											<td><img th:if="${#strings.length(book.foto)> 0}"
+												class="img-thumbnail rounded float-left"
+												style="max-width: 50%;"
+												th:src="@{'/books/uploads/' + ${book.foto}}"
+												th:alt="${book.foto}" /></td>
+										</tr>
+									</tbody>
 
-					<br> <a th:href="@{/books/new/}"
-						class="btn btn-secondary btn-xs">Nuevo</a>
-					<!-- <a th:href="@{/books/exemplaries/new/}" class="btn btn-secondary btn-xs">Ejemplares</a>-->
-					<form th:action="@{/books/search}" method="post"
-						th:object="${book}">
-						<div class="form-group">
-							<table>
-								<tbody>
-									<tr>
-										<td><label for="nameBook" class="col-sm-2 col-form-label">Buscar:</label></td>
-										<td><input type="text" class="form-control"
-											th:field="*{nameBook}" id="nameBook" placeholder="Libro"
-											required pattern="[a-zA-Z]{1,20}" autocomplete="off"></input></td>
-										<td><button type="submit" class="btn btn-danger">
-												<i class="iconf fa fa-search" style="color: white;"></i>
-											</button></td>
-										<td><a href="/books/list" class="btn btn-danger">Limpiar</a></td>
-									</tr>
-								</tbody>
-							</table>
+								</table>
+
+								<a th:href="@{/books/list}" type="button"
+									class="btn btn-danger k"> <span
+									class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+								</a>
+							</div>
 						</div>
-					</form>
-					<hr class="sidebar-divider">
-
-
-					<table class="table table-striped">
-						<thead class="thead-dark">
-							<tr>
-								<th scope="col">Id</th>
-								<th scope="col">Nombre del libro</th>
-								<th scope="col">Fecha de admision</th>
-								<th scope="col">N° Edicion</th>
-								<th scope="col">N° Serie</th>
-								<th scope="col">Lenguaje</th>
-								<th scope="col">Autor</th>
-								<th colspan="2" scope="col">Operación</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="cate: ${listBooks}">
-								<td><a class="btn btn-danger btn-xs"
-									th:href="@{/books/view/} + ${cate.idBook}"
-									th:text="${cate.idBook}"></a></td>
-								<td th:text="${cate.nameBook}"></td>
-								<td th:text="${cate.dateOfAdmissionBook}"></td>
-								<td th:text="${cate.editionBook}"></td>
-								<td th:text="${cate.serieBook}"></td>
-								<td th:text="${cate.languageBook}"></td>
-								<td
-									th:text="${cate.author.nameAuthor + ' '+cate.author.lastnameAuthor}"></td>
-								<td colspan="2"><a
-									th:href="@{'/books/delete/'+${cate.idBook}}"> <i
-										class="iconf fa fa-trash" style="color: red"></i>
-								</a>&nbsp;&nbsp; <a th:href="@{'/books/irupdate/'+${cate.idBook}}">
-										<i class="iconf fa fa-pen" style="color: blue"></i>
-								</a></td>
-
-							</tr>
-						</tbody>
-					</table>
-					<p th:text="${mensaje}" class="form-text text-success"></p>
-					<p th:text="${mensaje2}" class="form-text text-danger"></p>
-				</div>
-				<!-- /.container-fluid -->
-
-			</div>
-			<!-- End of Main Content -->
-
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Web 2020</span>
 					</div>
 				</div>
-			</footer>
-			<!-- End of Footer -->
+			</div>
+			<!-- /.container-fluid -->
 
 		</div>
-		<!-- End of Content Wrapper -->
+		<!-- End of Main Content -->
+
+		<!-- Footer -->
+		<footer class="sticky-footer bg-white">
+			<div class="container my-auto">
+				<div class="copyright text-center my-auto">
+					<span>Copyright &copy; Web 2020</span>
+				</div>
+			</div>
+		</footer>
+		<!-- End of Footer -->
+
+	</div>
+	<!-- End of Content Wrapper -->
 
 	</div>
 	<!-- End of Page Wrapper -->
@@ -260,7 +246,7 @@
 							onclick="document.getElementById('logoutForm').submit();"
 							type="submit">Cerrar</button>
 						<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{/books/list}">Cancel</button>
+							th:href="@{/categories/list}">Cancel</button>
 					</form>
 				</div>
 			</div>
@@ -276,5 +262,7 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="/js/sb-admin-2.min.js"></script>
+
 </body>
+
 </html>

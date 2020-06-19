@@ -1,9 +1,14 @@
 package pe.edu.upc.controller;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,12 +17,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entity.Author;
 import pe.edu.upc.entity.Book;
 import pe.edu.upc.serviceinterface.IAuthorService;
 import pe.edu.upc.serviceinterface.IBookService;
+import pe.edu.upc.serviceinterface.IUploadFileService;
 
 @Controller
 @RequestMapping("/books")
@@ -26,38 +35,60 @@ public class BookController {
 	private IBookService cS;
 	@Autowired
 	private IAuthorService aU;
-
-
+	@Autowired
+	private IUploadFileService uploadFileService;
 
 	@GetMapping("/new")
 	public String newBook(Model model) {
-		/*model.addAttribute("book", new Book());
-		author = new Author();
-		model.addAttribute("author", author); // CAMBIO HECHO
-		List<Author> authors = aU.list();
-		model.addAttribute("authors", authors);*/
+		/*
+		 * model.addAttribute("book", new Book()); author = new Author();
+		 * model.addAttribute("author", author); // CAMBIO HECHO List<Author> authors =
+		 * aU.list(); model.addAttribute("authors", authors);
+		 */
 		model.addAttribute("author", new Author());
-		model.addAttribute("listAuthors",aU.list());
+		model.addAttribute("listAuthors", aU.list());
 		model.addAttribute("book", new Book());
-		model.addAttribute("listBooks",cS.list());
+		model.addAttribute("listBooks", cS.list());
 		return "book/book";
 	}
 
 	@PostMapping("/save")
-	public String saveBook(@Validated Book book, BindingResult result, Model model) throws Exception {
+	public String saveBook(@Validated Book book, BindingResult result, Model model,
+			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
-		/*	List<Author> authors = aU.list();
-			model.addAttribute("authors", authors);*/
+			/*
+			 * List<Author> authors = aU.list(); model.addAttribute("authors", authors);
+			 */
 			model.addAttribute("listAuthors", aU.list());
 			return "book/book";
 		} else {
+			if (!foto.isEmpty()) {
+
+				if (book.getIdBook() > 0 && book.getFoto() != null && book.getFoto().length() > 0) {
+
+					uploadFileService.delete(book.getFoto());
+				}
+
+				String uniqueFilename = null;
+				try {
+					uniqueFilename = uploadFileService.copy(foto);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+				flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
+				book.setFoto(uniqueFilename);
+			}
 			cS.insert(book);
-			model.addAttribute("mensaje","Libro se registro correctamente");
-			model.addAttribute("book",new Book());
-			model.addAttribute("listAuthors", aU.list());
+			/*model.addAttribute("mensaje", "Libro se registro correctamente");
+			model.addAttribute("book", new Book());
+			model.addAttribute("listAuthors", aU.list());*/
 			model.addAttribute("listBooks", cS.list());
-			return "book/book";
-		}
+			status.setComplete();
+			
+		}//aca puede faltar algo
+		//return "book/book";
+		return "redirect:/book/list";
 	}
 
 	@GetMapping("/list")
@@ -70,12 +101,12 @@ public class BookController {
 		}
 		return "book/listBooks";
 	}
-	
+
 	@RequestMapping("/delete/{id}")
 	public String deleteBook(Model model, @PathVariable(value = "id") int id) {
 		try {
 			model.addAttribute("author", new Author());
-			model.addAttribute("book",new Book());
+			model.addAttribute("book", new Book());
 			if (id > 0) {
 				cS.delete(id);
 			}
@@ -84,10 +115,10 @@ public class BookController {
 			model.addAttribute("mensaje2", "Ocurrió un error, no se pudo eliminar");
 		}
 		model.addAttribute("listBooks", cS.list());
-		model.addAttribute("listAuthors",aU.list());
+		model.addAttribute("listAuthors", aU.list());
 		return "book/listBooks";// Mod pq con el buscar no funcaba
 	}
-	
+
 	@RequestMapping("/irupdate/{id}")
 	public String irupdate(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 		Optional<Book> objBook = cS.searchId(id);
@@ -95,13 +126,14 @@ public class BookController {
 			objRedir.addFlashAttribute("mensaje2", "Ocurrió un error");
 			return "redirect:/books/list";
 		} else {
-			model.addAttribute("listAuthors",aU.list());
+			model.addAttribute("listAuthors", aU.list());
 			model.addAttribute("listBooks", cS.list());// OJO A LO QUE DICE LA PROFESORA calla kkita
-			/*model.addAttribute("authors",aU.list());*/
+			/* model.addAttribute("authors",aU.list()); */
 			model.addAttribute("book", objBook.get());
 			return "book/book";
 		}
 	}
+
 	@RequestMapping("/search")
 	public String searchBooks(Model model, @Validated Book book) throws Exception {
 		List<Book> listBooks;
@@ -112,8 +144,34 @@ public class BookController {
 		model.addAttribute("listBooks", listBooks);
 		return "book/listBooks";
 	}
-	
-	
-	
+
+	@GetMapping(value = "/uploads/{filename:.+}")
+	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
+
+		Resource recurso = null;
+
+		try {
+			recurso = uploadFileService.load(filename);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
+				.body(recurso);
+	}
+	@GetMapping(value = "/view/{id}")
+	public String ver(@PathVariable(value = "id") Integer id, Model model, RedirectAttributes flash) {
+
+		Optional<Book> book = cS.searchId(id);
+		if (book == null) {
+			flash.addFlashAttribute("error", "El Libro no existe en la base de datos");
+			return "redirect:/books/list";
+		}
+
+		model.addAttribute("book", book.get());
+
+		return "book/view";
+	}
 
 }
