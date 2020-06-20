@@ -184,7 +184,9 @@
 						</thead>
 						<tbody>
 							<tr th:each="cate: ${listAuthors}">
-								<td th:text="${cate.idAuthor}"></td>
+								<td><a class="btn btn-danger btn-xs"
+									th:href="@{/authors/view/} + ${cate.idAuthor}"
+									th:text="${cate.idAuthor}"></a></td>
 								<td th:text="${cate.nameAuthor}"></td>
 								<td th:text="${cate.lastnameAuthor}"></td>
 								<td colspan="2"><a

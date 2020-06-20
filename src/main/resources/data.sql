@@ -1,13 +1,13 @@
 
 
-INSERT INTO autor ( lastname_author, name_author) VALUES ( 'Vargas Llosa', 'Mario');
-INSERT INTO autor ( lastname_author, name_author) VALUES ( 'Borges', 'Jorge Luis');
-INSERT INTO autor ( lastname_author, name_author) VALUES ( 'Rulfo', 'Juan');
-INSERT INTO autor ( lastname_author, name_author) VALUES ( 'Vallejo', 'Cesar');
-INSERT INTO autor ( lastname_author, name_author) VALUES ( 'Palma', 'Ricardo');
+INSERT INTO autor ( foto, lastname_author, name_author) VALUES ( 'e5db0f37-9ec7-4a34-b294-e38f98de2a58_vargas llosa.jpg', 'Vargas Llosa', 'Mario');
+INSERT INTO autor ( foto, lastname_author, name_author) VALUES ( '59cbeb70-cd07-4772-9ace-4d630b8b352f_borges.jpg', 'Borges', 'Jorge Luis');
+INSERT INTO autor ( foto, lastname_author, name_author) VALUES ( '82aaa265-dd5e-4a7f-80d9-8d64edfd1697_rulfo_juan.jpg', 'Rulfo', 'Juan');
+INSERT INTO autor ( foto, lastname_author, name_author) VALUES ( '8d176acb-a4aa-4659-a6f4-17420653ac4c_cesar-vallejo.jpg', 'Vallejo', 'Cesar');
+INSERT INTO autor ( foto, lastname_author, name_author) VALUES ( '1557ae47-f82c-4bf5-830c-08bdbb5d3535_ricardopalma.jpg', 'Palma', 'Ricardo');
 
-INSERT INTO book ( date_of_admission_book, edition_book, foto, language_book, name_book, serie_book, id_author) VALUES ( '1878-01-01', 2, '1cc8f898-77d9-4441-acfc-883976001046_ferrari2.jpg', 'Español', 'La ciudad y los perros', 2, 1);
-INSERT INTO book ( date_of_admission_book, edition_book, foto, language_book, name_book, serie_book, id_author) VALUES ( '1987-01-01', 2, '1ec97c0a-9bc9-435b-9b0e-91044cb0b45e_ferrari.jpg', 'Español', 'El Aleph', 2, 2);
+INSERT INTO book ( date_of_admission_book, edition_book, foto, language_book, name_book, serie_book, id_author) VALUES ( '1878-01-01', 2, 'defe58bf-4745-44f5-80cd-f2bdab26bfef_laciudadylosperros.jpg', 'Español', 'La ciudad y los perros', 2, 1);
+INSERT INTO book ( date_of_admission_book, edition_book, foto, language_book, name_book, serie_book, id_author) VALUES ( '1987-01-01', 2, '1566c66c-55f2-483c-809e-2175507b88ac_el-aleph-1.jpg', 'Español', 'El Aleph', 2, 2);
 INSERT INTO book ( date_of_admission_book, edition_book, foto, language_book, name_book, serie_book, id_author) VALUES ( '1997-01-01', 2, 'ba754c39-7a7e-4a1d-975d-bfaba7e0a0ad_paramo.jpg', 'Español', 'Pedro paramo', 1, 3);
 
 INSERT INTO role (name_role)	VALUES ('ROLE_ADMIN');

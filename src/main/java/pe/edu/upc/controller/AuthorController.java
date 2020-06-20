@@ -1,9 +1,14 @@
 package pe.edu.upc.controller;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +18,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entity.Author;
+import pe.edu.upc.entity.Book;
 import pe.edu.upc.serviceinterface.IAuthorService;
+import pe.edu.upc.serviceinterface.IUploadFileService;
 
 @Controller
 @RequestMapping("/authors")
@@ -24,6 +34,8 @@ import pe.edu.upc.serviceinterface.IAuthorService;
 public class AuthorController {
 	@Autowired
 	private IAuthorService cS;
+	@Autowired
+	private IUploadFileService uploadFileService;
 
 	@GetMapping("/new")
 	public String newAuthor(Model model) {
@@ -32,21 +44,40 @@ public class AuthorController {
 	}
 
 	@PostMapping("/save")
-	public String saveAuthor(@Validated Author author, BindingResult result, Model model) throws Exception {
+	public String saveAuthor(@Validated Author author, BindingResult result, Model model,
+			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
-			model.addAttribute("listAuthors",cS.list());
+			model.addAttribute("listAuthors", cS.list());
 			return "author/author";
 		} else {
+			if (!foto.isEmpty()) {
+
+				if (author.getIdAuthor() > 0 && author.getFoto() != null && author.getFoto().length() > 0) {
+
+					uploadFileService.delete(author.getFoto());
+				}
+
+				String uniqueFilename = null;
+				try {
+					uniqueFilename = uploadFileService.copy(foto);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+				flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
+				author.setFoto(uniqueFilename);
+			}
 			int rpta = cS.insert(author);
 			if (rpta > 0) {
 				model.addAttribute("mensaje2", "Ya existe");
 				return "author/author";
 			} else {
 				cS.insert(author);
-				model.addAttribute("mensaje","Categoria se registro correctamente");
-				model.addAttribute("author",new Author());
+				model.addAttribute("mensaje", "Categoria se registro correctamente");
+				model.addAttribute("author", new Author());
 				model.addAttribute("listAuthors", cS.list());
-				return "author/author";
+				//status.setComplete();
+				return "author/listAuthors";
 			}
 		}
 	}
@@ -99,5 +130,33 @@ public class AuthorController {
 		}
 		model.addAttribute("listAuthors", listAuthors);
 		return "author/listAuthors";
+	}
+	@GetMapping(value = "/uploads/{filename:.+}")
+	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
+
+		Resource recurso = null;
+
+		try {
+			recurso = uploadFileService.load(filename);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
+				.body(recurso);
+	}
+	@GetMapping(value = "/view/{id}")
+	public String ver(@PathVariable(value = "id") Integer id, Model model, RedirectAttributes flash) {
+
+		Optional<Author> author = cS.searchId(id);
+		if (author == null) {
+			flash.addFlashAttribute("error", "El Autor no existe en la base de datos");
+			return "redirect:/authors/list";
+		}
+
+		model.addAttribute("author", author.get());
+
+		return "author/view";
 	}
 }

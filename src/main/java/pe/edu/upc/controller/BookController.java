@@ -85,7 +85,7 @@ public class BookController {
 			model.addAttribute("listAuthors", aU.list());*/
 			model.addAttribute("listBooks", cS.list());
 			status.setComplete();
-			return "redirect:/book/list";
+			return "book/listBooks";
 		}//aca puede faltar algo
 		//return "book/book";
 		
