@@ -85,10 +85,10 @@ public class BookController {
 			model.addAttribute("listAuthors", aU.list());*/
 			model.addAttribute("listBooks", cS.list());
 			status.setComplete();
-			
+			return "redirect:/book/list";
 		}//aca puede faltar algo
 		//return "book/book";
-		return "redirect:/book/list";
+		
 	}
 
 	@GetMapping("/list")
