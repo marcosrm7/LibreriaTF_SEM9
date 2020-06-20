@@ -5,7 +5,9 @@ import java.util.List;
 import pe.edu.upc.entity.Account;
 
 public interface IAccountService {
-	public void insert (Account _account);
+	
+	public int insert (Account account);
+	
 	List <Account> list();
 	
 }

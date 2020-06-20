@@ -19,14 +19,17 @@ public class AccountServiceImpl implements Serializable, IAccountService {
 	private IAccountRepository cR;
 	
 	@Override
-	public void insert(Account _user) {
-		// TODO Auto-generated method stub
-		cR.save(_user);
-	}
-
-	@Override
 	public List<Account> list() {
 		// TODO Auto-generated method stub
 		return cR.findAll();
+	}
+
+	@Override
+	public int insert(Account account) {
+		int rpta = cR.searchAccount(account.getCorreoAccount(), account.getDniAccount());
+		if(rpta == 0) {
+			cR.save(account);
+		}
+		return rpta;
 	}
 }

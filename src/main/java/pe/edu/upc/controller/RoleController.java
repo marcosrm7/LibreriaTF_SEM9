@@ -33,11 +33,12 @@ public class RoleController {
 		else {
 			int rpta = cS.insert(role);
 			if (rpta > 0) {
-				model.addAttribute("mensaje", "Ya existe");
+				model.addAttribute("mensaje2", "Ya existe");
 				return "user/role";
 			} else {
 				model.addAttribute("listRoles", cS.list());
-				return "user/listRoles";
+				model.addAttribute("mensaje", "El rol se registró correctamente");
+				return "user/role";
 			}
 		}
 	}

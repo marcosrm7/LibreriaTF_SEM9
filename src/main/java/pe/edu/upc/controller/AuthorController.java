@@ -73,7 +73,7 @@ public class AuthorController {
 				return "author/author";
 			} else {
 				cS.insert(author);
-				model.addAttribute("mensaje", "Categoria se registro correctamente");
+				model.addAttribute("mensaje", "Autor se registro correctamente");
 				model.addAttribute("author", new Author());
 				model.addAttribute("listAuthors", cS.list());
 				//status.setComplete();

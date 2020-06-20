@@ -152,27 +152,29 @@
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Nombre</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{nameAccount}" class="form-control" autocomplete="off"
-									th:errorclass="'form-control alert-danger'" required pattern="[A-Za-z]{1,45}" />
-								<small class="form-text text-danger"
+								<input type="text" th:field="*{nameAccount}"
+									class="form-control" autocomplete="off"
+									th:errorclass="'form-control alert-danger'" required
+									pattern="[A-Za-z]{1,45}" /> <small
+									class="form-text text-danger"
 									th:if="${#fields.hasErrors('nameAccount')}"
 									th:errors="*{nameAccount}"></small>
 							</div>
-					   </div>
-					   
-					   <div class="form-group row">
+						</div>
+
+						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Apellidos</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{lastNameAccount}" autocomplete="off"
-								required pattern="[A-Za-z]{1,45}" 
+								<input type="text" th:field="*{lastNameAccount}"
+									autocomplete="off" required pattern="[A-Za-z]{1,45}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('lastNameAccount')}"
 									th:errors="*{lastNameAccount}"></small>
-							</div>							
+							</div>
 						</div>
-						 <div class="form-group row">
+						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Email</label>
 							<div class="col-sm-6">
 								<input type="email" th:field="*{correoAccount}" required
@@ -181,13 +183,13 @@
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('correoAccount')}"
 									th:errors="*{correoAccount}"></small>
-							</div>							
+							</div>
 						</div>
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">DNI</label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{dniAccount}" pattern="[0-9]{8,8}"
-							      required="required" id="cf-dni" 	autocomplete="off"
+									required="required" id="cf-dni" autocomplete="off"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -198,9 +200,8 @@
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Contraseña</label>
 							<div class="col-sm-6">
-								<input type="password" th:field="*{passwordAccount}" minlength="6" 
-								required pattern="{1,20}"
-									class="form-control"
+								<input type="password" th:field="*{passwordAccount}"
+									minlength="6" required pattern="{1,20}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('passwordAccount')}"
@@ -209,14 +210,14 @@
 						</div>
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Rol</label>
-							
-							<div class="col-sm-6">							
+
+							<div class="col-sm-6">
 								<select id="user" class="form-control" th:field="*{roleAccount}">
-								<option th:each="role : ${roles}" th:text="${role.nameRole}"
-									th:value="${role.idRole}"></option>
-							    </select>
-							</div>							
-							
+									<option th:each="role : ${roles}" th:text="${role.nameRole}"
+										th:value="${role.idRole}"></option>
+								</select>
+							</div>
+
 						</div>
 
 						<div class="form-group row">
@@ -227,7 +228,8 @@
 						</div>
 
 					</form>
-					<p th:text="${mensaje}"></p>
+					<p th:text="${mensaje}" class="form-text text-success"></p>
+					<p th:text="${mensaje2}" class="form-text text-danger"></p>
 
 
 
@@ -235,11 +237,13 @@
 				<!-- /.container-fluid -->
 
 			</div>
-				<script type="text/javascript">
+			<script type="text/javascript">
 				var input = document.getElementById('cf-dni');
 				input.addEventListener('input', function() {
-				if (this.value.length > 8)	this.value = this.value.slice(0, 8);})
-				</script>
+					if (this.value.length > 8)
+						this.value = this.value.slice(0, 8);
+				})
+			</script>
 			<!-- End of Main Content -->
 
 			<!-- Footer -->

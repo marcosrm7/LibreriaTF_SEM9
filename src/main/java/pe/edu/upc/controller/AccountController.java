@@ -24,10 +24,10 @@ public class AccountController {
 	private IAccountService cS;
 	@Autowired
 	private IRoleService rS;
+
 	@GetMapping("/list")
-	public String listAccounts (Model model) {
-		
-		
+	public String listAccounts(Model model) {
+
 		try {
 			model.addAttribute("listAccounts", cS.list());
 		} catch (Exception e) {
@@ -36,33 +36,35 @@ public class AccountController {
 
 		return "user/listUsers";
 	}
-	@GetMapping("/new")	
-	public String newAccount (Model model) {
+
+	@GetMapping("/new")
+	public String newAccount(Model model) {
 		model.addAttribute("account", new Account());
-	
+
 		model.addAttribute("roles", rS.list());
 		return "user/user";
 	}
-	
+
 	@PostMapping("/save")
-	public String saveAccount (@Validated Account account, BindingResult result, Model model) throws Exception {
-		if(result.hasErrors()) {
+	public String saveAccount(@Validated Account account, BindingResult result, Model model) throws Exception {
+		if (result.hasErrors()) {
 			model.addAttribute("roles", rS.list());
 			return "user/user";
-		}
-		
-		else {
-			String password = new BCryptPasswordEncoder().encode(account.getPasswordAccount());
-			account.setPasswordAccount(password);
-			cS.insert(account);
-			model.addAttribute("listAccounts", cS.list());
-			return "user/listUsers";
+		} else {
+			int rpta = cS.insert(account);
+			if (rpta > 0) {
+				model.addAttribute("roles", rS.list());
+				model.addAttribute("mensaje2", "El DNI y/o el correo ya está(n) en uso");
+				return "user/user";
+			} else {
+				String password = new BCryptPasswordEncoder().encode(account.getPasswordAccount());
+				account.setPasswordAccount(password);
+				cS.insert(account);
+				model.addAttribute("roles", rS.list());
+				model.addAttribute("listAccounts", cS.list());
+				model.addAttribute("mensaje", "El usuario se registró correctamente");
+				return "user/user";
+			}
 		}
 	}
-	
-	
-	
-	
-	
-	
 }
