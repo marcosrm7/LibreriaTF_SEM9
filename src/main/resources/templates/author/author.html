@@ -165,7 +165,7 @@
 							<div class="col-sm-6">
 								<input type="text" th:field="*{nameAuthor}" autocomplete="off"
 									class="form-control"
-									th:errorclass="'form-control alert-danger'" required /> <small
+									th:errorclass="'form-control alert-danger'" required  /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('nameAuthor')}"
 									th:errors="*{nameAuthor}"></small>
@@ -183,7 +183,7 @@
 									th:errors="*{lastnameAuthor}"></small>
 							</div>
 						</div>
-				</div>
+			
 				<div class="form-group row">
 					<label for="file" class="col-sm-2 col-form-label ">Foto:</label>
 					<div class="col-sm-6">
@@ -203,10 +203,9 @@
 				<p th:text="${mensaje}" class="form-text text-success"></p>
 				<p th:text="${mensaje2}" class="form-text text-danger"></p>
 
-
 			</div>
 			<!-- /.container-fluid -->
-
+       
 		</div>
 		<!-- End of Main Content -->
 
@@ -219,11 +218,11 @@
 			</div>
 		</footer>
 		<!-- End of Footer -->
-
-	</div>
+		</div>
+	
 	<!-- End of Content Wrapper -->
-
 	</div>
+	
 	<!-- End of Page Wrapper -->
 
 	<!-- Scroll to Top Button-->
