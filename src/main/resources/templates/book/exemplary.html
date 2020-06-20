@@ -177,10 +177,18 @@
 							</div>
 						</div>
 
-
-
-
-
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Fecha
+								de llegada</label>
+							<div class="col-sm-6">
+								<input type="date" required pattern="yyyy-MM-dd"
+									th:field="*{dateOfExemplary}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('dateOfExemplary')}"
+									th:errors="*{dateOfExemplary}"></small>
+							</div>
+						</div>
 
 						<div class="form-group row">
 							<div class="col-sm-6">

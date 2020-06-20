@@ -1,6 +1,7 @@
 package pe.edu.upc.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table (name="Exemplary")
@@ -32,19 +35,27 @@ public class Exemplary  implements Serializable{
 	@Column (name="countExemplary", nullable=false, length=45)
 	private int countExemplary;
 	
-	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date dateOfExemplary;
 	
 	public Exemplary() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Exemplary(int idExemplary, int countExemplary, Book exemplaryBook) {
+	
+
+	public Exemplary(int idExemplary, Book exemplaryBook,
+			@Positive(message = "Solo numeros positivos.") @NotNull(message = "La cantidad es obligatoria") int countExemplary,
+			Date dateOfExemplary) {
 		super();
 		this.idExemplary = idExemplary;
-		this.countExemplary = countExemplary;
 		this.exemplaryBook = exemplaryBook;
+		this.countExemplary = countExemplary;
+		this.dateOfExemplary = dateOfExemplary;
 	}
+
+
 
 	public int getIdExemplary() {
 		return idExemplary;
@@ -70,5 +81,14 @@ public class Exemplary  implements Serializable{
 		this.exemplaryBook = exemplaryBook;
 	}
 
+
+	public Date getDateOfExemplary() {
+		return dateOfExemplary;
+	}
+
+
+	public void setDateOfExemplary(Date dateOfExemplary) {
+		this.dateOfExemplary = dateOfExemplary;
+	}
 	
 }

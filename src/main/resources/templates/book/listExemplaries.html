@@ -161,14 +161,15 @@
 								<th scope="col">Id</th>
 								<th scope="col">Id | Nombre del libro</th>
 								<th scope="col">Cantidad de ejemplares</th>
+								<th scope="col">Fecha de llegada</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="cate: ${listExemplaries}">
 								<td th:text="${cate.idExemplary}"></td>
-								<td
-									th:text="${cate.exemplaryBook.idBook +' | '+ cate.exemplaryBook.nameBook}"></td>
+								<td th:text="${cate.exemplaryBook.idBook +' | '+ cate.exemplaryBook.nameBook}"></td>
 								<td th:text="${cate.countExemplary}"></td>
+								<td th:text="${cate.dateOfExemplary}"></td>
 							</tr>
 						</tbody>
 					</table>
