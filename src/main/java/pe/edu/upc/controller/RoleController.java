@@ -1,6 +1,7 @@
 package pe.edu.upc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +15,7 @@ import pe.edu.upc.serviceinterface.IRoleService;
 
 @Controller
 @RequestMapping("/users/roles")
+@Secured("ROLE_ADMIN")
 public class RoleController {
 	@Autowired
 	private IRoleService cS;
@@ -38,7 +40,7 @@ public class RoleController {
 			} else {
 				model.addAttribute("listRoles", cS.list());
 				model.addAttribute("mensaje", "El rol se registró correctamente");
-				return "user/role";
+				return "user/listRoles";
 			}
 		}
 	}

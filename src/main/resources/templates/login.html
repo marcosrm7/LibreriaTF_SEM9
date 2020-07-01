@@ -30,7 +30,7 @@
           <div class="col-md-7">
             <div class="card-body">
               <div class="brand-wrapper">
-                <img src="libreria/images/icon.png" alt="logo" class="logo">
+                <a  th:href="@{/}"><img src="libreria/images/icon.png" alt="logo" class="logo"></a>
                 <label class="login-card-description">Libreria Panchito</label>
               </div>
               <p class="login-card-description">Iniciar sesión</p>
@@ -58,8 +58,8 @@
 			 		     <div class="alert alert-info" th:if="${info != null}"
 							th:text="${info}"></div>
 		       </div>
-                <a href="#!" class="forgot-password-link">Olvidaste tu contraseña?</a>
-                <p class="login-card-footer-text">Aún no tienes cuenta? <a href="#!" class="text-reset">Registrate aquí</a></p>
+                <!--  <a href="#!" class="forgot-password-link">Olvidaste tu contraseña?</a>-->
+                <p class="login-card-footer-text">Aún no tienes cuenta? <a th:href="@{/registry}"class="text-reset">Registrate aquí</a></p>
                 <nav class="login-card-footer-nav">
                   <a href="#!">Términos de uso.</a>
                   <a href="#!">Política de privacidad.</a>

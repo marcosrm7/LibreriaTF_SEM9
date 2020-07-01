@@ -51,19 +51,20 @@ public class AccountController {
 			model.addAttribute("roles", rS.list());
 			return "user/user";
 		} else {
+			String password = new BCryptPasswordEncoder().encode(account.getPasswordAccount());
+			account.setPasswordAccount(password);
 			int rpta = cS.insert(account);
 			if (rpta > 0) {
 				model.addAttribute("roles", rS.list());
 				model.addAttribute("mensaje2", "El DNI y/o el correo ya está(n) en uso");
 				return "user/user";
 			} else {
-				String password = new BCryptPasswordEncoder().encode(account.getPasswordAccount());
-				account.setPasswordAccount(password);
+				
 				cS.insert(account);
 				model.addAttribute("roles", rS.list());
 				model.addAttribute("listAccounts", cS.list());
 				model.addAttribute("mensaje", "El usuario se registró correctamente");
-				return "user/user";
+				return "user/listUsers";
 			}
 		}
 	}

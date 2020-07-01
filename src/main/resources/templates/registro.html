@@ -1,305 +1,135 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+<head th:fragment="head">
 
-<title>Libreria Panchito</title>
+  <title>Libreria Panchito</title>
 
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta name="description" content="">
-<meta name="keywords" content="">
-<meta name="author" content="">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="shortcut icon"  href="libreria/images/icon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="libreria/css/login.css">
 
-<link rel="stylesheet" href="libreria/css/bootstrap.min.css">
-<link rel="stylesheet" href="libreria/css/font-awesome.min.css">
-<link rel="stylesheet" href="libreria/css/animate.css">
-<link rel="stylesheet" href="libreria/css/owl.carousel.css">
-<link rel="stylesheet" href="libreria/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="libreria/css/magnific-popup.css">
-<link rel="shortcut icon" href="libreria/images/icon.ico">
-<!-- MAIN CSS -->
-<link rel="stylesheet" href="libreria/css/templatemo-style.css">
 
 </head>
 <body>
-
-
-
-	<!-- PRE LOADER -->
-
-
-	<!-- MENU -->
-	<section class="navbar custom-navbar navbar-fixed-top "
-		role="navigation">
-		<div class="container">
-
-			<div class="navbar-header">
-				<button class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-collapse">
-					<span class="icon icon-bar"></span> <span class="icon icon-bar"></span>
-					<span class="icon icon-bar"></span>
-				</button>
-
-				<!-- lOGO TEXT HERE -->
-				<a href="index.html" class="navbar-brand" style="color: #292929;">Libreria
-					<span>.</span> Panchito
-				</a>
-			</div>
-
-			<!-- MENU LINKS -->
-			<div class="collapse navbar-collapse">
-				<ul class="nav navbar-nav navbar-nav-first">
-					<li><a th:href="@{/}"class="smoothScroll alinkear"
-						style="color: #292929;" onmouseover="this.style.color='#ce3232';"
-						onmouseout="this.style.color='#292929';">Home</a></li>
-					<li><a th:href="@{/}" class="smoothScroll"
-						style="color: #292929;" onmouseover="this.style.color='#ce3232';"
-						onmouseout="this.style.color='#292929';">About</a></li>
-					<li><a th:href="@{/}" class="smoothScroll"
-						style="color: #292929;" onmouseover="this.style.color='#ce3232';"
-						onmouseout="this.style.color='#292929';">Authors</a></li>
-					<li><a th:href="@{/}" class="smoothScroll"
-						style="color: #292929;" onmouseover="this.style.color='#ce3232';"
-						onmouseout="this.style.color='#292929';">Books</a></li>
-					<li><a href="#footer" class="smoothScroll"
-						style="color: #292929;" onmouseover="this.style.color='#ce3232';"
-						onmouseout="this.style.color='#292929';">Contact</a></li>
-				</ul>
-
-				<ul class="nav navbar-nav navbar-right">
-					<!--<li><a href="registro.html" style="color:#292929;" 
-                         onmouseover="this.style.color='#ce3232';"
-                         onmouseout="this.style.color='#292929';">Registrate <i class="fa fa-robot"></i></a></li>-->
-					<a th:href="@{/login}" class="section-btn">Login</a>
-				</ul>
-			</div>
-
-		</div>
-	</section>
-
-	<!-- HOME -->
-
-	<!-- CONTACT -->
-	<section id="contact" data-stellar-background-ratio="0.5">
-		<!--style="background-image: url('libreria/images/about-image.jpg');"-->
-		<div class="container">
-			<!-- style="border: solid 1px #c2c2c2;" >background-color: white;-->
-			<div class="row">
-				<!-- How to change your own map point
-            1. Go to Google Maps
-            2. Click on your location point
-            3. Click "Share" and choose "Embed map" tab
-            4. Copy only URL and paste it within the src="" field below
-     -->
-
-
-				<div class=" col-12 col-md-12 col-sm-12">
-
-					<div class="col-md-12 col-sm-12">
-						<div class="section-title wow fadeInUp" data-wow-delay="0.1s">
-							<h2 style="color: #ce3232;">REGISTRO</h2>
-						</div>
-					</div>
-					<hr>
-					<hr>
-					<hr>
-
-
-
-					<form th:action="@{/registry/save}" th:object="${account}"
-						method="post" class="wow fadeInUp" id="contact-form" role="form"
-						data-wow-delay="0.8s">
-
-						<div class="col-md-6 col-sm-6">
-							<input type="text" th:field="*{nameAccount}" autocomplete="off"
-								class="form-control" th:errorclass="'form-control alert-danger'"
-								id="cf-name" name="name" placeholder="Nombres" required
-								pattern="[A-Za-z]{1,45}"><small
-								class="form-text text-danger"
-								th:if="${#fields.hasErrors('nameAccount')}"
-								th:errors="*{nameAccount}"></small>
-							<!--required="Campo obligatorio"-->
-						</div>
-
-						<div class="col-md-6 col-sm-6">
-							<input type="email" class="form-control"
-								th:field="*{correoAccount}"
-								th:errorclass="'form-control alert-danger'" autocomplete="off"
-								id="cf-email" name="email" placeholder="Email" required
-								pattern="{1,45}"><small class="form-text text-danger"
-								th:if="${#fields.hasErrors('correoAccount')}"
-								th:errors="*{correoAccount}"></small>
-						</div>
-						<div class="col-md-6 col-sm-6">
-							<input type="text" class="form-control"
-								th:field="*{lastNameAccount}"
-								th:errorclass="'form-control alert-danger'" id="cf-name"
-								name="apellidos" placeholder="Apellidos" autocomplete="off"
-								required pattern="[A-Za-z]{1,45}"> <small
-								class="form-text text-danger"
-								th:if="${#fields.hasErrors('lastNameAccount')}"
-								th:errors="*{lastNameAccount}"></small>
-						</div>
-						<div class="col-md-6 col-sm-6">
-							<input type="password" class="form-control"
-								th:field="*{passwordAccount}"
-								th:errorclass="'form-control alert-danger'" id="cf-password"
-								name="password" placeholder="Contraseña" minlength="6" required
-								pattern="{1,20}"> <small class="form-text text-danger"
-								th:if="${#fields.hasErrors('passwordAccount')}"
-								th:errors="*{passwordAccount}"></small>
-						</div>
-						<div class="col-md-6 col-sm-6">
-							<input type="text" th:field="*{dniAccount}" class="form-control"
-								th:errorclass="'form-control alert-danger'" pattern="[0-9]{8,8}"
-								id="cf-dni" name="dni" placeholder="DNI" required="required"
-								autocomplete="off"><small class="form-text text-danger"
-								th:if="${#fields.hasErrors('dniAccount')}"
-								th:errors="*{dniAccount}"></small>
-							<!--required="Campo obligatorio"-->
-						</div>
-						<!--  <div class="col-md-6 col-sm-6">
-                                   <input type="text"  th:field="*{dniAccount}" th:errorclass="'form-control alert-danger'"
-                                   class="form-control" 
-                                   id="cf-dni" name="dni" 
-                                   placeholder="DNI"  required ="required" value=""> 
-                                   <small
+  <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+    <div class="container">
+      <div class="card login-card" >
+        <div class="row no-gutters">
+          <div class="col-md-5">
+            <img src="libreria/images/bg-login.jpg" alt="login" class="login-card-img">
+          </div>
+          <div class="col-md-7">
+            <div class="card-body">
+              <div class="brand-wrapper">
+                <a  th:href="@{/}">	<img src="libreria/images/icon.png" alt="logo" class="logo"></a>
+                <label class="login-card-description">Libreria Panchito</label>
+              </div>
+              <p class="login-card-description">Registro</p>
+             
+              
+              
+              <form th:action="@{/registry/save}" th:object="${account}" method="post"  >
+                  <div class="form-group">
+                    <label for="email" class="">Nombre</label>
+                    <input type="text" th:field="*{nameAccount}"
+									class="form-control" autocomplete="off"
+									th:errorclass="'form-control alert-danger'" required
+									pattern="[A-Za-z]{1,45}" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('nameAccount')}"
+									th:errors="*{nameAccount}"></small>
+                  </div>                  
+                  <div class="form-group mb-4">
+                    <label for="password" class="">Apellidos</label>
+                    <input type="text" th:field="*{lastNameAccount}"
+									autocomplete="off" required pattern="[A-Za-z]{1,45}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('lastNameAccount')}"
+									th:errors="*{lastNameAccount}"></small>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="password" class="">Email</label>
+                    <input type="email" th:field="*{correoAccount}" required
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('correoAccount')}"
+									th:errors="*{correoAccount}"></small>
+                  </div>
+                   <div class="form-group mb-4">
+                    <label for="password" class="">DNI</label>
+                    <input type="text" th:field="*{dniAccount}" pattern="[0-9]{8,8}"
+									required="required" id="cf-dni" autocomplete="off"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('dniAccount')}"
 									th:errors="*{dniAccount}"></small>
-                                   <!--minlength="8"  min="10000000" required pattern="[0-9]{8,9}"
-                                    title="Documento de identidad debe contar con 8 digitos."
-                                   <i>(Minimo 8 dígitos)</i>
-                              </div>-->
-
-						<div class="col-md-12 col-sm-12">
-							<!--   <input type="text" class="form-control" th:field="*{role}"
-                                   id="cf-subject" name="subject" placeholder="Rol">  -->
-
-							<select id="user" class="form-control" th:field="*{roleAccount}">
-								<option th:each="role : ${roles}" th:text="${role.nameRole}"
-									th:value="${role.idRole}"></option>
-							</select>
-
-
-							<button type="submit" class="form-control" id="cf-submit"
-								name="submit">Registrarse</button>
-
-
-						</div>
-
-					</form>
-				</div>
-
-			</div>
-		</div>
-	</section>
-	<!-- ABOUT -->
-	<script type="text/javascript">
-		var input = document.getElementById('cf-dni');
-		input.addEventListener('input', function() {
-			if (this.value.length > 8)
-				this.value = this.value.slice(0, 8);
-		})
-	</script>
-	<!-- authors -->
-
-
-
-	<!-- TESTIMONIAL -->
-
-
-
-	<!-- CONTACT -->
-
-
-
-	<!-- FOOTER -->
-	<footer id="footer" data-stellar-background-ratio="0.5">
-		<div class="container">
-			<div class="row">
-
-				<div class="col-md-3 col-sm-8">
-					<div class="footer-info">
-						<div class="section-title">
-							<h2 class="wow fadeInUp" data-wow-delay="0.2s">Dirección</h2>
-						</div>
-						<address class="wow fadeInUp" data-wow-delay="0.4s">
-							<p>
-								123 Avenida,<br> Siempre<br>Viva
-							</p>
-						</address>
-					</div>
-				</div>
-
-				<div class="col-md-3 col-sm-8">
-					<div class="footer-info">
-						<div class="section-title">
-							<h2 class="wow fadeInUp" data-wow-delay="0.2s">Contacto</h2>
-						</div>
-						<address class="wow fadeInUp" data-wow-delay="0.4s">
-							<p>090-080-0650 | 090-070-0430</p>
-							<p>
-								<a href="mailto:info@libreriapanchito.com">info@libreriapanchito.com</a>
-							</p>
-
-						</address>
-					</div>
-				</div>
-
-				<div class="col-md-4 col-sm-8">
-					<div class="footer-info footer-open-hour">
-						<div class="section-title">
-							<h2 class="wow fadeInUp" data-wow-delay="0.2s">Horario de
-								atención</h2>
-						</div>
-						<div class="wow fadeInUp" data-wow-delay="0.4s">
-							<!-- <p>Miercoles: Cerrado</p>-->
-							<div>
-								<strong>Lunes a Viernes</strong>
-								<p>7:00 AM - 9:00 PM</p>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="password" class="">Contraseña</label>
+                   <input type="password" th:field="*{passwordAccount}"
+									minlength="6" required pattern="{1,20}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('passwordAccount')}"
+									th:errors="*{passwordAccount}"></small>
+                  </div>
+                   <div class="form-group mb-4">
+                   <div class="col-sm-6" style="display: none">
+								<select id="user" class="form-control" th:field="*{roleAccount}">
+									<option th:each="role : ${roles}" th:text="${role.nameRole}"
+										th:value="${role.idRole}"></option>
+								</select>
 							</div>
-							<div>
-								<strong>Sabado - Domingo</strong>
-								<p>8:00 AM - 5:00 PM</p>
-							</div>
-						</div>
-					</div>
-				</div>
+                  </div>                 
+                  <input type="submit" name="login" id="login" class="btn btn-block login-btn mb-4" value="Registrar">
+                                   
+                  
+                  
+                </form>
+                	<script type="text/javascript">
+				var input = document.getElementById('cf-dni');
+				input.addEventListener('input', function() {
+					if (this.value.length > 8)
+						this.value = this.value.slice(0, 8);
+				})
+			</script>
+                
+                <div align="center" class="col-8 mb-2" >
+			 			 <div class="alert alert-success" th:if="${success != null}"
+							th:text="${mensaje}"></div>
+			 	     	  <div class="alert alert-danger" th:if="${error != null}"
+							th:text="${mensaje2}"></div>
+			 		     
+		       </div>
+                <!--  <a href="#!" class="forgot-password-link">Olvidaste tu contraseña?</a>-->
+                <p class="login-card-footer-text">Ya tienes cuenta? <a th:href="@{/login}"class="text-reset">Ingresa aquí</a></p>
+                <nav class="login-card-footer-nav">
+                  <a href="#!">Términos de uso.</a>
+                  <a href="#!">Política de privacidad.</a>
+                </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </main>
 
-				<div class="col-md-2 col-sm-4">
-					<ul class="wow fadeInUp social-icon" data-wow-delay="0.4s">
-						<li><a href="#" class="fa fa-facebook-square"
-							attr="facebook icon"></a></li>
-						<li><a href="#" class="fa fa-twitter"></a></li>
-						<li><a href="#" class="fa fa-instagram"></a></li>
-						<li><a href="#" class="fa fa-google"></a></li>
-					</ul>
-
-					<div class="wow fadeInUp copyright-text" data-wow-delay="0.8s">
-						<p>
-							<br>Copyright &copy; 2020 <br>Libreria Panchito TF <br>
-							<br>Proyecto: Grupo 4
-						</p>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</footer>
-
-
-	<!-- SCRIPTS -->
-	<script src="libreria/js/jquery.js"></script>
-	<script src="libreria/js/bootstrap.min.js"></script>
-	<script src="libreria/js/jquery.stellar.min.js"></script>
-	<script src="libreria/js/wow.min.js"></script>
-	<script src="libreria/js/owl.carousel.min.js"></script>
-	<script src="libreria/js/jquery.magnific-popup.min.js"></script>
-	<script src="libreria/js/smoothscroll.js"></script>
-	<script src="libreria/js/custom.js"></script>
-
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>
