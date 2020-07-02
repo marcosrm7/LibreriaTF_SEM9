@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -36,6 +37,7 @@ import pe.edu.upc.serviceinterface.IAuthorService;
 import pe.edu.upc.serviceinterface.IBookService;
 import pe.edu.upc.serviceinterface.IUploadFileService;
 
+@Secured("ROLE_ADMIN")
 @Controller
 @RequestMapping("/books")
 public class BookController {
@@ -75,7 +77,7 @@ public class BookController {
 		model.addAttribute("listBooks", cS.list());
 		return "book/book";
 	}
-
+	
 	@PostMapping("/save")
 	public String saveBook(@Validated Book book, BindingResult result, Model model,
 			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) throws Exception {
@@ -114,7 +116,7 @@ public class BookController {
 		//return "book/book";
 		
 	}
-
+	@Secured({"ROLE_ADMIN","ROLE_ESTUDIANTE"})
 	@GetMapping("/list")
 	public String listBooks(Model model) {
 		Authentication auth = SecurityContextHolder
@@ -160,13 +162,13 @@ public class BookController {
 			return "redirect:/books/list";
 		} else {
 			model.addAttribute("listAuthors", aU.list());
-			model.addAttribute("listBooks", cS.list());// OJO A LO QUE DICE LA PROFESORA calla kkita
+			model.addAttribute("listBooks", cS.list());
 			/* model.addAttribute("authors",aU.list()); */
 			model.addAttribute("book", objBook.get());
 			return "book/book";
 		}
 	}
-
+	@Secured({"ROLE_ADMIN","ROLE_ESTUDIANTE"})
 	@RequestMapping("/search")
 	public String searchBooks(Model model, @Validated Book book) throws Exception {
 		List<Book> listBooks;

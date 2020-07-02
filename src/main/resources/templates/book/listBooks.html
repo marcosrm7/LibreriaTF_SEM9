@@ -197,7 +197,7 @@
 									th:href="@{/books/view/} + ${cate.idBook}"
 									th:text="${cate.idBook}"></a></td>
 								<td th:text="${cate.nameBook}"></td>
-								<td th:text="${cate.dateOfAdmissionBook}"></td>
+								<td th:text="${#dates.format(cate.dateOfAdmissionBook,'dd/MM/yyyy')}"></td>
 								<td th:text="${cate.editionBook}"></td>
 								<td th:text="${cate.serieBook}"></td>
 								<td th:text="${cate.languageBook}"></td>

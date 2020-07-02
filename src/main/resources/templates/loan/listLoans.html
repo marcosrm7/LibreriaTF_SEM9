@@ -165,8 +165,8 @@
 						<tbody>
 							<tr th:each="l: ${listLoans}">
 								<td th:text="${l.idLoan}"></td>
-								<td th:text="${l.loanDate}"></td>				
-								<td th:text="${l.devLoan}"></td>
+								<td th:text="${#dates.format(l.loanDate,'dd/MM/yyyy')}"></td>				
+								<td th:text="${#dates.format(l.devLoan,'dd/MM/yyyy')}"></td>
 								<td class="text-center"><a
 										th:href="@{'/loans/detail/' + ${l.idLoan}}"
 										class="btn btn-danger">Detalle</a></td>

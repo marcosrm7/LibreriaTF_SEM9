@@ -64,6 +64,9 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
 					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item " th:href="@{/loans/reports}">Reportes</a>
+					</div>
 				</div></li>
 
 
@@ -169,7 +172,7 @@
 								<td th:text="${cate.idExemplary}"></td>
 								<td th:text="${cate.exemplaryBook.idBook +' | '+ cate.exemplaryBook.nameBook}"></td>
 								<td th:text="${cate.countExemplary}"></td>
-								<td th:text="${cate.dateOfExemplary}"></td>
+								<td th:text="${#dates.format(cate.dateOfExemplary,'dd/MM/yyyy')}"></td>
 							</tr>
 						</tbody>
 					</table>

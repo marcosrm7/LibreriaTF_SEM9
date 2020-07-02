@@ -42,7 +42,7 @@ public class Loan implements Serializable {
 	
 	@Column(name = "devLoan", nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Future(message = "La fecha debe estar en el futuro")
+	@Future(message = "La fecha debe ser futura")
 	private Date devLoan;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

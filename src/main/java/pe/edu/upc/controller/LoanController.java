@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -65,6 +66,7 @@ public class LoanController {
 		return "loan/loan";
 	}
 	
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/reports")
 	public String Report()
 	{

@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Positive;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -37,7 +38,7 @@ public class Exemplary  implements Serializable{
 	private int countExemplary;
 	
 	
-	@Future(message = "La fecha debe estar mayor a la fecha de hoy")
+	@Past(message = "La fecha debe ser pasada")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfExemplary;
 	

@@ -31,14 +31,14 @@
 
 		<!-- Sidebar -->
 		<ul
-			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+			class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion"
 			id="accordionSidebar">
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
 				th:href="@{/authors/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-leaf"></i>
+					<i class="fas fa-book"></i>
 				</div>
 				<div class="sidebar-brand-text mx-2">Programación en Web</div>
 			</a>
@@ -65,6 +65,9 @@
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item " th:href="@{/loans/reports}">Reportes</a>
 					</div>
 				</div></li>
 

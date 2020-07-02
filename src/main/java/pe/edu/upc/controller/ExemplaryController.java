@@ -3,6 +3,7 @@ package pe.edu.upc.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,10 +26,9 @@ public class ExemplaryController {
 	@Autowired
 	private IBookService aU;
 	
-	
 	private Book book;
 	
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/new")
 	public String newExemplary (Model model) {
 		model.addAttribute("exemplary", new Exemplary());
@@ -39,6 +39,7 @@ public class ExemplaryController {
 		return "book/exemplary";
 	}
 	
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/save")
 	public String saveExemplary (@Validated Exemplary exemplary, BindingResult result, Model model) throws Exception {
 		//int contador=exemplary.getCountExemplary();
@@ -57,7 +58,7 @@ public class ExemplaryController {
 		}
 	}
 	
-	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/list")
 	public String listExemplaries(Model model) {
 		try {
@@ -67,12 +68,4 @@ public class ExemplaryController {
 		}
 		return "book/listExemplaries";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 }

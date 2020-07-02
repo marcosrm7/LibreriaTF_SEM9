@@ -57,24 +57,22 @@ public class AuthorController {
 
 					uploadFileService.delete(author.getFoto());
 				}
-
 				String uniqueFilename = null;
 				try {
 					uniqueFilename = uploadFileService.copy(foto);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-
 				flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
 				author.setFoto(uniqueFilename);
 			}
 			int rpta = cS.insert(author);
 			if (rpta > 0) {
-				model.addAttribute("mensaje2", "Ya existe");
+				model.addAttribute("mensaje2", "El autor ya existe");
 				return "author/author";
 			} else {
 				cS.insert(author);
-				model.addAttribute("mensaje", "Autor se registro correctamente");
+				model.addAttribute("mensaje", "El autor se registró correctamente");
 				model.addAttribute("author", new Author());
 				model.addAttribute("listAuthors", cS.list());
 				//status.setComplete();
@@ -101,9 +99,9 @@ public class AuthorController {
 			if (id > 0) {
 				cS.delete(id);
 			}
-			model.addAttribute("mensaje", "Se eliminó correctamente");
+			model.addAttribute("mensaje", "El autor se eliminó correctamente");
 		} catch (Exception e) {
-			model.addAttribute("mensaje2", "Ocurrió un error, no se pudo eliminar");
+			model.addAttribute("mensaje2", "Ocurrió un error, el autor no puede ser eliminado");
 		}
 		model.addAttribute("listAuthors", cS.list());
 		return "author/listAuthors";// Mod pq con el buscar no funcaba
