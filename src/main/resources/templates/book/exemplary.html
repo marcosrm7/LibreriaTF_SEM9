@@ -139,7 +139,7 @@
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Cantidad</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{countExemplary}"
+								<input type="text" th:field="*{countExemplary}" required min=1
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"

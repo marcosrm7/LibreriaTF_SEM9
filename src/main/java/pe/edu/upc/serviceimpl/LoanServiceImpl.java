@@ -40,6 +40,13 @@ public class LoanServiceImpl implements Serializable, ILoanService{
 	public Optional<Loan> fetchByLoanIdWithLoanDetailsWithBooks(int idLoan) {
 		return lR.fetchByImportIdWhithImportDetailsWithProduct(idLoan);
 	}
+
+	@Override
+	public List<Loan> listarIdUsuario(int idUsuario) {
+		List<Loan> op =lR.findByUser(idUsuario);
+		
+		return op;
+	}
 	
 	
 }

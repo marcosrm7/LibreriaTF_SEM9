@@ -43,6 +43,7 @@ public class ExemplaryController {
 	public String saveExemplary (@Validated Exemplary exemplary, BindingResult result, Model model) throws Exception {
 		//int contador=exemplary.getCountExemplary();
 		if(result.hasErrors()) {
+			model.addAttribute("books", aU.list());
 			return "book/exemplary";
 		}
 		

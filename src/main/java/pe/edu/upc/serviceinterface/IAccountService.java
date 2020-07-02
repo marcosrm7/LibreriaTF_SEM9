@@ -10,4 +10,5 @@ public interface IAccountService {
 	
 	List <Account> list();
 	
+	public Account getAccount(String correo);
 }

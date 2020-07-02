@@ -6,6 +6,9 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,6 +41,22 @@ public class LoanController {
 	@Autowired
 	private IAccountService aS;
 
+	/*GET USER DATA*/
+	private Account cuenta;
+	@Autowired
+	private IAccountService usuarioService;
+	/*
+	
+	public void init() {
+	    Authentication auth = SecurityContextHolder
+	            .getContext()
+	            .getAuthentication();
+	    UserDetails  userDetail = (UserDetails) auth.getPrincipal();
+	    cuenta = this.usuarioService.getAccount(userDetail.getUsername());
+	    System.out.println(cuenta);
+	    System.out.println(cuenta.getCorreoAccount());
+	}*/
+	/**/
 	
 	@GetMapping("/new")
 	public String newLoan(Model model) {
@@ -57,21 +76,41 @@ public class LoanController {
 		if (result.hasErrors()) {
 
 			model.addAttribute("mensaje","Prestamo no se registró correctamente");
+			return "loan/loan";
 		}else {
+			Authentication auth = SecurityContextHolder
+		            .getContext()
+		            .getAuthentication();
+		    UserDetails  userDetail = (UserDetails) auth.getPrincipal();
+		    cuenta = this.usuarioService.getAccount(userDetail.getUsername());
+		    loan.setAccount(cuenta);
 			loan.setLoanDate(requestday);
 			lS.insert(loan);
 			model.addAttribute("mensaje","Prestamo se registró correctamente");
+			return "redirect:/loans/list";
 			
 		}
 		
-		return "redirect:/loans/list";
+		
 	}
 	
 	
 	@GetMapping("/list")
 	public String listLoans(Model model) {
+		   Authentication auth = SecurityContextHolder
+		            .getContext()
+		            .getAuthentication();
+		    UserDetails  userDetail = (UserDetails) auth.getPrincipal();
+		    cuenta = this.usuarioService.getAccount(userDetail.getUsername());
+			//Loan imp = lS.listarIdUsuario(cuenta.getIdAccount());
 		try {
+			if(cuenta.getRoleAccount().getIdRole()==1)
 			model.addAttribute("listLoans", lS.list());
+			else {
+				model.addAttribute("listLoans", lS.listarIdUsuario(cuenta.getIdAccount()));
+			}
+			
+			
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
@@ -82,10 +121,15 @@ public class LoanController {
 	//detalle del prestamo
 	@RequestMapping("/newexemplary/{id}")
 	public String irNewProduct(@PathVariable(value = "id") int id, Map<String, Object> model) {
-
+		   Authentication auth = SecurityContextHolder
+		            .getContext()
+		            .getAuthentication();
+		    UserDetails  userDetail = (UserDetails) auth.getPrincipal();
+		    cuenta = this.usuarioService.getAccount(userDetail.getUsername());
+		    
 		model.put("detail", new LoanDetails());
 		model.put("exemplaries", eS.list());
-		model.put("accounts", aS.list());
+		model.put("accounts", cuenta);
 		Loan objloa = lS.listarId(id);
 		model.put("loan", objloa);
 

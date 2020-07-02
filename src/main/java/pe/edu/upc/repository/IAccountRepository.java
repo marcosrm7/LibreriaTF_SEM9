@@ -13,4 +13,6 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {//n
 	public int searchAccount(@Param("correoAccount") String correoAccount, @Param("dniAccount") int dniAccount);
 	@Query("from Account a where upper(a.correoAccount)=upper(:parametro)")
 	public Account findByCorreoAccount(@Param("parametro")String account);
+	
+	
 }

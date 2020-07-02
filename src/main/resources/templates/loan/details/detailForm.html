@@ -184,11 +184,26 @@
 						<div class="form-group row">
 							<label for="account" class="col-sm-2 col-form-label">Usuario</label>
 							<div class="col-sm-6">
-								<select class="form-control" th:field="*{account}">
+								  <!--  <select class="form-control" th:field="*{account}">
 									<option th:each="account: ${accounts}"
 										th:value="${account.idAccount}" th:text="${account.nameAccount + ' ' + account.lastNameAccount}"
 										></option>
+								</select>-->
+								 <select class="form-control" th:field="*{account}">
+									<option 
+										th:value="${accounts.getIdAccount()}" th:text="${accounts.getNameAccount() + ' ' + accounts.getLastNameAccount()}"
+										></option>
 								</select>
+								<!--  <input type="text" th:field="*{account}" required 
+									class="form-control"
+									th:errorclass="'form-control alert-danger'"
+									th:value="${accounts.getIdAccount()}" th:text="${accounts.getNameAccount() + ' ' + accounts.getLastNameAccount()}"
+									 /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('account')}"
+									th:errors="*{account}" ></small>-->
+								
+								
 							</div>
 						</div>
 							<button type="submit" class="btnadd btn btn-secondary">Agregar</button>

@@ -49,6 +49,18 @@ public class Loan implements Serializable {
 	@JoinColumn(name = "idLoan", nullable = true)
 	private List<LoanDetails> loanDetails;
 	
+	/**/
+	@ManyToOne
+	@JoinColumn(name = "idAccount")
+	private Account account;
+	
+	
+	public Account getAccount() {
+		return account;
+	}
+	public void setAccount(Account account) {
+		this.account = account;
+	}
 	@PrePersist
     public void prePersist() {
         this.loanDate= new Date();
@@ -67,6 +79,7 @@ public class Loan implements Serializable {
 		this.loanDate = loanDate;
 		this.devLoan = devLoan;
 		this.loanDetails = loanDetails;
+		this.account=new Account();
 	}
 
 

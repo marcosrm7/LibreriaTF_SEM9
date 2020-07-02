@@ -14,7 +14,9 @@ import pe.edu.upc.serviceinterface.IAccountService;
 public class AccountServiceImpl implements Serializable, IAccountService {
 
 	private static final long serialVersionUID=1L;
-	
+	/**/
+	//private Account cuenta;
+	/**/
 	@Autowired
 	private IAccountRepository cR;
 	
@@ -32,4 +34,17 @@ public class AccountServiceImpl implements Serializable, IAccountService {
 		}
 		return rpta;
 	}
+
+	@Override
+	public Account getAccount(String correo) {
+		Account cuenta=new Account();
+		cuenta=cR.findByCorreoAccount(correo);
+		// TODO Auto-generated method stub
+		return cuenta;
+	}
+
+
+	
+	
+	
 }

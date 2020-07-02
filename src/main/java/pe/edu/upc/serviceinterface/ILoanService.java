@@ -12,4 +12,6 @@ public interface ILoanService {
 	Loan listarId(int idLoan);
 
     Optional<Loan> fetchByLoanIdWithLoanDetailsWithBooks(int idLoan);
+    
+    List<Loan> listarIdUsuario(int idUsuario);
 }
