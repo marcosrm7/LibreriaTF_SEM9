@@ -2,6 +2,7 @@ package pe.edu.upc.serviceimpl;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,18 @@ public class LoanServiceImpl implements Serializable, ILoanService{
 	public List<Loan> list() {
 		// TODO Auto-generated method stub
 		return lR.findAll();
+	}
+
+	@Override
+	public Loan listarId(int idLoan) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Optional<Loan> fetchByImportIdWhithImportDetailsWithProduct(int idLoan) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

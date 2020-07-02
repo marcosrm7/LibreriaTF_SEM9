@@ -2,14 +2,19 @@ package pe.edu.upc.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,40 +39,37 @@ public class Loan implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date loanDate;
 
-	/*@Positive(message = "Solo numeros positivos.")
-	@NotNull(message = "La cantidad es obligatoria")
-	private int quantityBooks;*/
-
+	
 	@Column(name = "devLoan", nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Future(message = "La fecha debe estar en el futuro")
 	private Date devLoan;
 
-	/*@Column(name = "observation", nullable = false, length = 45)
-	private String observation;*/
-
-	/*@ManyToOne
-	@JoinColumn(name = "idExemplary", nullable = false)
-	private Exemplary exemplary;*/
-
-	/*@ManyToOne
-	@JoinColumn(name = "idAccount", nullable = false)
-	private Account account;*/
-
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "idLoandetails", nullable = true)
+	private List<LoanDetails> loanDetails;
+	
+	@PrePersist
+    public void prePersist() {
+        this.loanDate= new Date();
+    }
 	public Loan() {
 		super();
-		// TODO Auto-generated constructor stub
+	
 	}
 
-	public Loan(int idLoan, Date loanDate, int quantityBooks, Date devLoan, String observation, Exemplary exemplary,
-			Account account) {
+	
+
+	public Loan(int idLoan, Date loanDate, @Future(message = "La fecha debe estar en el futuro") Date devLoan,
+			List<LoanDetails> loanDetails) {
 		super();
 		this.idLoan = idLoan;
 		this.loanDate = loanDate;
-		
 		this.devLoan = devLoan;
-		
+		this.loanDetails = loanDetails;
 	}
+
+
 
 	public int getIdLoan() {
 		return idLoan;
@@ -85,8 +87,6 @@ public class Loan implements Serializable {
 		this.loanDate = loanDate;
 	}
 
-	
-
 	public Date getDevLoan() {
 		return devLoan;
 	}
@@ -95,6 +95,13 @@ public class Loan implements Serializable {
 		this.devLoan = devLoan;
 	}
 
+	public List<LoanDetails> getLoanDetails() {
+		return loanDetails;
+	}
 
+	public void setLoanDetails(List<LoanDetails> loanDetails) {
+		this.loanDetails = loanDetails;
+	}
+	
 
 }
