@@ -46,7 +46,7 @@ public class Loan implements Serializable {
 	private Date devLoan;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "idLoandetails", nullable = true)
+	@JoinColumn(name = "idLoan", nullable = true)
 	private List<LoanDetails> loanDetails;
 	
 	@PrePersist
@@ -73,6 +73,10 @@ public class Loan implements Serializable {
 
 	public int getIdLoan() {
 		return idLoan;
+	}
+
+	public void addDetailImportation(LoanDetails item) {
+		this.loanDetails.add(item);
 	}
 
 	public void setIdLoan(int idLoan) {

@@ -55,6 +55,9 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
 					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item " th:href="@{/loans/reports}">Reportes</a>
+					</div>
 				</div></li>
 			<!-- Sidebar Toggler (Sidebar) -->
 		</ul>
@@ -120,12 +123,12 @@
 					<form th:action="@{/books/exemplaries/save}"
 						th:object="${exemplary}" method="post">
 
-						<div class="form-group row">
+						<div class="form-group row" >
 							<label for="name" class="col-sm-2 col-form-label">Libro</label>
 
 							<div class="col-sm-6">
 								<select id="book" class="form-control"
-									th:field="*{exemplaryBook}">
+									th:field="*{exemplaryBook}" >
 									<option th:each="book : ${books}"
 										th:text="${book.idBook + '-'+ book.nameBook}"
 										th:value="${book.idBook}"></option>

@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
@@ -35,6 +36,8 @@ public class Exemplary  implements Serializable{
 	@Column (name="countExemplary", nullable=false, length=45)
 	private int countExemplary;
 	
+	
+	@Future(message = "La fecha debe estar mayor a la fecha de hoy")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfExemplary;
 	

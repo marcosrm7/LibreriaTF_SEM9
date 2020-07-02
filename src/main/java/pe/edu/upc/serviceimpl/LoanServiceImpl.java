@@ -32,14 +32,13 @@ public class LoanServiceImpl implements Serializable, ILoanService{
 
 	@Override
 	public Loan listarId(int idLoan) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Loan> op = lR.findById(idLoan);
+		return op.isPresent() ? op.get() : new Loan();
 	}
 
 	@Override
-	public Optional<Loan> fetchByImportIdWhithImportDetailsWithProduct(int idLoan) {
-		// TODO Auto-generated method stub
-		return null;
+	public Optional<Loan> fetchByLoanIdWithLoanDetailsWithBooks(int idLoan) {
+		return lR.fetchByImportIdWhithImportDetailsWithProduct(idLoan);
 	}
 	
 	

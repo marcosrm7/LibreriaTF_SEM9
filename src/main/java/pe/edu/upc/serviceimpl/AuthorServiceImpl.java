@@ -49,4 +49,10 @@ public class AuthorServiceImpl implements Serializable, IAuthorService {
 	public List<Author> findNameAuthorFull(String nameAuthor) {
 		return cR.findBynameAuthor(nameAuthor);
 	}
+
+	@Override
+	public List<String[]> authortop() {
+		// TODO Auto-generated method stub
+		return cR.AuthorTop();
+	}
 }

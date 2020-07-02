@@ -12,7 +12,6 @@
 
 <title>Libreria Panchito</title>
 <link rel="shortcut icon" href="/libreria/images/icon.ico" />
-
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -32,28 +31,25 @@
 
 		<!-- Sidebar -->
 		<ul
-			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+			class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion"
 			id="accordionSidebar">
-
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/categories/list}">
+				th:href="@{/authors/list}" >
 				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-leaf"></i>
+					<i class="fas fa-book"></i>
 				</div>
-				<div class="sidebar-brand-text mx-2">Programación en web</div>
+				<div class="sidebar-brand-text mx-2">Libreria Panchito</div>
 			</a>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
 
-
-
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded=true
+				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -62,10 +58,10 @@
 						<a class="collapse-item" th:href="@{/authors/list}">Autores</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item active" th:href="@{/books/list}">Libros</a>
+						<a class="collapse-item" th:href="@{/books/list}">Libros</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/loans/list}">Prestamo</a>
+						<a class="collapse-item active" th:href="@{/loans/list}">Prestamo</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
@@ -73,12 +69,8 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item " th:href="@{/loans/reports}">Reportes</a>
 					</div>
-				</div></li>
-
-
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
+				</div>
+		</li>
 
 			<!-- Sidebar Toggler (Sidebar) -->
 
@@ -125,6 +117,7 @@
 								class="mr-2 d-none d-lg-inline text-gray-600 small"><img
 									th:src="@{/img/logout.png}" width="30" height="30" alt="logo"
 									align="middle"></img></span>
+
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -133,8 +126,8 @@
 									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
 								</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="categories/index"
-									data-toggle="modal" data-target="#logoutModal"> <i
+								<a class="dropdown-item" href="#" data-toggle="modal"
+									data-target="#logoutModal"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Cerrar sesión
 								</a>
@@ -143,115 +136,125 @@
 					</ul>
 
 				</nav>
-				<!-- End of Topbar -->
-				<div class="container">
+
+
+
+
+				<div class="content container">
+
+
+					<div class="d-flex">
+
+						<h3 class="title-content" th:text="${titulo}"></h3>
+					</div>
+					<div style="align-content: right">
+						<a
+							th:href="@{'/loans/newexemplary/'+ ${loan.idLoan} }"
+							class="btnnew btn btn-secondary">Nuevo</a>
+					</div>
+
 					<div class="card">
-						<div class="card-header text-white bg-dark mb-3">Detalle de
-							Autor</div>
+
 						<div class="card-body">
 
-							<div class="table-responsive">
-								<table class="table table-white">
 
+							<div class="table-responsive">
+								<table th:if="${not #lists.isEmpty(loan.loanDetails)}"
+									class="table table-striped">
+									<thead class="bg-secondary text-white">
+										<tr align="center">
+											<th scope="col">Obeservaciones</th>
+											<th scope="col">Ejemplar</th>
+											<th scope="col">Usuario</th>
+											<th scope="col">Cantidad</th>
+											<th></th>
+
+										</tr>
+									</thead>
 									<tbody>
-										<tr>
-											<td>Codigo</td>
-											<td th:text="${author.idAuthor}"></td>
-										</tr>
-										<tr>
-											<td>Nombre</td>
-											<td th:text="${author.nameAuthor}"></td>
-										</tr>
-										<tr>
-											<td>Apellido</td>
-											<td th:text="${author.lastnameAuthor}"></td>
-										</tr>
-										<tr>
-											<td>Foto</td>
-											<td><img th:if="${#strings.length(author.foto)> 0}"
-												class="card-img"
-												style="width: 400px; 
-												       height:400px;"
-												th:src="@{'/authors/uploads/' + ${author.foto}}"
-												th:alt="${author.foto}" /></td><!-- style="max-width: 50%;maxd" -->
+										<tr align="center"
+											th:each="l: ${loan.loanDetails}">
+											<td th:text="${l.observation}"></td>
+											<td th:text="${l.exemplary.idExemplary}"></td>
+											<td th:text="${l.account.nameAccount + ' ' + l.account.lastNameAccount}"></td>
+											<td th:text="${l.quantityBooks}"></td>
+									
+											
 										</tr>
 									</tbody>
 
 								</table>
+								<div th:if="${mensaje1}" class="alert alert-primary">
+									<p th:text="${mensaje}"></p>
+								</div>
 
-								<a th:href="@{/authors/list}" type="button"
-									class="btn btn-danger k"> <span
-									class="glyphicon glyphicon-circle-arrow-left"></span> Volver
-								</a>
 							</div>
 						</div>
 					</div>
+					<div style="align-content: left">
+						<a th:href="@{/loans/list}" class="btnnew btn btn-danger">Regresar</a>
+					</div>
 				</div>
+
+
+				<!-- Footer -->
+				<footer class="sticky-footer bg-white">
+					<div class="container my-auto">
+						<div class="copyright text-center my-auto">
+							<span>Copyright &copy; Web 2020</span>
+						</div>
+					</div>
+				</footer>
+				<!-- End of Footer -->
+
 			</div>
-			<!-- /.container-fluid -->
+			<!-- End of Content Wrapper -->
 
-		
-		<!-- End of Main Content -->
+		</div>
+		<!-- End of Page Wrapper -->
 
-		<!-- Footer -->
-		<footer class="sticky-footer bg-white">
-			<div class="container my-auto">
-				<div class="copyright text-center my-auto">
-					<span>Copyright &copy; Web 2020</span>
-				</div>
-			</div>
-		</footer>
-		<!-- End of Footer -->
-	</div>
-	</div>
-	<!-- End of Content Wrapper -->
+		<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded" href="#page-top"> <i
+			class="fas fa-angle-up"></i>
+		</a>
 
-	
-	<!-- End of Page Wrapper -->
-
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">¿Listo para
-						salir?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Seleccione "Cerrar sesión" a
-					continuación si está listo para finalizar su sesión actual.</div>
-				<div class="modal-footer">
-					<form id="logoutForm" th:action="@{/logout}" method="post">
-						<button class="btn btn-danger"
-							onclick="document.getElementById('logoutForm').submit();"
-							type="submit">Cerrar</button>
-					<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{/books/list}">Cancel</button>
-					</form>
+		<!-- Logout Modal-->
+		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">¿Listo para
+							salir?</h5>
+						<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">Seleccione "Cerrar sesión" a
+						continuación si está listo para finalizar su sesión actual</div>
+					<div class="modal-footer">
+						<form id="logoutForm" th:action="@{/logout}" method="post">
+							<button class="btn btn-danger"
+								onclick="document.getElementById('logoutForm').submit();"
+								type="submit">Cerrar</button>
+							<button class="btn btn-dark" type="button" data-dismiss="modal"
+								th:href="@{/categories/list}">Cancel</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<!-- Bootstrap core JavaScript-->
-	<script src="/vendor/jquery/jquery.min.js"></script>
-	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<!-- Bootstrap core JavaScript-->
+		<script src="/vendor/jquery/jquery.min.js"></script>
+		<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Core plugin JavaScript-->
-	<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+		<!-- Core plugin JavaScript-->
+		<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-	<!-- Custom scripts for all pages-->
-	<script src="/js/sb-admin-2.min.js"></script>
-
+		<!-- Custom scripts for all pages-->
+		<script src="/js/sb-admin-2.min.js"></script>
 </body>
 
 </html>

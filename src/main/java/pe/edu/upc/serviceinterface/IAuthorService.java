@@ -16,4 +16,7 @@ public interface IAuthorService {
 	Optional<Author> searchId(int idAuthor);// Modificar
 
 	List<Author> findNameAuthorFull(String nameAuthor);// Buscar
+	
+	
+	public List<String[]> authortop();
 }

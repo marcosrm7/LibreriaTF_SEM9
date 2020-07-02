@@ -11,5 +11,5 @@ public interface ILoanService {
 	
 	Loan listarId(int idLoan);
 
-    Optional<Loan> fetchByImportIdWhithImportDetailsWithProduct(int idLoan);
+    Optional<Loan> fetchByLoanIdWithLoanDetailsWithBooks(int idLoan);
 }

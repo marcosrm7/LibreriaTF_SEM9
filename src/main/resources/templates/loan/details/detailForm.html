@@ -12,7 +12,6 @@
 
 <title>Libreria Panchito</title>
 <link rel="shortcut icon" href="/libreria/images/icon.ico" />
-
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -32,28 +31,25 @@
 
 		<!-- Sidebar -->
 		<ul
-			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+			class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion"
 			id="accordionSidebar">
-
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/categories/list}">
+				th:href="@{/authors/list}" >
 				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-leaf"></i>
+					<i class="fas fa-book"></i>
 				</div>
-				<div class="sidebar-brand-text mx-2">Programación en web</div>
+				<div class="sidebar-brand-text mx-2">Libreria Panchito</div>
 			</a>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
 
-
-
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded=true
+				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -62,10 +58,10 @@
 						<a class="collapse-item" th:href="@{/authors/list}">Autores</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item active" th:href="@{/books/list}">Libros</a>
+						<a class="collapse-item" th:href="@{/books/list}">Libros</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/loans/list}">Prestamo</a>
+						<a class="collapse-item active" th:href="@{/loans/list}">Prestamo</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
@@ -73,12 +69,8 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item " th:href="@{/loans/reports}">Reportes</a>
 					</div>
-				</div></li>
-
-
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
+				</div>
+		</li>
 
 			<!-- Sidebar Toggler (Sidebar) -->
 
@@ -125,6 +117,7 @@
 								class="mr-2 d-none d-lg-inline text-gray-600 small"><img
 									th:src="@{/img/logout.png}" width="30" height="30" alt="logo"
 									align="middle"></img></span>
+
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -133,8 +126,8 @@
 									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
 								</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="categories/index"
-									data-toggle="modal" data-target="#logoutModal"> <i
+								<a class="dropdown-item" href="#" data-toggle="modal"
+									data-target="#logoutModal"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Cerrar sesión
 								</a>
@@ -144,54 +137,70 @@
 
 				</nav>
 				<!-- End of Topbar -->
-				<div class="container">
-					<div class="card">
-						<div class="card-header text-white bg-dark mb-3">Detalle de
-							Autor</div>
-						<div class="card-body">
+				<h3 class="title-content">Agregar Prestamo</h3>
 
-							<div class="table-responsive">
-								<table class="table table-white">
+				<div class="card">
 
-									<tbody>
-										<tr>
-											<td>Codigo</td>
-											<td th:text="${author.idAuthor}"></td>
-										</tr>
-										<tr>
-											<td>Nombre</td>
-											<td th:text="${author.nameAuthor}"></td>
-										</tr>
-										<tr>
-											<td>Apellido</td>
-											<td th:text="${author.lastnameAuthor}"></td>
-										</tr>
-										<tr>
-											<td>Foto</td>
-											<td><img th:if="${#strings.length(author.foto)> 0}"
-												class="card-img"
-												style="width: 400px; 
-												       height:400px;"
-												th:src="@{'/authors/uploads/' + ${author.foto}}"
-												th:alt="${author.foto}" /></td><!-- style="max-width: 50%;maxd" -->
-										</tr>
-									</tbody>
+					<div class="card-body">
 
-								</table>
 
-								<a th:href="@{/authors/list}" type="button"
-									class="btn btn-danger k"> <span
-									class="glyphicon glyphicon-circle-arrow-left"></span> Volver
-								</a>
+						<form
+							th:action="@{'/loans/saveexemplary'+${loan.idLoan}}"
+							method="post" th:object="${detail}">
+							
+						<div class="form-group row">
+							<label for="quantity" class="col-sm-2 col-form-label">Cantidad:</label>
+								<div class="col-sm-6">
+									<input type="number" required min=1
+										th:errorclass="'form-control alert-danger'"
+										th:field="*{quantityBooks}" class="form-control" id="quantity"></input>
+									<div class="alert alert-danger"
+										th:if="${#fields.hasErrors('quantityBooks')}"
+										th:errors="*{quantityBooks}"></div>
+								</div>
+						</div>
+									
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Observaciones</label>						
+							<div class="col-sm-6">
+								<input type="text" th:field="*{observation}" required pattern ="[a-zA-Z]{1,45}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('observation')}"
+									th:errors="*{observation}" ></small>
+							</div>							
+						</div>
+						<div class="form-group row" >
+							<label for="exemplary" class="col-sm-2 col-form-label">Ejemplar</label>
+							<div class="col-sm-6">
+								<select class="form-control" th:field="*{exemplary}" required>
+									<option th:each="exemplary: ${exemplaries}"
+										th:value="${exemplary.idExemplary}" th:text="${exemplary.idExemplary +' '+ exemplary.exemplaryBook.nameBook }"
+										></option>
+								</select>
 							</div>
 						</div>
+						<div class="form-group row">
+							<label for="account" class="col-sm-2 col-form-label">Usuario</label>
+							<div class="col-sm-6">
+								<select class="form-control" th:field="*{account}">
+									<option th:each="account: ${accounts}"
+										th:value="${account.idAccount}" th:text="${account.nameAccount + ' ' + account.lastNameAccount}"
+										></option>
+								</select>
+							</div>
+						</div>
+							<button type="submit" class="btnadd btn btn-secondary">Agregar</button>
+							<a
+								th:href="@{'/loans/detail/' + ${loan.idLoan}}"
+								class="btncancel btn btn-danger">Cancelar</a>
+						</form>
 					</div>
 				</div>
 			</div>
-			<!-- /.container-fluid -->
+		</div>
 
-		
-		<!-- End of Main Content -->
 
 		<!-- Footer -->
 		<footer class="sticky-footer bg-white">
@@ -202,11 +211,11 @@
 			</div>
 		</footer>
 		<!-- End of Footer -->
-	</div>
+
 	</div>
 	<!-- End of Content Wrapper -->
 
-	
+	</div>
 	<!-- End of Page Wrapper -->
 
 	<!-- Scroll to Top Button-->
@@ -228,14 +237,14 @@
 					</button>
 				</div>
 				<div class="modal-body">Seleccione "Cerrar sesión" a
-					continuación si está listo para finalizar su sesión actual.</div>
+					continuación si está listo para finalizar su sesión actual</div>
 				<div class="modal-footer">
 					<form id="logoutForm" th:action="@{/logout}" method="post">
 						<button class="btn btn-danger"
 							onclick="document.getElementById('logoutForm').submit();"
 							type="submit">Cerrar</button>
-					<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{/books/list}">Cancel</button>
+						<button class="btn btn-dark" type="button" data-dismiss="modal"
+							th:href="@{/categories/list}">Cancel</button>
 					</form>
 				</div>
 			</div>

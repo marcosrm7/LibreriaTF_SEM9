@@ -3,6 +3,7 @@ package pe.edu.upc.controller;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class AuthorController {
 		model.addAttribute("author", new Author());
 		return "author/author";
 	}
-
+	
 	@PostMapping("/save")
 	public String saveAuthor(@Validated Author author, BindingResult result, Model model,
 			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status) throws Exception {
@@ -158,5 +159,12 @@ public class AuthorController {
 		model.addAttribute("author", author.get());
 
 		return "author/view";
+	}
+	
+	
+	@RequestMapping("/reporte2")
+	public String categoryTop(Map<String, Object> model) {
+		model.put("listAuthorsTop", cS.authortop());
+		return "reports/authorTop";
 	}
 }

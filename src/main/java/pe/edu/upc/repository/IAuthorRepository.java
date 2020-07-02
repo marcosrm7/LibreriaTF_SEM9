@@ -17,4 +17,9 @@ public interface IAuthorRepository extends JpaRepository<Author, Integer> {
 	
 	@Query("from Author a where lower(a.nameAuthor) like lower(concat('%', :parametro,'%')) or lower(a.lastnameAuthor) like lower(concat('%', :parametro,'%'))")
 	List<Author> findBynameAuthor(@Param("parametro")String nameAuthor);
+	
+	
+	@Query(value = "SELECT a.name_author,sum(ide.quantity_books) from public.loan l join loan_details ide on  ide.id_loan = l.id_loan join exemplary ex on ide.id_exemplary = ex.id_exemplary join book b on b.id_book= ex.id_book join autor a on a.id_author = b.id_author group by a.name_author ORDER BY COUNT(ide.id_exemplary) DESC",
+			nativeQuery = true)
+	public List<String[]> AuthorTop();
 }
