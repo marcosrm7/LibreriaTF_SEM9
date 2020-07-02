@@ -11,45 +11,48 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-
 @Entity
-@Table (name="Loan")
-public class Loan implements Serializable{
+@Table(name = "Loan")
+public class Loan implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idLoan;
-	@Column (name="loanDate", nullable=false)
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "loanDate", nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date loanDate;
-	
-	
-	
-	@Positive(message = "Solo numeros positivos.")
-	@NotNull(message="La cantidad es obligatoria")
-	private int quantityBooks;
-	
-	@Column (name="devLoan", nullable=false)
+
+	/*@Positive(message = "Solo numeros positivos.")
+	@NotNull(message = "La cantidad es obligatoria")
+	private int quantityBooks;*/
+
+	@Column(name = "devLoan", nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Future(message = "La fecha debe estar en el futuro")
 	private Date devLoan;
-	
-	@Column (name="observation", nullable=false, length=45)
-	private String observation;
-	
-	@ManyToOne
+
+	/*@Column(name = "observation", nullable = false, length = 45)
+	private String observation;*/
+
+	/*@ManyToOne
 	@JoinColumn(name = "idExemplary", nullable = false)
-	private Exemplary exemplary;
-	
-	@ManyToOne
+	private Exemplary exemplary;*/
+
+	/*@ManyToOne
 	@JoinColumn(name = "idAccount", nullable = false)
-	private Account account;
+	private Account account;*/
 
 	public Loan() {
 		super();
@@ -61,11 +64,9 @@ public class Loan implements Serializable{
 		super();
 		this.idLoan = idLoan;
 		this.loanDate = loanDate;
-		this.quantityBooks = quantityBooks;
+		
 		this.devLoan = devLoan;
-		this.observation = observation;
-		this.exemplary = exemplary;
-		this.account = account;
+		
 	}
 
 	public int getIdLoan() {
@@ -84,13 +85,7 @@ public class Loan implements Serializable{
 		this.loanDate = loanDate;
 	}
 
-	public int getQuantityBooks() {
-		return quantityBooks;
-	}
-
-	public void setQuantityBooks(int quantityBooks) {
-		this.quantityBooks = quantityBooks;
-	}
+	
 
 	public Date getDevLoan() {
 		return devLoan;
@@ -100,30 +95,6 @@ public class Loan implements Serializable{
 		this.devLoan = devLoan;
 	}
 
-	public String getObservation() {
-		return observation;
-	}
 
-	public void setObservation(String observation) {
-		this.observation = observation;
-	}
 
-	public Exemplary getExemplary() {
-		return exemplary;
-	}
-
-	public void setExemplary(Exemplary exemplary) {
-		this.exemplary = exemplary;
-	}
-
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
-	}
-	
-	
-	
 }
