@@ -11,6 +11,9 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,8 +27,10 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import pe.edu.upc.entity.Account;
 import pe.edu.upc.entity.Author;
 import pe.edu.upc.entity.Book;
+import pe.edu.upc.serviceinterface.IAccountService;
 import pe.edu.upc.serviceinterface.IAuthorService;
 import pe.edu.upc.serviceinterface.IUploadFileService;
 
@@ -37,6 +42,10 @@ public class AuthorController {
 	private IAuthorService cS;
 	@Autowired
 	private IUploadFileService uploadFileService;
+	/*GET USER DATA*/
+	private Account cuenta;
+	@Autowired
+	private IAccountService usuarioService;
 
 	@GetMapping("/new")
 	public String newAuthor(Model model) {
@@ -83,6 +92,12 @@ public class AuthorController {
 
 	@GetMapping("/list")
 	public String listAuthors(Model model) {
+		Authentication auth = SecurityContextHolder
+	            .getContext()
+	            .getAuthentication();
+	    UserDetails  userDetail = (UserDetails) auth.getPrincipal();
+	    cuenta = this.usuarioService.getAccount(userDetail.getUsername());
+	    model.addAttribute("cuenta","Bienvenido "+ cuenta.getNameAccount());
 		try {
 			model.addAttribute("author", new Author());// Por el buscar
 			model.addAttribute("listAuthors", cS.list());
@@ -164,5 +179,11 @@ public class AuthorController {
 	public String categoryTop(Map<String, Object> model) {
 		model.put("listAuthorsTop", cS.authortop());
 		return "reports/authorTop";
+	}
+	
+	@RequestMapping("/reporte3")
+	public String authorbookTop(Map<String, Object> model) {
+		model.put("listAuthorsTop2", cS.authorbooktop());
+		return "reports/authorTop2";
 	}
 }

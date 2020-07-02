@@ -36,11 +36,11 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/authors/list}" >
+				th:href="@{/categories/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-book"></i>
+					<i class="fas fa-leaf"></i>
 				</div>
-				<div class="sidebar-brand-text mx-2">Libreria Panchito</div>
+				<div class="sidebar-brand-text mx-2">Programación en Web</div>
 			</a>
 
 			<!-- Divider -->
@@ -55,22 +55,21 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/authors/list}">Autores</a>
+						<a class="collapse-item " th:href="@{/authors/list}">Autores</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/books/list}">Libros</a>
+						<a class="collapse-item active" th:href="@{/books/list}">Libros</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item " th:href="@{/loans/list}">Prestamo</a>
+						<a class="collapse-item" th:href="@{/loans/list}">Prestamo</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item active" th:href="@{/loans/reports}">Reportes</a>
+						<a class="collapse-item " th:href="@{/loans/reports}">Reportes</a>
 					</div>
-				</div>
-		</li>
+				</div></li>
 
 			<!-- Sidebar Toggler (Sidebar) -->
 
@@ -137,35 +136,32 @@
 
 				</nav>
 				<!-- End of Topbar -->
-				<div class="content container">
-					<div class="cinforeport">
-						<h3 class="title-content">Reportes</h3>
-					</div>
-				</div>
+
 
 				<div class="bg row">
 
-
 					<div class="content container">
-						<div class="creportes d-flex justify-content-around">
-							<div class="cproyecto ">
-								<h3 class="tproyecto ">Autores con más presencia en los
-									prestamos</h3>
-								<p class="dproyecto ">Lista de los Autores más demandados</p>
-								<a class="lnikp " th:href="@{/authors/reporte2}">Ver
-									Reporte</a>
-							</div>
-							<div class="cproyecto ">
-								<h3 class="tproyecto ">Autores con más presencia en los
+						<div class="cinforeport">
+							<h3 class="title-content">Autores con más presencia en los
 									libros</h3>
-								<p class="dproyecto ">Lista de los Autores con mas libros</p>
-								<a class="lnikp " th:href="@{/authors/reporte3}">Ver
-									Reporte</a>
-							</div>
-						
+							<p class="inforeport">Lista de los Autores con mas libros</p>
 						</div>
-
+						<table class="table">
+							<thead class="thead-light">
+								<tr>
+									<th scope="col" class="text-center">Nombre</th>
+									<th scope="col" class="text-center">Nro de veces</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="rep : ${listAuthorsTop2}">
+									<td class="text-center" th:text="${rep[0]}"></td>
+									<td class="text-center" th:text="${rep[1]}"></td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
+
 				</div>
 
 				<!-- Footer -->

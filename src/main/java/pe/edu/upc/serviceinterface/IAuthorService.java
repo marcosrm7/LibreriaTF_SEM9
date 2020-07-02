@@ -19,4 +19,6 @@ public interface IAuthorService {
 	
 	
 	public List<String[]> authortop();
+	
+	public List<String[]> authorbooktop();
 }

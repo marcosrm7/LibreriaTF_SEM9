@@ -55,4 +55,10 @@ public class AuthorServiceImpl implements Serializable, IAuthorService {
 		// TODO Auto-generated method stub
 		return cR.AuthorTop();
 	}
+	
+	@Override
+	public List<String[]> authorbooktop() {
+		// TODO Auto-generated method stub
+		return cR.AuthorBookTop();
+	}
 }
