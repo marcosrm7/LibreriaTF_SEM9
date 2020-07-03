@@ -3,6 +3,7 @@ package pe.edu.upc.controller;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
@@ -208,6 +209,12 @@ public class BookController {
 		model.addAttribute("book", book.get());
 
 		return "book/view";
+	}
+	
+	@RequestMapping("/reporte3")
+	public String categoryTop(Map<String, Object> model) {
+		model.put("listBooksTop", cS.booktop());
+		return "reports/bookTop";
 	}
 
 }

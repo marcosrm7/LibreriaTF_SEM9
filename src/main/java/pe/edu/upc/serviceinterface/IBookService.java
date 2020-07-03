@@ -16,4 +16,6 @@ public interface IBookService {
 	Optional<Book> searchId(int idBook);// Modificar
 
 	List<Book> findNameBookFull(String nameBook);// Buscar
+	
+	public List<String[]> booktop();
 }

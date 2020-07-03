@@ -43,4 +43,9 @@ public class BookServiceImpl implements Serializable, IBookService {
 	public List<Book> findNameBookFull(String nameBook) {
 		return cR.findBynameBook(nameBook);
 	}
+
+	@Override
+	public List<String[]> booktop() {
+		return cR.BookTop();
+	}
 }
