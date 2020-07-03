@@ -30,7 +30,7 @@ public class LoanDetails implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idLoandetails;
-	
+
 	@Positive(message = "Solo numeros positivos.")
 	@NotNull(message = "La cantidad es obligatoria")
 	private int quantityBooks;
@@ -45,7 +45,7 @@ public class LoanDetails implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "idAccount", nullable = false)
 	private Account account;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "idLoan", nullable = false)
 	private Loan loan;
@@ -54,9 +54,6 @@ public class LoanDetails implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	
-
 
 	public LoanDetails(int idLoandetails,
 			@Positive(message = "Solo numeros positivos.") @NotNull(message = "La cantidad es obligatoria") int quantityBooks,
@@ -70,92 +67,55 @@ public class LoanDetails implements Serializable {
 		this.loan = loan;
 	}
 
-
-
-
 	public int getIdLoandetails() {
 		return idLoandetails;
 	}
-
-
-
 
 	public void setIdLoandetails(int idLoandetails) {
 		this.idLoandetails = idLoandetails;
 	}
 
-
-
-
 	public int getQuantityBooks() {
 		return quantityBooks;
 	}
-
-
-
 
 	public void setQuantityBooks(int quantityBooks) {
 		this.quantityBooks = quantityBooks;
 	}
 
-
-
-
 	public String getObservation() {
 		return observation;
 	}
-
-
-
 
 	public void setObservation(String observation) {
 		this.observation = observation;
 	}
 
-
-
-
 	public Exemplary getExemplary() {
 		return exemplary;
 	}
-
-
-
 
 	public void setExemplary(Exemplary exemplary) {
 		this.exemplary = exemplary;
 	}
 
-
-
-
 	public Account getAccount() {
 		return account;
 	}
-
-
-
 
 	public void setAccount(Account account) {
 		this.account = account;
 	}
 
-
-
-
 	public Loan getLoan() {
 		return loan;
 	}
 
-
-
-
 	public void setLoan(Loan loan) {
 		this.loan = loan;
 	}
-
-
-
-
-
+	
+	public int QuantitySubTotal() {
+		return quantityBooks;
+	}
 }

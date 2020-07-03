@@ -184,6 +184,9 @@
 									</tbody>
 
 								</table>
+								<h5 class="float-right">
+								total:<span th:text="${loan.getTotal()}"></span>
+								</h5>
 								<div th:if="${mensaje1}" class="alert alert-primary">
 									<p th:text="${mensaje}"></p>
 								</div>

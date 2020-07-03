@@ -3,6 +3,7 @@ package pe.edu.upc.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -120,5 +121,8 @@ public class Loan implements Serializable {
 		this.loanDetails = loanDetails;
 	}
 	
+	public int getTotal() {
+		return loanDetails.stream().collect(Collectors.summingInt(LoanDetails::QuantitySubTotal));
+	}
 
 }
