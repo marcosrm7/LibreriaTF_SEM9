@@ -19,8 +19,8 @@ INSERT INTO account ( correo_account, dni_account, last_name_account, name_accou
 INSERT INTO account ( correo_account, dni_account, last_name_account, name_account, password_account, id_role)
            VALUES ('web@gmail.com', 98765432, 'Del Sistema', 'Estudiante','$2a$10$2wTzbbs2VCM6LRQ7e2gnb.HW/rBAmO391DGnEgd.f9O/pJTQD60g2' , 3);
            
-INSERT INTO exemplary (id_exemplary, count_exemplary, date_of_exemplary, id_book) VALUES (1, 50, '2020-07-02', 1);
-INSERT INTO exemplary (id_exemplary, count_exemplary, date_of_exemplary, id_book) VALUES (2, 100, '2020-07-02', 2);
+INSERT INTO exemplary (count_exemplary, date_of_exemplary, id_book) VALUES (50, '2020-07-02', 1);
+INSERT INTO exemplary (count_exemplary, date_of_exemplary, id_book) VALUES (100, '2020-07-02', 2);
 
 
 
