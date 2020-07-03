@@ -20,15 +20,15 @@
 <link href="/css/sb-admin-2.min.css" rel="stylesheet">
 
 <style type="text/css">
-table{
-    table-layout: fixed;
-    width: 250px;
-}
-th, td {
-    width: 100px;
-    word-wrap: break-word;
+table {
+	table-layout: fixed;
+	width: 250px;
 }
 
+th, td {
+	width: 100px;
+	word-wrap: break-word;
+}
 </style>
 
 </head>
@@ -111,7 +111,7 @@ th, td {
 					</button>
 
 					<!-- Topbar Search -->
-
+					<span th:text="${cuenta}"></span>
 
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
@@ -167,17 +167,18 @@ th, td {
 					<h1 class="h3 col-2 mb-4 text-gray-800"><a class="text-gray-800" th:href="@{/books/exemplaries/list/}"><u>Ejemplares</u></a></h1>
 					-->
 
-					<br> <a  th:href="@{/users/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
+					<br> <a th:href="@{/users/new/}"
+						class="btn btn-secondary btn-xs">Nuevo</a>
 					<!-- <a th:href="@{/books/exemplaries/new/}" class="btn btn-secondary btn-xs">Ejemplares</a>-->
 					<hr class="sidebar-divider">
 
-					<table class="table table-striped" >
+					<table class="table table-striped">
 						<thead class="thead-dark">
 							<tr>
 								<th scope="col">ID</th>
 								<th scope="col">EMAIL</th>
 								<th scope="col">NOMBRES</th>
-								<th scope="col">APELLIDOS</th>								
+								<th scope="col">APELLIDOS</th>
 								<!--  <th scope="col">CONTRASEÑA</th>-->
 								<th scope="col">ROL</th>
 							</tr>
@@ -193,8 +194,8 @@ th, td {
 							</tr>
 						</tbody>
 					</table>
-					
-					
+
+
 
 					<p th:text="${mensaje}" class="form-text text-success"></p>
 

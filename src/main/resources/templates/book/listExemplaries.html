@@ -97,7 +97,7 @@
 					</button>
 
 					<!-- Topbar Search -->
-
+					<span th:text="${cuenta}"></span>
 
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
@@ -170,9 +170,11 @@
 						<tbody>
 							<tr th:each="cate: ${listExemplaries}">
 								<td th:text="${cate.idExemplary}"></td>
-								<td th:text="${cate.exemplaryBook.idBook +' | '+ cate.exemplaryBook.nameBook}"></td>
+								<td
+									th:text="${cate.exemplaryBook.idBook +' | '+ cate.exemplaryBook.nameBook}"></td>
 								<td th:text="${cate.countExemplary}"></td>
-								<td th:text="${#dates.format(cate.dateOfExemplary,'dd/MM/yyyy')}"></td>
+								<td
+									th:text="${#dates.format(cate.dateOfExemplary,'dd/MM/yyyy')}"></td>
 							</tr>
 						</tbody>
 					</table>

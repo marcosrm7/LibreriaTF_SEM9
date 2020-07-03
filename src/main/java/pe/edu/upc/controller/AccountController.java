@@ -2,6 +2,9 @@ package pe.edu.upc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,9 +28,18 @@ public class AccountController {
 	@Autowired
 	private IRoleService rS;
 
+	/* GET USER DATA */
+	private Account cuenta;
+	@Autowired
+	private IAccountService usuarioService;
+
 	@GetMapping("/list")
 	public String listAccounts(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetail = (UserDetails) auth.getPrincipal();
+		cuenta = this.usuarioService.getAccount(userDetail.getUsername());
 
+		model.addAttribute("cuenta", "Bienvenido " + cuenta.getNameAccount());
 		try {
 			model.addAttribute("listAccounts", cS.list());
 		} catch (Exception e) {
@@ -59,7 +71,7 @@ public class AccountController {
 				model.addAttribute("mensaje2", "El DNI y/o el correo ya está(n) en uso");
 				return "user/user";
 			} else {
-				
+
 				cS.insert(account);
 				model.addAttribute("roles", rS.list());
 				model.addAttribute("listAccounts", cS.list());
