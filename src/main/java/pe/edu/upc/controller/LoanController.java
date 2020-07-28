@@ -64,6 +64,8 @@ public class LoanController {
 		model.addAttribute("loan",new Loan());
 		
 		return "loan/loan";
+		
+		
 	}
 	
 	@Secured("ROLE_ADMIN")

@@ -137,13 +137,13 @@
 
 				</nav>
 				<!-- End of Topbar -->
-				<h3 class="title-content">Agregar Prestamo</h3>
+				<div class="container-fluid">
 
-				<div class="card">
+					<!-- Page Heading -->
+					<h1 class="h3 mb-4 text-gray-800">Agregar Prestamo</h1>
 
-					<div class="card-body">
-
-
+					<hr class="sidebar-divider">
+				
 						<form
 							th:action="@{'/loans/saveexemplary'+${loan.idLoan}}"
 							method="post" th:object="${detail}">
@@ -154,9 +154,9 @@
 									<input type="number" required min=1
 										th:errorclass="'form-control alert-danger'"
 										th:field="*{quantityBooks}" class="form-control" id="quantity"></input>
-									<div class="alert alert-danger"
+									<small class="alert alert-danger"
 										th:if="${#fields.hasErrors('quantityBooks')}"
-										th:errors="*{quantityBooks}"></div>
+										th:errors="*{quantityBooks}"></small>
 								</div>
 						</div>
 									
@@ -206,15 +206,18 @@
 								
 							</div>
 						</div>
-							<button type="submit" class="btnadd btn btn-secondary">Agregar</button>
+						<div class="form-group row">
+							<div class="col-sm-6">
+							</div>
+						</div>
+							<input type="submit" value="Agregar" class="btnadd btn btn-secondary"></input>
 							<a
 								th:href="@{'/loans/detail/' + ${loan.idLoan}}"
 								class="btncancel btn btn-danger">Cancelar</a>
 						</form>
 					</div>
 				</div>
-			</div>
-		</div>
+		
 
 
 		<!-- Footer -->
